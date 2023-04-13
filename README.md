@@ -1,5 +1,7 @@
 # UNICOM  
 
+[[paper]](https://arxiv.org/abs/2304.05884) [[gdrive]](https://drive.google.com/drive/folders/18wsNgZeNpjKAcIrWoffJ8o9UqmMHUBqN?usp=share_link)
+
 For image retrieval task:
 1. ImageNet pretraining is not universal enough to generalize to diverse open-world objects.
 2. Supervised learning is not scalable because manual annotation of large-scale training data is time-consuming, costly, and even infeasible.
@@ -11,12 +13,12 @@ The model unicom was pre-trained on [laion400M](https://laion.ai/blog/laion-400-
 
 
 ## Usage
-First, install PyTorch 1.12 (or later) and torchvision, as well as small additional dependencies, and then install this repo as a Python package. 
+First, install PyTorch 1.12 (or later) and torchvision, as well as small additional dependencies, and then install this repo as a Python package.
 On a CUDA GPU machine, the following will do the trick:
 
 ```shell
-pip install torch torchvision torchaudio
-pip install timm
+pip install torch torchvision
+pip install tqdm timm
 pip install git+https://github.com/deepglint/unicom.git
 ```
 
@@ -139,10 +141,24 @@ optional arguments:
 ## Citation
 
 ```latex
-@inproceedings{anxiang_unicom,
+@inproceedings{anxiang_2023_unicom,
   title={Unicom: Universal and Compact Representation Learning for Image Retrieval},
   author={An, Xiang and Deng, Jiankang and Yang, Kaicheng and Li, Jiawei and Feng, Ziyong and Guo, Jia and Yang, Jing and Liu, Tongliang},
   booktitle={ICLR},
   year={2023}
+}
+@inproceedings{deng2019arcface,
+  title={Arcface: Additive angular margin loss for deep face recognition},
+  author={Deng, Jiankang and Guo, Jia and Xue, Niannan and Zafeiriou, Stefanos},
+  booktitle={CVPR},
+  pages={4690--4699},
+  year={2019}
+}
+@inproceedings{anxiang_2022_partialfc,
+    author={An, Xiang and Deng, Jiankang and Guo, Jia and Feng, Ziyong and Zhu, XuHan and Yang, Jing and Liu, Tongliang},
+    title={Killing Two Birds With One Stone: Efficient and Robust Training of Face Recognition CNNs by Partial FC},
+    booktitle={CVPR},
+    year={2022},
+    pages={4042-4051}
 }
 ```
