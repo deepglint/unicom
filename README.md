@@ -2,7 +2,7 @@
 
 [[paper]](https://arxiv.org/abs/2304.05884) [[gdrive]](https://drive.google.com/drive/folders/18wsNgZeNpjKAcIrWoffJ8o9UqmMHUBqN?usp=share_link)
 
-For image retrieval task:
+For image representation:
 1. ImageNet pretraining is not universal enough to generalize to diverse open-world objects.
 2. Supervised learning is not scalable because manual annotation of large-scale training data is time-consuming, costly, and even infeasible.
 3. Instance discrimination method (e.g., CLIP) can hardly encode the semantic structure of training data, because instance-wise contrastive learning always treats two samples as a negative pair, regardless of their semantic similarity.
