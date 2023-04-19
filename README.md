@@ -1,11 +1,12 @@
 # UNICOM  
 
 
+[[paper]](https://arxiv.org/abs/2304.05884) [[gdrive]](https://drive.google.com/drive/folders/18wsNgZeNpjKAcIrWoffJ8o9UqmMHUBqN?usp=share_link)
+
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/metric-learning-on-in-shop-1)](https://paperswithcode.com/sota/metric-learning-on-in-shop-1?p=unicom-universal-and-compact-representation)  
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/image-retrieval-on-sop)](https://paperswithcode.com/sota/image-retrieval-on-sop?p=unicom-universal-and-compact-representation)  
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/image-retrieval-on-inaturalist)](https://paperswithcode.com/sota/image-retrieval-on-inaturalist?p=unicom-universal-and-compact-representation)  
 
-[[paper]](https://arxiv.org/abs/2304.05884) [[gdrive]](https://drive.google.com/drive/folders/18wsNgZeNpjKAcIrWoffJ8o9UqmMHUBqN?usp=share_link)
 
 For image representation:
 1. ImageNet pretraining is not universal enough to generalize to diverse open-world objects.
