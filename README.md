@@ -6,6 +6,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/metric-learning-on-in-shop-1)](https://paperswithcode.com/sota/metric-learning-on-in-shop-1?p=unicom-universal-and-compact-representation)  
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/image-retrieval-on-sop)](https://paperswithcode.com/sota/image-retrieval-on-sop?p=unicom-universal-and-compact-representation)  
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/image-retrieval-on-inaturalist)](https://paperswithcode.com/sota/image-retrieval-on-inaturalist?p=unicom-universal-and-compact-representation)  
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/self-supervised-image-classification-on)](https://paperswithcode.com/sota/self-supervised-image-classification-on?p=unicom-universal-and-compact-representation)
 
 
 For image representation:
@@ -45,7 +46,7 @@ Returns the model and the TorchVision transform needed by the model, specified b
 ### Supervised Image Retrieval
 
 | Dataset     | ViT-B/32 | ViT-B/16 | ViT-L/14 | ViT-L/14@336px |
-|-------------|----------|----------|----------|----------------|
+| ----------- | -------- | -------- | -------- | -------------- |
 | SOP         | 87.1     | 88.8     | 89.9     | 91.2           |
 | In-Shop     | 94.8     | 95.5     | 96.0     | 96.7           |
 | INaturalist | 72.8     | 82.5     | 85.4     | 88.9           |
@@ -53,7 +54,7 @@ Returns the model and the TorchVision transform needed by the model, specified b
 ### Zero-Shot Image Retrieval
 
 | Dataset     | ViT-B/32 | ViT-B/16 | ViT-L/14 | ViT-L/14@336px |
-|-------------|----------|----------|----------|----------------|
+| ----------- | -------- | -------- | -------- | -------------- |
 | CUB         | 83.7     | 86.5     | 88.5     | 89.2           |
 | Cars        | 95.9     | 96.8     | 96.9     | 97.3           |
 | SOP         | 70.0     | 70.4     | 72.7     | 74.5           |
@@ -64,8 +65,13 @@ Returns the model and the TorchVision transform needed by the model, specified b
 ### Transfer-Learning on ImageNet1K
 
 | Dataset    | ViT-B/32@384px | ViT-B/16@384px | ViT-L/14@518px |
-|------------|----------------|----------------|----------------|
+| ---------- | -------------- | -------------- | -------------- |
 | ImageNet1k | 83.6           | 85.9           | 88.3           |
+
+### KNN
+| Dataset    | ViT-B/32 | ViT-B/16 | ViT-L/14 | ViT-L/14@336px |
+| ---------- | -------- | -------- | -------- | -------------- |
+| ImageNet1K | 74.5     | 78.8     | 81.2     | 81.6           |
 
 
 ### Image Retrieval Eval
@@ -81,68 +87,12 @@ Zero-Shot CUB Dataset with 8 GPUs.
 torchrun --nproc_per_node 8 retrieval.py --eval --dataset cub --model_name ViT-B/32
 ```
 
-### Image Retrieval Finetune
-```shell
-usage: retrieval.py [-h] [--batch_size BATCH_SIZE] [--dataset DATASET] [--debug DEBUG] [--epochs EPOCHS] [--eval] [--lr LR] [--lr_pfc_weight LR_PFC_WEIGHT] [--input_size INPUT_SIZE] [--gradient_acc GRADIENT_ACC] [--model_name MODEL_NAME]
-                    [--margin_loss_m1 MARGIN_LOSS_M1] [--margin_loss_m2 MARGIN_LOSS_M2] [--margin_loss_m3 MARGIN_LOSS_M3] [--margin_loss_s MARGIN_LOSS_S] [--margin_loss_filter MARGIN_LOSS_FILTER] [--num_workers NUM_WORKERS] [--num_feat NUM_FEAT]
-                    [--optimizer OPTIMIZER] [--output_dim OUTPUT_DIM] [--output OUTPUT] [--resume RESUME] [--sample_rate SAMPLE_RATE] [--seed SEED] [--transform TRANSFORM] [--weight_decay WEIGHT_DECAY] [--color_jitter COLOR_JITTER] [--aa AA] [--reprob REPROB]
-                    [--remode REMODE] [--recount RECOUNT]
+### KNN
+```shell  
 
-retrieval is a command-line tool that provides functionality for fine-tuning the Unicom model on retrieval tasks. With this tool, you can easily adjust the unicom model to achieve optimal performance on a variety of image retrieval tasks. Simply specify the task-
-specific parameters and let the tool handle the rest.
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --batch_size BATCH_SIZE
-                        The batch size to use for training and inference.
-  --dataset DATASET     The dataset to load for training and evaluation.
-  --debug DEBUG         A flag indicating whether to run the code in debug mode (with additional logging or other debugging aids).
-  --epochs EPOCHS       The number of epochs to train the model for.
-  --eval                A flag indicating whether to run model evaluation after training.
-  --lr LR               The learning rate to use for training the model.
-  --lr_pfc_weight LR_PFC_WEIGHT
-                        The weight to apply to the learning rate for the Partial FC layer during training. Sure, when fine-tuning a pre-trained neural network, it is usually recommended to adjust the learning rates of different layers in order to achieve better
-                        performance. For example, the learning rate of the backbone layers (i.e., the pre-trained layers) should be set lower because they already have learned features, while the learning rate of the Partial FC layer should be set higher, as it
-                        needs to adapt to the new task.
-  --input_size INPUT_SIZE
-                        The size of the input images for the model.
-  --gradient_acc GRADIENT_ACC
-                        The number of times gradients are accumulated before updating the model's parameters.
-  --model_name MODEL_NAME
-                        The name of the pre-trained model to use for feature extraction.
-  --margin_loss_m1 MARGIN_LOSS_M1
-                        The margin parameter (m1) for the margin loss function.
-  --margin_loss_m2 MARGIN_LOSS_M2
-                        The margin parameter (m1) for the margin loss function.
-  --margin_loss_m3 MARGIN_LOSS_M3
-                        The margin parameter (m3) for the margin loss function.
-  --margin_loss_s MARGIN_LOSS_S
-                        The scale parameter (s) for the margin loss function.
-  --margin_loss_filter MARGIN_LOSS_FILTER
-                        The filter parameter for the margin loss function.
-  --num_workers NUM_WORKERS
-                        The number of workers to use for data loading.
-  --num_feat NUM_FEAT   This parameter is used to set the dimensionality of the features sampled for use in model training and evaluation.
-  --optimizer OPTIMIZER
-                        The optimizer to use for the training process, default is AdamW.
-  --output_dim OUTPUT_DIM
-                        The desired dimensionality of the output embeddings in ViT.
-  --output OUTPUT
-  --resume RESUME       The path to a saved checkpoint to resume training from.
-  --sample_rate SAMPLE_RATE
-                        The negative sample rate to be used for partial FC. It helps to reduce memory usage, increase training speed And can significantly improve performance on datasets with high levels of noise
-  --seed SEED           The random seed to use for reproducibility.
-  --transform TRANSFORM
-                        Transofrm in pytorch dataloader.
-  --weight_decay WEIGHT_DECAY
-                        Weight Decay.
-  --color_jitter COLOR_JITTER
-                        The amount of color jittering to apply during data augmentation.
-  --aa AA               The amount of color jittering to apply during data augmentation. The default value is 'rand-m9-mstd0.5-inc1'.
-  --reprob REPROB       The probability of replacing pixels during training using CutOut.
-  --remode REMODE       The mode of replacement to use during training when using CutOut.
-  --recount RECOUNT
+torchrun --nproc_per_node 8 knn.py --train-dataset /imagenet/train/ --val-dataset /imagenet/val/ --num-workers 4 --model-name ViT-B/32
 ```
+
 
 ## Citation
 
