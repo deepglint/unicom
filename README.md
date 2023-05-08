@@ -42,9 +42,21 @@ Returns the names of the available unicom models.
 
 Returns the model and the TorchVision transform needed by the model, specified by the model name returned by `unicom.available_models()`. It will download the model as necessary.
 
-## Result
+## Results and Evaluation
 
-### Supervised Image Retrieval
+### Result Transfer-Learning on ImageNet1K
+
+| Dataset    | ViT-B/32@384px | ViT-B/16@384px | ViT-L/14@518px |
+| ---------- | -------------- | -------------- | -------------- |
+| ImageNet1k | 83.6           | 85.9           | 88.3           |
+
+### Result KNN on ImageNet1K
+| Dataset    | ViT-B/32 | ViT-B/16 | ViT-L/14 | ViT-L/14@336px |
+| ---------- | -------- | -------- | -------- | -------------- |
+| ImageNet1K | 74.5     | 78.8     | 81.2     | 81.6           |
+
+
+### Result of Supervised Image Retrieval
 
 | Dataset     | ViT-B/32 | ViT-B/16 | ViT-L/14 | ViT-L/14@336px |
 | ----------- | -------- | -------- | -------- | -------------- |
@@ -52,7 +64,7 @@ Returns the model and the TorchVision transform needed by the model, specified b
 | In-Shop     | 94.8     | 95.5     | 96.0     | 96.7           |
 | INaturalist | 72.8     | 82.5     | 85.4     | 88.9           |
 
-### Zero-Shot Image Retrieval
+### Result of Zero-Shot Image Retrieval
 
 | Dataset     | ViT-B/32 | ViT-B/16 | ViT-L/14 | ViT-L/14@336px |
 | ----------- | -------- | -------- | -------- | -------------- |
@@ -63,19 +75,9 @@ Returns the model and the TorchVision transform needed by the model, specified b
 | INaturalist | 64.6     | 73.6     | 77.1     | 81.0           |
 
 
-### Transfer-Learning on ImageNet1K
-
-| Dataset    | ViT-B/32@384px | ViT-B/16@384px | ViT-L/14@518px |
-| ---------- | -------------- | -------------- | -------------- |
-| ImageNet1k | 83.6           | 85.9           | 88.3           |
-
-### KNN
-| Dataset    | ViT-B/32 | ViT-B/16 | ViT-L/14 | ViT-L/14@336px |
-| ---------- | -------- | -------- | -------- | -------------- |
-| ImageNet1K | 74.5     | 78.8     | 81.2     | 81.6           |
 
 
-### Image Retrieval Eval
+### Eval Image Retrieval
 Zero-Shot CUB Dataset with a Single GPU.  
 
 ```shell
@@ -88,12 +90,18 @@ Zero-Shot CUB Dataset with 8 GPUs.
 torchrun --nproc_per_node 8 retrieval.py --eval --dataset cub --model_name ViT-B/32
 ```
 
-### KNN
+### Eval KNN
 ```shell  
 
 torchrun --nproc_per_node 8 knn.py --train-dataset /imagenet/train/ --val-dataset /imagenet/val/ --num-workers 4 --model-name ViT-B/32
-```
+```  
 
+## Vis ZeroShot Retrieval
+
+#### 1. **Food-101**
+![image](examples/vis_food101.jpg)
+#### 2. **Describable Textures Dataset**
+![image](examples/vis_dtd.jpg)
 
 ## Citation
 
