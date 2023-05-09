@@ -1,3 +1,5 @@
+### code
+
 ```python
 import unicom
 import torch
@@ -51,3 +53,10 @@ for row in range(5):
 plt.savefig("vis.jpg")
 
 ```
+
+### result 
+
+#### 1. **Food-101**
+![image](vis_food101.jpg)
+#### 2. **Describable Textures Dataset**
+![image](vis_dtd.jpg)
