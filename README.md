@@ -3,13 +3,6 @@
 
 [[paper]](https://arxiv.org/abs/2304.05884) [[gdrive]](https://drive.google.com/drive/folders/18wsNgZeNpjKAcIrWoffJ8o9UqmMHUBqN?usp=share_link)
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/metric-learning-on-in-shop-1)](https://paperswithcode.com/sota/metric-learning-on-in-shop-1?p=unicom-universal-and-compact-representation)  
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/image-retrieval-on-sop)](https://paperswithcode.com/sota/image-retrieval-on-sop?p=unicom-universal-and-compact-representation)  
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/image-retrieval-on-inaturalist)](https://paperswithcode.com/sota/image-retrieval-on-inaturalist?p=unicom-universal-and-compact-representation)  
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/self-supervised-image-classification-on)](https://paperswithcode.com/sota/self-supervised-image-classification-on?p=unicom-universal-and-compact-representation)  
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/image-classification-on-imagenet)](https://paperswithcode.com/sota/image-classification-on-imagenet?p=unicom-universal-and-compact-representation)
-
-
 For image representation:
 1. ImageNet pretraining is not universal enough to generalize to diverse open-world objects.
 2. Supervised learning is not scalable because manual annotation of large-scale training data is time-consuming, costly, and even infeasible.
@@ -18,7 +11,6 @@ For image representation:
 UNICOM demonstrates superior performance in image retrieval, thanks to its ability to cluster **400000000** images into **1000000** pseudo classes using joint textual and visual features extracted by the CLIP model. Additionally, our use of a margin-based softmax loss (ArcFace) and random partial class/feature (PartialFC) selections enhances the robustness and compactness of the feature embedding. Our method outperforms state-of-the-art unsupervised and supervised image retrieval approaches, making it a powerful tool for researchers and practitioners in the field.
 
 The model unicom was pre-trained on [laion400M](https://laion.ai/blog/laion-400-open-dataset/), and in the future, we will release the model trained on laion2B.
-
 
 ## Usage
 First, install PyTorch 1.12 (or later) and torchvision, as well as small additional dependencies, and then install this repo as a Python package.
