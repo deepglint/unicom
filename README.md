@@ -95,6 +95,16 @@ torchrun --nproc_per_node 8 knn.py --train-dataset /imagenet/train/ --val-datase
 #### 2. **Describable Textures Dataset**
 ![image](examples/vis_dtd.jpg)
 
+## Dataset Contributors
+This project would not have been possible without the invaluable contributions of the following individuals, who have been instrumental in data scraping and collection:  
+Thank you to all the contributors for their hard work and dedication!
+
+* Bin Qin
+* Lan Wu
+* Haiqiang Jiang
+* Yuling Wu
+
+
 ## Citation
 
 ```latex
