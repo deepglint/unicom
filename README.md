@@ -104,6 +104,12 @@ Thank you to all the contributors for their hard work and dedication!
 * Haiqiang Jiang
 * Yuling Wu
 
+| Contributor      | Emial    |
+|------------------|----------|
+| **Bin Qin**         | skyqin@gmail.com              |
+| **Lan Wu**          | bah-wl@hotmail.com            |
+| **Haiqiang Jiang**  | haiqiangjiang@deepglint.com   |
+| **Yuling Wu**       | yulingwu@deepglint.com        |
 
 ## Citation
 
