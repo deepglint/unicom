@@ -1,25 +1,38 @@
+<p align="center" width="100%">
+<img src="docs/logo.png" alt="/80dafc65-cda6-4001-aecf-3989ea9d2f7c.webp" width=30%>
+</p>
+<div>
+
 # UNICOM & MLCD
 
-This repository focuses on creating foundational visual models through large-scale data, such as LAION400M and COYO700M, by employing sample-to-cluster contrastive learning. The models have been validated across various tasks, including multimodal visual large language models (e.g., LLaVA), image retrieval, and image classification.
+
+## Large-Scale Visual Representation Model
+
+This repository is dedicated to building foundational visual models using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models have been thoroughly validated across various tasks, including multimodal visual large language models (e.g., LLaVA), image retrieval, and image classification.
 
 
 
-## MLCD
+---
 
-[[Paper]](https://arxiv.org/abs/2407.17331) [[Hugging Face]](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)
+## Multi-Label Cluster Discrimination (MLCD)
 
+[![Arxiv](https://img.shields.io/badge/arXiv-2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)
 
+![image](https://github.com/user-attachments/assets/d037ef08-a72f-421a-bdb8-d9b187794989)
 
-CLIP excels in various tasks due to image-text contrastive learning but struggles with encoding semantic structures. We propose Multi-Label Cluster Discrimination (MLCD) to address this. MLCD clusters the LAION-400M dataset into one million centers, using multiple closest centers as labels to account for multiple objects in images. A novel multi-label classification loss separates positive and negative class losses, reducing ambiguity. Experiments show MLCD achieves state-of-the-art performance in linear probe, zero-shot classification, and image-text retrieval tasks. Additionally, MLCD demonstrates promising results in multimodal large language models.
+While CLIP models have shown excellence in many tasks via image-text contrastive learning, they often struggle with encoding complex semantic structures within images. To address this limitation, we introduce **Multi-Label Cluster Discrimination (MLCD)**.
 
+MLCD improves upon traditional approaches by clustering the the LAION dataset, which contains billions of images, into one million centers and assigning multiple closest clusters as labels to each image. This technique accounts for the presence of multiple objects within a single image. We also introduce a novel multi-label classification loss, which separately handles positive and negative class losses, minimizing label ambiguity. Our experiments demonstrate that MLCD achieves state-of-the-art performance in linear probe. Moreover, MLCD shows significant potential when integrated with multimodal large language models.
 
 ### Evaluation
 
 #### A. MLLMs Evaluation Results
-In our experiments, we replaced the CLIP model in [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) with the MLCD model to demonstrate the performance of the MLCD model in Multimodal Large Language Models (MLLMs). For the language model, we used [Qwen2.5-7B](https://huggingface.co/Qwen/Qwen2.5-7B). Additionally, to facilitate the reproducibility of results, we used the [LLaVA-Pretrain](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) for pre-training and the [LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data) for structured fine-tuning. The evaluation results show that the modified model performs exceptionally well across multiple benchmarks, validating the effectiveness of the MLCD model within MLLMs.
+To evaluate MLCD’s performance within multimodal large language models (MLLMs), we replaced the CLIP model in [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) with the MLCD model. We paired this with the [Qwen2.5-7B](https://huggingface.co/Qwen/Qwen2.5-7B) language model. For reproducibility, we utilized the [LLaVA-Pretrain](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) dataset for pre-training and the [LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data) for structured fine-tuning. The evaluation results confirm that the MLCD model performs exceptionally well across multiple benchmarks, underscoring its effectiveness in MLLMs.
+
 
 | Vision Tower    | MLCD (ViT_L_14_336px) | CLIP (ViT_L_14_336px) |
 |:----------------|:-------------|:-------------|
+| Weight     | [link](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |  -       |
 | LLM             | Qwen2.5-7B   |   Qwen2.5-7B |
 | AI2D            | **76.98**    | 73.15        |
 | ScienceQA_img   | **78.09**    | 76.35        |
@@ -56,43 +69,45 @@ This table presents the results of linear probe evaluations comparing CLIP and M
 | Oxford-IIIT Pets | **96.27**          | 95.10                 |
 | Caltech-101    | **97.92**             | 96.00                 |
 | Flowers102     | **99.58**             | 99.20                 |
-
+| ImageNet       | **86.10**             | 85.40                 |
 ### Usage
 #### A. Installation
 
-##### 1. **Clone this repository and navigate to the LLaVA folder:**
+##### **Clone this repository and navigate to the LLaVA folder:**
 ```bash
 git clone https://github.com/deepglint/unicom
 cd unicom
-```
 
-##### 2. **Install the inference package:**
-```bash
+# Upgrade pip and install necessary dependencies
 pip install --upgrade pip
 pip install -e ".[train]"
 ```
 
 #### B. Training
 
+**Stage 1: Pretraining**
 ```bash
-# stage 1: pretrain
 bash scripts/pretrain_mlcd.sh
+```
 
-# stage 2: instrcuted finetune
+**Stage 2: Instructional Finetuning**
+```bash
 bash scripts/finetune_mlcd.sh
 ```
 
 
-#### C. Evaluation
+#### C. Evaluation  
+Install the evaluation tool and execute the evaluation script:
 ```bash
 pip install lmms-eval==0.2.0
 bash eval.sh
 ```
-
+---
 
 ## UNICOM
 
-[[Paper]](https://arxiv.org/abs/2304.05884) [[Google Drive]](https://drive.google.com/drive/folders/18wsNgZeNpjKAcIrWoffJ8o9UqmMHUBqN?usp=share_link)
+[![Arxiv](https://img.shields.io/badge/arXiv-2304.05884-red)](https://arxiv.org/abs/2304.05884) [![Google Drive](https://img.shields.io/badge/Google%20Drive-Model-yellow)](https://drive.google.com/drive/folders/18wsNgZeNpjKAcIrWoffJ8o9UqmMHUBqN?usp=share_link)
+
 
 For image representation:
 1. ImageNet pretraining is not universal enough to generalize to diverse open-world objects.
@@ -146,6 +161,11 @@ Thank you to all the contributors for their hard work and dedication!
 }
 ```
 
-## Acknowledgement
-[LLaVA-Next](https://github.com/LLaVA-VL/LLaVA-NeXT): the codebase for training VLMs. Thanks for their wonderful work.
-[lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval): the tool for evaluating VLMs.
+## Acknowledgement  
+
+We extend our deepest gratitude to the creators and contributors of the following projects:  
+1. [llava-next](https://github.com/LLaVA-VL/LLaVA-NeXT): The comprehensive codebase for training Vision-Language Models (VLMs).  
+2. [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval): The robust tool for evaluating Vision-Language Models (VLMs).
+
+Their exceptional work has been instrumental to our research and development efforts.
+
