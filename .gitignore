@@ -8,7 +8,10 @@
 .DS_Store
 Thumbs.db
 venv/
+wandb/
 
 *.log
+checkpoints/
+*_log/
 
 
