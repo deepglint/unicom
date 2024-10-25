@@ -1,4 +1,4 @@
-<p align="left" width="100%">
+<p align="center" width="100%">
 <img src="docs/logo.png" alt="/80dafc65-cda6-4001-aecf-3989ea9d2f7c.webp" width=30%>
 </p>
 <div>
@@ -27,31 +27,29 @@ MLCD improves upon traditional approaches by clustering the the LAION dataset, w
 ### Evaluation
 
 #### A. MLLMs Evaluation Results
-To evaluate MLCD’s performance within multimodal large language models (MLLMs), we replaced the CLIP model in [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) with the MLCD model. We paired this with the [Qwen2.5-7B](https://huggingface.co/Qwen/Qwen2.5-7B) language model. For reproducibility, we utilized the [LLaVA-Pretrain](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain) dataset for pre-training and the [LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data) for structured fine-tuning. The evaluation results confirm that the MLCD model performs exceptionally well across multiple benchmarks, underscoring its effectiveness in MLLMs.
+To evaluate MLCD’s performance within multimodal large language models (MLLMs), we replaced the CLIP model in LLaVA-NeXT with the MLCD model. We paired this with the Qwen2.5-7B language model. For reproducibility, we utilized the LLaVA-Pretrain dataset for pre-training and the LLaVA-NeXT-Data for structured fine-tuning. The evaluation results confirm that the MLCD model performs exceptionally well across multiple benchmarks, underscoring its effectiveness in MLLMs.
 
 
-| Vision Tower    | MLCD (ViT_L_14_336px) | CLIP (ViT_L_14_336px) |
+| Vision Tower    | [MLCD (ViT_L_14_336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336) | CLIP (ViT_L_14_336px) |
 |:----------------|:-------------|:-------------|
-| Weight     | [link](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |  -       |
 | LLM             | Qwen2.5-7B   |   Qwen2.5-7B |
 | AI2D            | **76.98**    | 73.15        |
-| ScienceQA_img   | **78.09**    | 76.35        |
 | GQA             | **64.17**    | 63.31        |
-| InfoVQA_val     | **43.48**    | 38.88        |
-| MMBench_cn_dev  | **74.83**    | 72.51        |
-| MMBench_en_dev  | **76.37**    | 74.57        |
-| MME(cognition)  | **432**      | 384          |
-| MME(perception) | **1598**     | 1512         |
+| ScienceQA-Img   | **78.09**    | 76.35        |
+| InfoVQA-Val     | **43.48**    | 38.88        |
+| MMBenchCN-Dev  | **74.83**    | 72.51        |
+| MMBenchEN-Dev  | **76.37**    | 74.57        |
 | SeedBench       | **68.20**    | 66.80        |
-| SeedBench_img   | **73.75**    | 72.72        |
+| SeedBench-Img   | **73.75**    | 72.72        |
 | MMStar          | **50.98**    | 48.98        |
 | MMMU            | **44.30**    | 44.20        |
-| OCRBench        | **531.00**   | 525.00       |
-| ChartQA         | **67.84**    | 66.52        |
-| DocVQA_val      | **76.46**    | 75.21        |
 | POPE            | 88.69        | **88.83**    |
-| TextVQA_val     | 61.69        | **62.47**    |
-
+| ChartQA         | **67.84**    | 66.52        |
+| DocVQA-Val      | **76.46**    | 75.21        |
+| TextVQA-Val     | 61.69        | **62.47**    |
+| OCRBench        | **531**      | 525       |
+| MME(cognition)  | **432**      | 384          |
+| MME(perception) | **1598**     | 1512         |
 
 #### B. Linear Probe Evaluation Results
 This table presents the results of linear probe evaluations comparing CLIP and MLCD models on the ViT_L_14_336px architecture across various datasets. The linear probe test freezes the pre-trained model's weights and trains a linear classifier on top to assess how well the model's representations generalize to different tasks.
