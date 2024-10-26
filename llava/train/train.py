@@ -21,10 +21,11 @@ from dataclasses import dataclass, field
 import json
 import logging
 import pathlib
-from typing import Dict, Optional, Sequence, List
+from typing import Dict, Optional, Sequence, List, Union
 from PIL import Image, ImageFile
 from packaging import version
 import numpy as np
+from io import BytesIO
 
 import time
 import random
@@ -131,8 +132,9 @@ class DataArguments:
     video_fps: Optional[int] = field(default=1)
     frames_upbound: Optional[int] = field(default=0)
     add_time_instruction: Optional[bool] = field(default=False)
-    force_sample: Optional[bool] = field(default=False)
+    force_sample: Optional[bool] = field(default=True)
 
+    max_num_images: Optional[int] = field(default=16)
 
 @dataclass
 class TrainingArguments(transformers.TrainingArguments):
@@ -183,6 +185,20 @@ class TrainingArguments(transformers.TrainingArguments):
 #     log_samples_suffix: Optional[str] = field(default="")
 #     output_path: Optional[str] = field(default="./logs/")
 
+def update_data_args(data_args, model):
+    vision_tower = model.get_vision_tower()
+    if "qwen" in model.config.model_type:
+        data_args.def_conv_ver = "qwen_2"
+    elif "llama" in model.config.model_type:
+        data_args.def_conv_ver = "llama_llava_3"
+    if vision_tower is not None:
+        data_args.image_processor = vision_tower.image_processor
+        for key in vars(data_args):
+            if hasattr(model.config, key) and getattr(model.config, key, None) is not None:
+                setattr(data_args, key, getattr(model.config, key, None))
+    data_args.image_prefix = 'index' #default for evaluation
+    print(f"data_args:{data_args}")
+    return data_args
 
 def maybe_zero_3(param, ignore_status=False, name=None):
     from deepspeed import zero
@@ -375,10 +391,39 @@ def _add_speaker_and_signal(header, source, get_conversation=True):
     return conversation
 
 
+def sample_and_replace(text, n, img_token):
+
+    # find img position
+    matches = [match.start() for match in re.finditer(img_token, text)]
+    
+    if len(matches) <= n:
+        return text
+    
+    step = len(matches) // n
+    sampled_indices = set(matches[i * step] for i in range(n))
+    
+    result = []
+    last_end = 0
+    
+    for start in matches:
+        end = start + len(img_token)
+        if start in sampled_indices:
+            result.append(text[last_end:end])
+            last_end = end
+        else:
+            result.append(text[last_end:start].rstrip())
+            last_end = end
+    result.append(text[last_end:])
+    
+    return ''.join(result)
+
+
 def preprocess_multimodal(sources: Sequence[str], data_args: DataArguments) -> Dict:
     is_multimodal = data_args.is_multimodal
     if not is_multimodal:
         return sources
+    
+    max_num_images = data_args.max_num_images
 
     for source in sources:
         for sentence in source:
@@ -386,6 +431,8 @@ def preprocess_multimodal(sources: Sequence[str], data_args: DataArguments) -> D
             # if DEFAULT_IMAGE_TOKEN in sentence["value"] and not sentence["value"].startswith(DEFAULT_IMAGE_TOKEN):
             # only check for num_im=1
             num_im = len(re.findall(DEFAULT_IMAGE_TOKEN, sentence["value"]))
+            if num_im > max_num_images:
+                sentence["value"] = sample_and_replace(sentence["value"], max_num_images, DEFAULT_IMAGE_TOKEN)
             if num_im == 1 and DEFAULT_IMAGE_TOKEN in sentence["value"] and not sentence["value"].startswith(DEFAULT_IMAGE_TOKEN):
                 sentence["value"] = sentence["value"].replace(DEFAULT_IMAGE_TOKEN, "").strip()
                 sentence["value"] = DEFAULT_IMAGE_TOKEN + "\n" + sentence["value"]
@@ -569,7 +616,7 @@ def preprocess_qwen(sources, tokenizer: transformers.PreTrainedTokenizer, has_im
         tokenizer.add_tokens(["<image>"], special_tokens=True)
 
     image_token_index = tokenizer.convert_tokens_to_ids("<image>")
-    im_start, im_end = tokenizer.additional_special_tokens_ids
+    im_start, im_end = tokenizer.additional_special_tokens_ids[:2]
     # unmask_tokens = ["<|im_start|>", "<|im_start|>", "\n"]
     unmask_tokens_idx =  [198, im_start, im_end]
     nl_tokens = tokenizer("\n").input_ids
@@ -798,8 +845,9 @@ def preprocess_v1(sources, tokenizer: transformers.PreTrainedTokenizer, has_imag
     )
 
 
-def preprocess_mpt(sources, tokenizer: transformers.PreTrainedTokenizer, has_image: bool = False) -> Dict:
-    conv = conversation_lib.default_conversation.copy()
+def preprocess_mpt(sources, tokenizer: transformers.PreTrainedTokenizer, has_image: bool = False, conv = None) -> Dict:
+    if conv is None:
+        conv = conversation_lib.default_conversation.copy()
     roles = {"human": conv.roles[0], "gpt": conv.roles[1]}
 
     # Apply prompt templates
@@ -1057,12 +1105,15 @@ class LazySupervisedDataset(Dataset):
                 length_list.append(-cur_len)
         return length_list
 
-    def process_image(self, image_file, overwrite_image_aspect_ratio=None):
+    def process_image(self, image_file: Union[bytes, str], overwrite_image_aspect_ratio=None):
         image_folder = self.data_args.image_folder
         processor = self.data_args.image_processor
         # print(f"\n\nInspecting the image path, folder = {image_folder}, image={image_file}\n\n")
         try:
-            image = Image.open(os.path.join(image_folder, image_file)).convert("RGB")
+            if isinstance(image_file, bytes):
+                image = Image.open(BytesIO(image_file)).convert('RGB')
+            elif isinstance(image_file, str):
+                image = Image.open(os.path.join(image_folder, image_file)).convert("RGB")
         except Exception as exn:
             print(f"Failed to open image {image_file}. Exception:", exn)
             raise exn
@@ -1140,12 +1191,20 @@ class LazySupervisedDataset(Dataset):
         if "image" in sources[0]:
             image_file = self.list_data_dict[i]["image"]
             if type(image_file) is list:
-                image = [self.process_image(f) for f in image_file]
-                # Handling multi images
-                # overwrite to process with simple pad 
-                if len(image_file) > 1:
-                    image = [self.process_image(f, "pad") for f in image_file]
+                if len(image_file) > self.data_args.max_num_images: # multi-images: padding mode, no anyres, limit to max_num_images
+                    step = len(image_file) / self.data_args.max_num_images
+                    sample_list = [image_file[int(i * step)] for i in range(self.data_args.max_num_images)]
+                    
+                    image = [self.process_image(f, "pad") for f in sample_list]
                     image = [[im[0], im[1], "image"] for im in image]
+                elif len(image_file) > 1:
+                    image = [self.process_image(f, "pad") for f in image_file] # multi-images: padding mode, no anyres
+                    image = [[im[0], im[1], "image"] for im in image]
+                elif len(image_file) == 1:
+                    image = [self.process_image(f) for f in image_file] # single-image: with image_aspect_ratio, e.g. anyres
+                    image = [[im[0], im[1], "image"] for im in image]
+                else:
+                    print("Sample {} not exist image file list!".format(self.list_data_dict[i]))
             else:
                 image = [self.process_image(image_file)]
             sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
@@ -1159,7 +1218,7 @@ class LazySupervisedDataset(Dataset):
                 print("File {} not exist!".format(video_file))
 
             try:
-                if "shareVideoGPTV" in video_file:
+                if "shareVideoGPTV" in video_file or ("M4-Instruct-Videos" in video_file and suffix not in ['mp4',]):  # fix bug for m4-video loading 
                     frame_files = [os.path.join(video_file, f) for f in os.listdir(video_file) if os.path.isfile(os.path.join(video_file, f))]
                     frame_files.sort()  # Ensure the frames are sorted if they are named sequentially
 
@@ -1235,6 +1294,115 @@ class LazySupervisedDataset(Dataset):
             data_dict["prompt"] = prompt
 
         data_dict["id"] = self.list_data_dict[i].get("id", i)
+        return data_dict
+    
+    def _source2item(self, sources) -> Dict[str, torch.Tensor]:
+        sources = [sources]
+        assert len(sources) == 1, "Don't know why it is wrapped to a list"  # FIXME
+
+        has_image = False
+
+        if "image" in sources[0]:
+            has_image = True
+            image_file = sources[0]["image"]
+            if type(image_file) is list:
+                if len(image_file) > self.data_args.max_num_images: # multi-images: padding mode, no anyres, limit to max_num_images
+                    step = len(image_file) / self.data_args.max_num_images
+                    sample_list = [image_file[int(i * step)] for i in range(self.data_args.max_num_images)]
+                    
+                    image = [self.process_image(f, "pad") for f in sample_list]
+                    image = [[im[0], im[1], "image"] for im in image]
+                elif len(image_file) > 1:
+                    image = [self.process_image(f, "pad") for f in image_file] # multi-images: padding mode, no anyres
+                    image = [[im[0], im[1], "image"] for im in image]
+                elif len(image_file) == 1:
+                    image = [self.process_image(f) for f in image_file] # single-image: with image_aspect_ratio, e.g. anyres
+                    image = [[im[0], im[1], "image"] for im in image]
+                else:
+                    print("Sample {} not exist image file list!".format(self.list_data_dict[i]))
+            else:
+                image = [self.process_image(image_file)]
+            sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
+        elif "video" in sources[0]:
+            has_image = True
+            video_file = sources[0]["video"]
+            video_folder = self.data_args.video_folder
+            video_file = os.path.join(video_folder, video_file)
+            suffix = video_file.split(".")[-1]
+            if not os.path.exists(video_file):
+                print("File {} not exist!".format(video_file))
+
+            try:
+                if "shareVideoGPTV" in video_file or ("M4-Instruct-Videos" in video_file and suffix not in ['mp4',]): # fix bug for m4-video loading 
+                    frame_files = [os.path.join(video_file, f) for f in os.listdir(video_file) if os.path.isfile(os.path.join(video_file, f))]
+                    frame_files.sort()  # Ensure the frames are sorted if they are named sequentially
+
+                    # TODO: Hard CODE: Determine the indices for uniformly sampling 10 frames
+                    if self.data_args.force_sample:
+                        num_frames_to_sample = self.data_args.frames_upbound
+                    else:
+                        num_frames_to_sample = 10
+
+                    avg_fps = 2
+                    
+                    total_frames = len(frame_files)
+                    sampled_indices = np.linspace(0, total_frames - 1, num_frames_to_sample, dtype=int)
+
+
+                    frame_time = [i/2 for i in sampled_indices]
+                    frame_time = ",".join([f"{i:.2f}s" for i in frame_time])
+
+                    video_time = total_frames / avg_fps
+
+                    # Read and store the sampled frames
+                    video = []
+                    for idx in sampled_indices:
+                        frame_path = frame_files[idx]
+                        try:
+                            with Image.open(frame_path) as img:
+                                frame = img.convert("RGB")
+                                video.append(frame)
+                        except IOError:
+                            print(f"Failed to read frame at path: {frame_path}")
+                else:
+                    video, video_time, frame_time, num_frames_to_sample = process_video_with_decord(video_file, self.data_args)
+
+                processor = self.data_args.image_processor
+                image = processor.preprocess(video, return_tensors="pt")["pixel_values"]
+                if self.data_args.add_time_instruction:
+                    time_instruciton = f"The video lasts for {video_time:.2f} seconds, and {num_frames_to_sample} frames are uniformly sampled from it. These frames are located at {frame_time}.Please answer the following questions related to this video."
+                    sources[0]["conversations"][0]["value"] = f'{DEFAULT_IMAGE_TOKEN}\n{time_instruciton}\n{sources[0]["conversations"][0]["value"].replace(DEFAULT_IMAGE_TOKEN, "")}'
+                image = [(image, video[0].size, "video")]
+                sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
+                # print(sources)
+            except Exception as e:
+                print(f"Error: {e}")
+                print(f"Failed to read video file: {video_file}")
+                return self._get_item(i + 1)
+        else:
+            sources = copy.deepcopy([e["conversations"] for e in sources])
+
+        data_dict = preprocess(sources, self.tokenizer, has_image=has_image)
+
+        if "prompt" in data_dict:
+            prompt = data_dict["prompt"]
+        else:
+            prompt = None
+
+        data_dict = dict(input_ids=data_dict["input_ids"][0], labels=data_dict["labels"][0])
+
+        # image exist in the data
+        if has_image:
+            data_dict["image"] = image
+        elif self.data_args.is_multimodal:
+            # image does not exist in the data, but the model is multimodal
+            crop_size = self.data_args.image_processor.crop_size
+            data_dict["image"] = [
+                (torch.zeros(1, 3, crop_size["height"], crop_size["width"]), (crop_size["width"], crop_size["height"]), "text"),
+            ]
+        # prompt exist in the data
+        if prompt is not None:
+            data_dict["prompt"] = prompt
 
         return data_dict
 
