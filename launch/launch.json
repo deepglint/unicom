@@ -1,0 +1,112 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "finetune",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/tanhuajie/miniconda3/envs/llava_next/bin/deepspeed",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--include=localhost:0",
+                "llava/train/train_mem.py",
+                "--deepspeed=scripts/zero3.json",
+                "--model_name_or_path=/home/vlm/pretrain_model/Qwen2.5-7B-Instruct",
+                "--version=qwen_2",
+                "--data_path=/home/vlm/finetune_json/yaml/llava1008k_robovqa800k.yaml",
+                "--image_folder=/home/vlm/train_images",
+                "--video_folder=/home/vlm/train_videos",
+                "--pretrain_mm_mlp_adapter=/home/vlm/workspace/checkpoints/projectors/mm-projection_Qwen2.5-7B-Instruct_siglip-so400m-patch14-384/mm_projector.bin",
+                "--mm_tunable_parts=mm_mlp_adapter,mm_language_model",
+                "--mm_vision_tower_lr=2e-6",
+                "--vision_tower=/home/vlm/pretrain_model/siglip-so400m-patch14-384",
+                "--mm_projector_type=mlp2x_gelu",
+                "--mm_vision_select_layer=-2",
+                "--mm_use_im_start_end=False",
+                "--mm_use_im_patch_token=False",
+                "--group_by_modality_length=True",
+                "--image_aspect_ratio=anyres",
+                "--image_grid_pinpoints=\"[(384, 768), (768, 384), (768, 768), (1152, 384), (384, 1152)]\"",
+                "--bf16=True",
+                "--run_name=debug",
+                "--output_dir=/home/vlm/workspace/checkpoints/debug",
+                "--num_train_epochs=1",
+                "--per_device_train_batch_size=4",
+                "--per_device_eval_batch_size=1",
+                "--gradient_accumulation_steps=1",
+                "--evaluation_strategy=no",
+                "--save_strategy=steps",
+                "--save_steps=3000",
+                "--save_total_limit=1",
+                "--learning_rate=2e-5",
+                "--weight_decay=0.",
+                "--warmup_ratio=0.03",
+                "--lr_scheduler_type=cosine",
+                "--logging_steps=1",
+                "--tf32=True",
+                "--model_max_length=4096",
+                "--gradient_checkpointing=True",
+                "--dataloader_num_workers=4",
+                "--lazy_preprocess=True",
+                "--report_to=wandb",
+                "--torch_compile=True",
+                "--torch_compile_backend=inductor",
+                "--dataloader_drop_last=True",
+                "--attn_implementation=sdpa",
+                "--frames_upbound=16",
+                "--multi_img_num=16"
+            ],
+            "env": {
+                "WANDB_MODE": "disabled",
+                "PYTHONPATH": "${workspaceFolder}",
+                "TRANSFORMERS_OFFLINE": "1",
+                "HF_HUB_OFFLINE": "1",
+                "HF_DATASETS_OFFLINE": "1",
+                "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "eval",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/llava/benchmark/eval.py",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--model_dir=/home/vlm/workspace/checkpoints/direct_finetune_Llava-Onevision-baseline-qwen2.5",
+                "--max_num_images=16",
+                "--benchmarks=['mme']",
+                "--bmk_root=/home/vlm/benchmarks",
+                "--batch_size=2",
+                "--num_workers=2"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "7"
+            }
+        },
+        {
+            "name": "eval_gen",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/llava/benchmark/eval_generative.py",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false,
+            "args": [
+                "--model_dir=/home/vlm/workspace/checkpoints/direct_finetune_Llava-Onevision-baseline-qwen2.5",
+                "--max_num_images=16",
+                "--benchmarks=['openeqa']",
+                "--bmk_root=/home/vlm/benchmarks",
+                "--image_folder=/home/vlm/eval_images",
+                "--max_new_tokens=64",
+                "--batch_size=2",
+                "--num_workers=2"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "7"
+            }
+        }
+    ]
+}
+
