@@ -1,9 +1,9 @@
 ############### Pretrain ################
 
-export BASE_RUN_NAME=mm-projection_Qwen2-7B-Instruct_siglip-so400m-patch14-384
+export BASE_RUN_NAME=mm-projection_Qwen2.5-7B-Instruct_clip-vit-large-patch14-336
 
-export LLM_VERSION=/home/vlm/pretrain_model/Qwen2-7B-Instruct
-export VISION_MODEL_VERSION=/home/vlm/pretrain_model/siglip-so400m-patch14-384
+export LLM_VERSION=/home/vlm/pretrain_model/Qwen2.5-7B-Instruct
+export VISION_MODEL_VERSION=/home/vlm/pretrain_model/clip-vit-large-patch14-336
 
 export DATA_PATH=/home/vlm/pretrain_json/blip_laion_cc_sbu_558k.json
 export IMAGE_FOLDER=/home/vlm/train_images/pretrain_laion

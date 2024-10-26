@@ -1,11 +1,11 @@
 ############### Finetune ################
 
-export BASE_RUN_NAME=direct_finetune_Llava-Onevision-baseline-qwen2
+export BASE_RUN_NAME=finetune_Llava-Onevision-baseline-clip-qwen2.5
 
-export LLM_VERSION=/home/vlm/pretrain_model/Qwen2-7B-Instruct
-export VISION_MODEL_VERSION=/home/vlm/pretrain_model/siglip-so400m-patch14-384
+export LLM_VERSION=/home/vlm/pretrain_model/Qwen2.5-7B-Instruct
+export VISION_MODEL_VERSION=/home/vlm/pretrain_model/clip-vit-large-patch14-336
 
-export MM_PROJECTOR=mm-projection_Qwen2-7B-Instruct_siglip-so400m-patch14-384
+export MM_PROJECTOR=mm-projection_Qwen2.5-7B-Instruct_clip-vit-large-patch14-336
 export PRETRAIN_MM_MLP_ADAPTER=/home/vlm/workspace/checkpoints/projectors/${MM_PROJECTOR}/mm_projector.bin
 
 export DATA_PATH=/home/vlm/finetune_json/yaml/llava1008k_robovqa800k.yaml
@@ -16,7 +16,7 @@ export OUTPUT_DIR=/home/vlm/workspace/checkpoints/${BASE_RUN_NAME}
 export PROMPT_VERSION=qwen_2
 
 export IMAGE_ASPECT_RATIO=anyres
-export MM_TUNABLE_PARTS="mm_mlp_adapter,mm_language_model"
+export MM_TUNABLE_PARTS="mm_vision_tower,mm_mlp_adapter,mm_language_model"
 export IMAGE_GRID_PINPOINTS="[(384, 768), (768, 384), (768, 768), (1152, 384), (384, 1152)]"
 
 export NUM_GPUS=8

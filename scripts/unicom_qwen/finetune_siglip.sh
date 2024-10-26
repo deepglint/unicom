@@ -1,9 +1,12 @@
 ############### Finetune ################
 
-export BASE_RUN_NAME=resume_finetune_Llava-Onevision-baseline1-qwen2
+export BASE_RUN_NAME=finetune_Llava-Onevision-baseline-siglip-qwen2.5
 
-export PREV_STAGE_CHECKPOINT=/home/vlm/pretrain_model/llava-onevision-qwen2-7b-ov
+export LLM_VERSION=/home/vlm/pretrain_model/Qwen2.5-7B-Instruct
 export VISION_MODEL_VERSION=/home/vlm/pretrain_model/siglip-so400m-patch14-384
+
+export MM_PROJECTOR=mm-projection_Qwen2.5-7B-Instruct_siglip-so400m-patch14-384
+export PRETRAIN_MM_MLP_ADAPTER=/home/vlm/workspace/checkpoints/projectors/${MM_PROJECTOR}/mm_projector.bin
 
 export DATA_PATH=/home/vlm/finetune_json/yaml/llava1008k_robovqa800k.yaml
 export IMAGE_FOLDER=/home/vlm/train_images
@@ -13,12 +16,12 @@ export OUTPUT_DIR=/home/vlm/workspace/checkpoints/${BASE_RUN_NAME}
 export PROMPT_VERSION=qwen_2
 
 export IMAGE_ASPECT_RATIO=anyres
-export MM_TUNABLE_PARTS="mm_mlp_adapter,mm_language_model"
+export MM_TUNABLE_PARTS="mm_vision_tower,mm_mlp_adapter,mm_language_model"
 export IMAGE_GRID_PINPOINTS="[(384, 768), (768, 384), (768, 768), (1152, 384), (384, 1152)]"
 
 export NUM_GPUS=8
 export NNODES=4
-export HOSTFILE=/home/vlm/workspace/hostfile/hostfile_group1_4
+export HOSTFILE=/home/vlm/workspace/hostfile/hostfile_group2_4
 
 export DATA_WORKERS=4
 export DEV_BATCHSIZE=4
@@ -37,11 +40,12 @@ fi
 deepspeed --num_gpus $NUM_GPUS --num_nodes $NNODES --hostfile $HOSTFILE \
     llava/train/train_mem.py \
     --deepspeed scripts/zero${ZERO_VERSION}.json \
-    --model_name_or_path $PREV_STAGE_CHECKPOINT \
+    --model_name_or_path $LLM_VERSION \
     --version $PROMPT_VERSION \
     --data_path $DATA_PATH \
     --image_folder $IMAGE_FOLDER \
     --video_folder $VIDEO_FOLDER \
+    --pretrain_mm_mlp_adapter $PRETRAIN_MM_MLP_ADAPTER \
     --mm_tunable_parts $MM_TUNABLE_PARTS \
     --mm_vision_tower_lr $VIT_LEARNING_RATE \
     --vision_tower $VISION_MODEL_VERSION \
@@ -61,7 +65,7 @@ deepspeed --num_gpus $NUM_GPUS --num_nodes $NNODES --hostfile $HOSTFILE \
     --gradient_accumulation_steps $GRAD_ACC_STEPS \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
-    --save_steps 1000 \
+    --save_steps 3000 \
     --save_total_limit 1 \
     --learning_rate $LEARNING_RATE \
     --weight_decay 0. \
@@ -77,6 +81,7 @@ deepspeed --num_gpus $NUM_GPUS --num_nodes $NNODES --hostfile $HOSTFILE \
     --torch_compile True \
     --torch_compile_backend "inductor" \
     --dataloader_drop_last True \
+    --attn_implementation sdpa \
     --frames_upbound $MAX_IMAGE_NUM  \
     --max_num_images $MAX_IMAGE_NUM \
     2>&1 | tee $OUTPUT_DIR/train.log
