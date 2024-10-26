@@ -12,12 +12,13 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-
+from dataclasses import dataclass
 from typing import List, Optional, Tuple, Union, Dict
 import torch
 import torch.nn as nn
 from torch.nn import CrossEntropyLoss
 
+import copy
 import transformers
 from transformers import AutoConfig, AutoModelForCausalLM, LlamaConfig, LlamaModel, LlamaForCausalLM
 
@@ -42,6 +43,9 @@ class LlavaQwenModel(LlavaMetaModel, Qwen2Model):
     def __init__(self, config: Qwen2Config):
         super(LlavaQwenModel, self).__init__(config)
 
+@dataclass
+class LlavaOutputWithPast(CausalLMOutputWithPast):
+    labels: Optional[torch.FloatTensor] = None
 
 class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
     config_class = LlavaQwenConfig
@@ -100,7 +104,7 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
             return logits, labels
 
         else:
-            return super().forward(
+            output = super().forward(
                 input_ids=input_ids,
                 attention_mask=attention_mask,
                 position_ids=position_ids,
@@ -112,6 +116,10 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
                 output_hidden_states=output_hidden_states,
                 return_dict=return_dict,
             )
+
+            if return_dict:
+                output['labels'] = labels
+            return LlavaOutputWithPast(**output)
 
     @torch.no_grad()
     def generate(
