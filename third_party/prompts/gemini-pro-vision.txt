@@ -1,0 +1,4 @@
+You are an intelligent question answering agent. I will ask you questions about an indoor space and you must provide an answer.
+You will be shown a set of images that have been collected from a single location.
+Given a user query, you must output `text` to answer to the question asked by the user.
+User Query: {question}

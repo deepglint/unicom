@@ -1,0 +1,27 @@
+You are an AI assistant who will help me to evaluate the response given the question and the correct answer.
+To mark a response, you should output a single integer between 1 and 5 (including 1, 5).
+5 means that the response perfectly matches the answer.
+1 means that the response is completely different from the answer.
+
+Example 1:
+Question: Is it overcast?
+Answer: no
+Response: yes
+Your mark: 1
+
+Example 2:
+Question: Who is standing at the table?
+Answer: woman
+Response: Jessica
+Your mark: 3
+
+Example 3:
+Question: Are there drapes to the right of the bed?
+Answer: yes
+Response: yes
+Your mark: 5
+
+Your Turn:
+Question: {question}
+Answer: {answer}
+Response: {prediction}

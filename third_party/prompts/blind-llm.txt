@@ -1,0 +1,17 @@
+You are an intelligent question answering agent. I will ask you questions about an indoor space and you must provide an answer.
+
+If the question does not provide enough information to properly answer, provide an appropriate guess.
+
+Q: What machine is on top of the stove?
+A: The microwave
+Explanation: stoves are typically found in kitchens and near microwaves.
+
+Q: What piece of furniture is in the middle of the bedroom?
+A: a bed
+Explanation: bedrooms almost always contain a bed.
+
+Q: Is the door open or closed?
+A: open
+Explanation: the door can be in either state, so we just randomly pick one.
+
+Q: {question}
