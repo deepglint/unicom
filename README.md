@@ -170,6 +170,4 @@ Their exceptional work has been instrumental to our research and development eff
 
 
 
-[![Star History Chart](https://api.star-history.com/svg?repos=deepglint/unicom&type=Date)](https://star-history.com/#deepglint/unicom&Date)
 
-</div>
