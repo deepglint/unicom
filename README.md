@@ -168,14 +168,7 @@ We extend our deepest gratitude to the creators and contributors of the followin
 Their exceptional work has been instrumental to our research and development efforts.
 
 
-## Misc
 
-<div align="left">
-
-
-[![Stargazers repo roster for @deepglint/unicom](https://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=deepglint&repo=unicom)](https://github.com/deepglint/unicom/stargazers)
-
-[![Forkers repo roster for @deepglint/unicom](https://bytecrank.com/nastyox/reporoster/php/forkersSVG.php?user=deepglint&repo=unicom)](https://github.com/deepglint/unicom/network/members)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=deepglint/unicom&type=Date)](https://star-history.com/#deepglint/unicom&Date)
 
