@@ -5,17 +5,19 @@
 
 # UNICOM & MLCD
 
-
-## Large-Scale Visual Representation Model
-
 This repository is dedicated to building foundational visual models using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models have been thoroughly validated across various tasks, including multimodal visual large language models (e.g., LLaVA), image retrieval, and image classification.
 
 
+# Latest News
+
+- [2024/10] MLCD LLaVA-NeXT 
+- [2024/07] [MLCD was accepted to ECCV 2024.](#multi-label-cluster-discrimination-mlcd)
+- [2023/03] [UNICOM was accepted to ICLR 2023.](#unicom)
 
 ---
 
 ## Multi-Label Cluster Discrimination (MLCD)
-
+<a name="multi-label-cluster-discrimination-mlcd"></a>
 [![Arxiv](https://img.shields.io/badge/arXiv-2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)
 
 ![image](https://github.com/user-attachments/assets/d037ef08-a72f-421a-bdb8-d9b187794989)
@@ -103,7 +105,7 @@ bash eval.sh
 ---
 
 ## UNICOM
-
+<a name="unicom"></a>
 [![Arxiv](https://img.shields.io/badge/arXiv-2304.05884-red)](https://arxiv.org/abs/2304.05884) [![Google Drive](https://img.shields.io/badge/Google%20Drive-Model-yellow)](https://drive.google.com/drive/folders/18wsNgZeNpjKAcIrWoffJ8o9UqmMHUBqN?usp=share_link)
 
 
@@ -117,6 +119,14 @@ UNICOM demonstrates superior performance in image retrieval, thanks to its abili
 ### Usage
 
 For detailed instructions, please refer to the UNICOM  [Documentation](docs/UNICOM.md).
+
+
+## Contributors
+Thanks so much to all of our amazing contributors!
+
+<a href="https://github.com/deepglint/unicom/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=deepglint/unicom&r="/>
+</a>
 
 
 ## Dataset Contributors
