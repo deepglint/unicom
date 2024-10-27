@@ -10,9 +10,11 @@ This repository is dedicated to building foundational visual models using large-
 
 # Latest News
 
-- [2024/10] MLCD LLaVA-NeXT 
-- [2024/07] [MLCD was accepted to ECCV 2024.](#multi-label-cluster-discrimination-mlcd)
-- [2023/03] [UNICOM was accepted to ICLR 2023.](#unicom)
+- [2024/10] [MLCD LLaVA-NeXT released to Hugging Face.](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b)
+
+- [2024/07] [MLCD was accepted to ECCV2024.](#multi-label-cluster-discrimination-mlcd)
+
+- [2023/03] [UNICOM was accepted to ICLR2023.](#unicom)  
 
 ---
 
