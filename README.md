@@ -10,7 +10,7 @@ This repository is dedicated to building foundational visual models using large-
 
 # Latest News
 
-- [2024/10] We release [MLCD-MLLM-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.
+- [2024/10] We release [MLCD-Qwen-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.
 - [2024/07] [MLCD](#multi-label-cluster-discrimination-mlcd) was accepted to ECCV2024.
 - [2023/03] [UNICOM](#unicom) was accepted to ICLR2023.  
 
