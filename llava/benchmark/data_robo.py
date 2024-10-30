@@ -128,21 +128,21 @@ class BenchmarkDatasetGenerative(train.LazySupervisedDataset):
         source = self._sample2source(sample)
 
         source['conversations'][0]['value'] = self._remove_image_tags(
-                source['conversations'][0]['value'], len(source['image']))
+                source['conversations'][0]['value'], len(source['images']))
         assert '<image>' not in source['conversations'][0]['value'], \
             f"Found <image> in source:\n{source['conversations'][0]['value']}"
         
         if self.data_args.image_prefix == 'naked':
-                img_tag = "<image>" * len(source['image'])
+                img_tag = "<image>" * len(source['images'])
         elif self.data_args.image_prefix == 'naked_line':
-            img_tag = "<image>" * len(source['image']) + "\n"
+            img_tag = "<image>" * len(source['images']) + "\n"
         elif self.data_args.image_prefix == 'naked_lines':
-            img_tag = "<image>\n" * len(source['image'])
+            img_tag = "<image>\n" * len(source['images'])
         elif self.data_args.image_prefix == 'patch':
-            img_tag = "<image>\n" * len(source['image'])
+            img_tag = "<image>\n" * len(source['images'])
         elif self.data_args.image_prefix.startswith("index"):
             img_tag = ""
-            for i_img in range(len(source['image'])):
+            for i_img in range(len(source['images'])):
                 img_tag += f"Image {i_img + 1}:\n"
                 img_tag += "<image>\n"
         else:
@@ -153,7 +153,7 @@ class BenchmarkDatasetGenerative(train.LazySupervisedDataset):
         num_img_tags = 0
         for i_msg, msg in enumerate(source['conversations']):
             num_img_tags += msg['value'].count('<image>')
-        assert num_img_tags == len(source['image']), f"{source['id']} {msg['value']}"
+        assert num_img_tags == len(source['images']), f"{source['id']} {msg['value']}"
         
         item = self._source2item(source)
 
@@ -204,7 +204,7 @@ class BenchmarkDatasetGenerative(train.LazySupervisedDataset):
                 ]
             }
         if 'images' in sample:
-            source['image'] = sample['images']
+            source['images'] = sample['images']
         return source
 
 @register_generative_benchmark('robovqa')

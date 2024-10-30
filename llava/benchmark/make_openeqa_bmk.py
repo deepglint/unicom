@@ -100,7 +100,7 @@ def make_bench():
             "question": [item['question']],
             "images": [images],
             "answer": [item['answer']],
-            "extra_answer": [item.get('extra_answer', None)]
+            "extra_answers": [item.get('extra_answers', None)]
         }
       scannet_handler.add_data(new_data)
       
