@@ -21,10 +21,11 @@ from dataclasses import dataclass, field
 import json
 import logging
 import pathlib
-from typing import Dict, Optional, Sequence, List
+from typing import Dict, Optional, Sequence, List, Union
 from PIL import Image, ImageFile
 from packaging import version
 import numpy as np
+from io import BytesIO
 
 import time
 import random
@@ -1057,12 +1058,15 @@ class LazySupervisedDataset(Dataset):
                 length_list.append(-cur_len)
         return length_list
 
-    def process_image(self, image_file, overwrite_image_aspect_ratio=None):
+    def process_image(self, image_file: Union[bytes, str], overwrite_image_aspect_ratio=None):
         image_folder = self.data_args.image_folder
         processor = self.data_args.image_processor
         # print(f"\n\nInspecting the image path, folder = {image_folder}, image={image_file}\n\n")
         try:
-            image = Image.open(os.path.join(image_folder, image_file)).convert("RGB")
+            if isinstance(image_file, bytes):
+                image = Image.open(BytesIO(image_file)).convert('RGB')
+            elif isinstance(image_file, str):
+                image = Image.open(os.path.join(image_folder, image_file)).convert("RGB")
         except Exception as exn:
             print(f"Failed to open image {image_file}. Exception:", exn)
             raise exn
@@ -1159,7 +1163,7 @@ class LazySupervisedDataset(Dataset):
                 print("File {} not exist!".format(video_file))
 
             try:
-                if "shareVideoGPTV" in video_file:
+                if "shareVideoGPTV" in video_file or ("M4-Instruct-Videos" in video_file and suffix not in ['mp4',]):
                     frame_files = [os.path.join(video_file, f) for f in os.listdir(video_file) if os.path.isfile(os.path.join(video_file, f))]
                     frame_files.sort()  # Ensure the frames are sorted if they are named sequentially
 
@@ -1235,6 +1239,108 @@ class LazySupervisedDataset(Dataset):
             data_dict["prompt"] = prompt
 
         data_dict["id"] = self.list_data_dict[i].get("id", i)
+
+        return data_dict
+    
+    def _source2item(self, sources: Dict) -> Dict[str, torch.Tensor]: # this is for evaluation
+        sources = [sources]
+        assert len(sources) == 1, "Don't know why it is wrapped to a list"  # FIXME
+
+        has_image = False
+
+        if "image" in sources[0]:
+            has_image = True
+            image_file = sources[0]["image"]
+            if type(image_file) is list:
+                image = [self.process_image(f) for f in image_file]
+                # Handling multi images
+                # overwrite to process with simple pad 
+                if len(image_file) > 1:
+                    image = [self.process_image(f, "pad") for f in image_file]
+                    image = [[im[0], im[1], "image"] for im in image]
+            else:
+                image = [self.process_image(image_file)]
+            sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
+
+        elif "video" in sources[0]:
+            video_file = sources[0]["video"]
+            video_folder = self.data_args.video_folder
+            video_file = os.path.join(video_folder, video_file)
+            suffix = video_file.split(".")[-1]
+            if not os.path.exists(video_file):
+                print("File {} not exist!".format(video_file))
+
+            try:
+                if "shareVideoGPTV" in video_file or ("M4-Instruct-Videos" in video_file and suffix not in ['mp4',]):
+                    frame_files = [os.path.join(video_file, f) for f in os.listdir(video_file) if os.path.isfile(os.path.join(video_file, f))]
+                    frame_files.sort()  # Ensure the frames are sorted if they are named sequentially
+
+                    # TODO: Hard CODE: Determine the indices for uniformly sampling 10 frames
+                    if self.data_args.force_sample:
+                        num_frames_to_sample = self.data_args.frames_upbound
+                    else:
+                        num_frames_to_sample = 10
+
+                    avg_fps = 2
+                    
+                    total_frames = len(frame_files)
+                    sampled_indices = np.linspace(0, total_frames - 1, num_frames_to_sample, dtype=int)
+
+
+                    frame_time = [i/2 for i in sampled_indices]
+                    frame_time = ",".join([f"{i:.2f}s" for i in frame_time])
+
+                    video_time = total_frames / avg_fps
+
+                    # Read and store the sampled frames
+                    video = []
+                    for idx in sampled_indices:
+                        frame_path = frame_files[idx]
+                        try:
+                            with Image.open(frame_path) as img:
+                                frame = img.convert("RGB")
+                                video.append(frame)
+                        except IOError:
+                            print(f"Failed to read frame at path: {frame_path}")
+                else:
+                    video, video_time, frame_time, num_frames_to_sample = process_video_with_decord(video_file, self.data_args)
+
+                processor = self.data_args.image_processor
+                image = processor.preprocess(video, return_tensors="pt")["pixel_values"]
+                if self.data_args.add_time_instruction:
+                    time_instruciton = f"The video lasts for {video_time:.2f} seconds, and {num_frames_to_sample} frames are uniformly sampled from it. These frames are located at {frame_time}.Please answer the following questions related to this video."
+                    sources[0]["conversations"][0]["value"] = f'{DEFAULT_IMAGE_TOKEN}\n{time_instruciton}\n{sources[0]["conversations"][0]["value"].replace(DEFAULT_IMAGE_TOKEN, "")}'
+                image = [(image, video[0].size, "video")]
+                sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
+                # print(sources)
+            except Exception as e:
+                print(f"Error: {e}")
+                print(f"Failed to read video file: {video_file}")
+                return None
+        else:
+            sources = copy.deepcopy([e["conversations"] for e in sources])
+
+        data_dict = preprocess(sources, self.tokenizer, has_image=has_image)
+
+        if "prompt" in data_dict:
+            prompt = data_dict["prompt"]
+        else:
+            prompt = None
+
+        data_dict = dict(input_ids=data_dict["input_ids"][0], labels=data_dict["labels"][0])
+
+        # image exist in the data
+        if has_image:
+            data_dict["image"] = image
+        elif self.data_args.is_multimodal:
+            # image does not exist in the data, but the model is multimodal
+            crop_size = self.data_args.image_processor.crop_size
+            data_dict["image"] = [
+                (torch.zeros(1, 3, crop_size["height"], crop_size["width"]), (crop_size["width"], crop_size["height"]), "text"),
+            ]
+        # prompt exist in the data
+        if prompt is not None:
+            data_dict["prompt"] = prompt
 
         return data_dict
 
