@@ -125,7 +125,7 @@ For detailed instructions, please refer to the UNICOM  [Documentation](docs/UNIC
 Thanks so much to all of our amazing contributors!
 
 <a href="https://github.com/deepglint/unicom/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=deepglint/unicom&r="/>
+  <img src="https://contrib.rocks/image?repo=deepglint/unicom&r=&timestamp=<?=time()?>"/>
 </a>
 
 
