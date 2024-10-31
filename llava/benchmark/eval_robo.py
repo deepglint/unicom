@@ -134,10 +134,10 @@ def run(dataloader: DataLoader, model, tokenizer, eval_args):
             "question": sample["question"],
             "pred": generated_text.split("\n")[-1],
             "gt": sample["answer"],
-            "extra_gt": sample.get("extra_answers", None),
+            "extra_gt": sample.get("extra_answers").tolist() if sample.get("extra_answers", None) is not None else None,
             "dataset_name": dataset.data_args.bmk_name,
-            "type_level_1": sample.get("type_level_1", "None"),
-            "type_level_2": sample.get("type_level_2", "None")
+            "type_level_1": sample.get("type_level_1", "Undefined"),
+            "type_level_2": sample.get("type_level_2", "Undefined")
             })
 
     if not fnl_results:
