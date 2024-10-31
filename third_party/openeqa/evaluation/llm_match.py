@@ -19,7 +19,7 @@ def parse_score(output: str, tag: str = "Your mark:") -> str:
         return int(output)
     start_idx = output.find(tag)
     if start_idx == -1:
-        raise ValueError("Invalid output string: {}".format(output))
+        return "Invalid output string: {}".format(output)
     end_idx = output.find("\n", start_idx)
     if end_idx == -1:
         return int(output[start_idx:].replace(tag, "").strip())
