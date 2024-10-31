@@ -98,7 +98,7 @@ def get_output_filename(path):
     dir_name = os.path.dirname(path)
     base_name = os.path.basename(path)
     name, ext = os.path.splitext(base_name)
-    new_filename = f"{name}_with_llm_score{ext}"
+    new_filename = f"data_with_llm_score{ext}"
     new_path = os.path.join(dir_name, new_filename)
     return new_path
 
@@ -116,13 +116,15 @@ def req_openeqa_llm_score(result_path):
             temp_data = json.load(f)
             resume_id = temp_data[-1]["unique_id"]
     except FileNotFoundError:
-        resume_id = 0
+        resume_id = -1
+        resume_flag = True
         print("No json file to be loaded.")
     
     for i, item in enumerate(tqdm(contents)):
         
         if item["unique_id"] == resume_id:
             resume_flag = True      
+            continue              
         
         if resume_flag:
             question = item["question"]
