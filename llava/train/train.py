@@ -1141,7 +1141,7 @@ class LazySupervisedDataset(Dataset):
             sources = [sources]
         assert len(sources) == 1, "Don't know why it is wrapped to a list"  # FIXME
 
-        if "images" in sources[0] and len(sources[0]['images']) < 3:
+        if "images" in sources[0] and len(sources[0]['images']) < 9:
             image_file = self.list_data_dict[i]["images"]
             if type(image_file) is list:
                 image = [self.process_image(f) for f in image_file]
@@ -1154,7 +1154,7 @@ class LazySupervisedDataset(Dataset):
                 image = [self.process_image(image_file)]
             sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
 
-        elif "images" in sources[0] and len(sources[0]['images']) > 2:
+        elif "images" in sources[0] and len(sources[0]['images']) > 8:
             image_file = self.list_data_dict[i]["images"]
             image = [self.process_image(f, "pad") for f in image_file]
             image = [[im[0], im[1], "video"] for im in image]
@@ -1254,7 +1254,7 @@ class LazySupervisedDataset(Dataset):
 
         has_image = False
 
-        if "images" in sources[0] and len(sources[0]['images']) < 3:
+        if "images" in sources[0] and len(sources[0]['images']) < 9:
             has_image = True
             image_file = sources[0]["images"]
             if type(image_file) is list:
@@ -1268,7 +1268,7 @@ class LazySupervisedDataset(Dataset):
                 image = [self.process_image(image_file)]
             sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
 
-        elif "images" in sources[0] and len(sources[0]['images']) > 2:
+        elif "images" in sources[0] and len(sources[0]['images']) > 8:
             has_image = True
             image_file = sources[0]["images"]
             image = [self.process_image(f, "pad") for f in image_file]
