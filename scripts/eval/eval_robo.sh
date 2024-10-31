@@ -1,15 +1,17 @@
 #!/bin/bash -e
 export PYTHONPATH=$(pwd)
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <MODEL_DIR> <MAX_NUM_IMAGES>"
+export YOUR_API_KEY="YOUR_API_KEY"
+export YOUR_ENDPOINT="YOUR_ENDPOINT"
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <MODEL_DIR>"
     exit 1
 fi
 
 model_dir=$1
-max_num_images=$2
-bmk_root=path/to/benchmark
-image_folder=path/to/benchmark
+bmk_root=/vlm/data/benchmarks
+image_folder=/vlm/data/eval_data/eval_images
 
 if [ ! -d "$model_dir" ]; then
     echo "Error: $model_dir does not exist"
@@ -28,7 +30,6 @@ python llava/benchmark/eval_robo.py \
     --model_dir=$model_dir  \
     --benchmarks="$(echo $generative_benchmarks | tr -d '\n')" \
     --image_folder=$image_folder \
-    --max_num_images=$max_num_images \
     --bmk_root=$bmk_root \
     --batch_size=1 \
     --max_new_tokens=128 \

@@ -1,4 +1,4 @@
-import os, logging, pickle
+import os, logging, pickle, re
 import pandas as pd
 from typing import Dict
 from pathlib import Path
@@ -21,7 +21,6 @@ class BenchmarkDataArguments(train.DataArguments):
     batch_size: int = field(default=1, metadata={"help": "Batch size for evaluation."})
     max_samples: int = field(default=0, metadata={"help": "Maximum number of evaluation steps."})
     def_conv_ver: str = field(default='qwen_2', metadata={"help": "Version of default conversation template"})
-    max_num_images: int = field(default=32, metadata={"help": "Maximum number of images per sample."})
     num_workers: int = field(default=0, metadata={"help": "Number of workers for data loading."})
 
 @dataclass

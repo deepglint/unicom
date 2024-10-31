@@ -68,7 +68,7 @@ def create_model(rank, model_path):
     model_name = get_model_name_from_path(model_path)
     assert "llama" or "qwen" in model_name, "model_name should contain 'llama' or 'qwen'"
     model_name = model_name.replace("llama", "llava_llama").replace("qwen", "llava_qwen")   
-    tokenizer, model, _, _ = load_pretrained_model(model_path, None, model_name, device_map=rank, torch_dtype='auto')
+    tokenizer, model, _, _ = load_pretrained_model(model_path, None, model_name, device_map=rank, torch_dtype='bfloat16')
     model = model.to(rank)
     ddp_model = DDP(model, device_ids=[rank])
     return ddp_model, model, tokenizer
@@ -85,7 +85,7 @@ def run(dataloader: DataLoader, model, tokenizer, eval_args):
         batch_indices = batch.pop("indices")
         image_sizes = batch.pop("image_sizes")
         modalities = batch.pop("modalities")
-        batch = prepare_inputs(batch, dtype=torch.float32, device=rank)
+        batch = prepare_inputs(batch, dtype=torch.bfloat16, device=rank)
         images = batch.pop("images")
         input_ids = batch.pop("input_ids")
         attention_mask = batch.pop("attention_mask")
@@ -185,7 +185,6 @@ def main(rank, world_size, eval_args, data_args):
     torch.cuda.set_device(rank)
 
     model, ori_model, tokenizer = create_model(rank, eval_args.model_dir)
-    print(f"Number of images of a sample is limited to {data_args.max_num_images}.")
 
     data_args = update_data_args(data_args, ori_model)
 
