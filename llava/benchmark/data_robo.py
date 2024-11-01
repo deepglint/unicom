@@ -155,6 +155,7 @@ class BenchmarkDatasetGenerative(train.LazySupervisedDataset):
         assert num_img_tags == len(source['images']), f"{source['id']} {msg['value']}"
         
         item = self._source2item(source)
+        item = self._update_input_ids(item)
 
         item['index'] = i
         return item
@@ -205,20 +206,34 @@ class BenchmarkDatasetGenerative(train.LazySupervisedDataset):
         if 'images' in sample:
             source['images'] = sample['images']
         return source
+    
+    def _update_input_ids(self, item: Dict) -> Dict[str, torch.Tensor]:
+        question_length = ((item["labels"] >= 0).int() == 0).nonzero(as_tuple=True)[0][-1] + 3
+        item.update({"input_ids": item["input_ids"][:question_length]})
+        return item
 
 @register_generative_benchmark('robovqa')
 class RoboVQA_Dataset(BenchmarkDatasetGenerative):
     def __init__(self, data_args: BenchmarkDataArguments, tokenizer: PTTokenizer):
         super().__init__(data_args, tokenizer)
         self.df = load_bmk_data(os.path.join(data_args.bmk_root, 'RoboVQA'))
+        self.prefix_yes_or_no = " Please answer yes or no. "
     def get_sample(self, i: int) -> Dict:
         row = self.df.iloc[i]
-        sample = {
-            'id': str(row['id']),
-            'question': row['question'],
-            'images': [row[f'image{id+1}'] for id in range(8)],
-            'answer': row['answer']
-        }
+        if ". is it" in row['question']:
+          sample = {
+              'id': str(row['id']),
+              'question': row['question'] + self.prefix_yes_or_no,
+              'images': [row[f'image{id+1}'] for id in range(8)],
+              'answer': row['answer']
+          }
+        else:           
+          sample = {
+              'id': str(row['id']),
+              'question': row['question'],
+              'images': [row[f'image{id+1}'] for id in range(8)],
+              'answer': row['answer']
+          }
         return sample
     
 @register_generative_benchmark('openeqa')

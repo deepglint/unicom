@@ -66,8 +66,8 @@ def update_data_args(data_args, model):
 
 def create_model(rank, model_path):
     model_name = get_model_name_from_path(model_path)
-    assert "llama" or "qwen" in model_name, "model_name should contain 'llama' or 'qwen'"
-    model_name = model_name.replace("llama", "llava_llama").replace("qwen", "llava_qwen")   
+    assert "llama" in model_name.lower() or "qwen" in model_name.lower(), "model_name should contain 'llama' or 'qwen'"
+    model_name = model_name.lower().replace("llama", "llava_llama").replace("qwen", "llava_qwen")
     tokenizer, model, _, _ = load_pretrained_model(model_path, None, model_name, device_map=rank, torch_dtype='bfloat16')
     model = model.to(rank)
     ddp_model = DDP(model, device_ids=[rank])
