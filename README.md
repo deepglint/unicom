@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-<img src="docs/logo.png" alt="/80dafc65-cda6-4001-aecf-3989ea9d2f7c.webp" width=30%>
+<img src="asserts/logo.png" alt="/80dafc65-cda6-4001-aecf-3989ea9d2f7c.webp" width=30%>
 </p>
 <div>
 
@@ -9,12 +9,26 @@ This repository is dedicated to building foundational visual models using large-
 
 
 # Latest News
-
+- [2024/11] We have launched the [MLCD-Embodied-7B](#mlcd-embodied), which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities. For more details, please click here.
 - [2024/10] We release [MLCD-NeXT-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.
 - [2024/07] [MLCD](#multi-label-cluster-discrimination-mlcd) was accepted to ECCV2024.
 - [2023/03] [UNICOM](#unicom) was accepted to ICLR2023.  
 
 ---
+
+## MLCD-Embodied
+<a name="mlcd-embodied"></a>
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Comming%20Soon-yellow)](https://huggingface.co/DeepGlint-AI/MLCD-Embodied-7B)  
+More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLCD-Embodied.md) file.  
+
+Some test results are as follows:
+<p align="left" width="100%">
+<img src="asserts/performance_embodied_001.png" width="50%">
+
+
+
+
+
 
 ## Multi-Label Cluster Discrimination (MLCD)
 <a name="multi-label-cluster-discrimination-mlcd"></a>
