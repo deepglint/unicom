@@ -23,7 +23,7 @@ More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLC
 
 Some test results are as follows:
 <p align="left" width="100%">
-<img src="asserts/performance_embodied_001.png" width="75%">
+<img src="asserts/performance_embodied_001.png" width="80%">
 
 
 
