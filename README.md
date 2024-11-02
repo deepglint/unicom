@@ -19,7 +19,7 @@ This repository is dedicated to building foundational visual models using large-
 ## MLCD-Embodied
 <a name="mlcd-embodied"></a>
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Comming%20Soon-yellow)](https://huggingface.co/DeepGlint-AI/MLCD-Embodied-7B)  
-More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLCD-Embodied.md) file.  
+More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLCD_Embodied.md) file.  
 
 Some test results are as follows:
 <p align="left" width="100%">
