@@ -9,10 +9,10 @@ This repository is dedicated to building foundational visual models using large-
 
 
 # Latest News
-- [2024/11] We have launched the [MLCD-Embodied-7B](#mlcd-embodied), which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities. For more details, please click here.
-- [2024/10] We release [MLCD-NeXT-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.
-- [2024/07] [MLCD](#multi-label-cluster-discrimination-mlcd) was accepted to ECCV2024.
-- [2023/03] [UNICOM](#unicom) was accepted to ICLR2023.  
+:star: [2024/11] We have launched the [MLCD-Embodied-7B](#mlcd-embodied), which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities. For more details, please click [MLCD-Embodied.md](docs/MLCD_Embodied.md).  
+:star: [2024/10] We release [MLCD-NeXT-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.  
+:star: [2024/07] [MLCD](#multi-label-cluster-discrimination-mlcd) was accepted to ECCV2024.  
+:star: [2023/03] [UNICOM](#unicom) was accepted to ICLR2023.  
 
 ---
 
