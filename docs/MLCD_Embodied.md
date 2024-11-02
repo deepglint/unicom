@@ -1,5 +1,7 @@
 # MLCD-Embodied
 
+<a name="mlcd-embodied"></a>
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/MLCD-Embodied-7B)  
 
 ## Performance in RoboVQA and OpenEQA
 
