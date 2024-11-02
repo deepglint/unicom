@@ -23,7 +23,7 @@ More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLC
 
 Some test results are as follows:
 <p align="left" width="100%">
-<img src="asserts/performance_embodied_001.png" width="80%">
+<img src="asserts/performance_embodied_001.png" width="75%">
 
 
 
@@ -35,7 +35,7 @@ Some test results are as follows:
 [![Arxiv](https://img.shields.io/badge/arXiv-2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)
 
 <p align="left" width="100%">
-<img src="https://github.com/user-attachments/assets/d037ef08-a72f-421a-bdb8-d9b187794989" width="75%">
+<img src="https://github.com/user-attachments/assets/d037ef08-a72f-421a-bdb8-d9b187794989" width="80%">
 
 
 While CLIP models have shown excellence in many tasks via image-text contrastive learning, they often struggle with encoding complex semantic structures within images. To address this limitation, we introduce **Multi-Label Cluster Discrimination (MLCD)**.
