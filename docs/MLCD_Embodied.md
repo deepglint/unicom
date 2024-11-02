@@ -24,7 +24,7 @@
 
 ## General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
 
-| Dataset     | Split   | MLCD-Embedded-7B | LLaVA OneVision-7B | GPT-4v   | GPT-4o |
+| Dataset     | Split   | MLCD-Embodied-7B | LLaVA OneVision-7B | GPT-4v   | GPT-4o |
 | :-- | :-: | :-: | :-: | :-: | :-: |
 | A12D        | test    | 79.9             | 81.4               | 78.2     | 94.2   |
 | ChartQA     | test    | 83.0             | 80.0               | 78.5     | 85.7   |
