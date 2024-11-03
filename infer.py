@@ -57,15 +57,16 @@ def preprocess_qwen(sources, tokenizer, has_image=False, max_len=32768, system_m
 def infer_model(args, tokenizer, model, image_processor, user_input):
     global conversation_history
     conversation_history.append({"from": "human", "value": user_input})
-    input_ids = preprocess_qwen(conversation_history, tokenizer, has_image=True).cuda()
+    input_ids = preprocess_qwen(conversation_history, tokenizer, has_image=bool(args.image_files)).cuda()
     
-    # Load and process images
-    image_files = args.image_files.split(",")
+    # Load and process images if provided
     image_tensors = []
-    for image_file in image_files:
-        image = Image.open(image_file)
-        image_tensor = image_processor.preprocess(image, return_tensors="pt")["pixel_values"]
-        image_tensors.append(image_tensor.to(dtype=torch.bfloat16, device="cuda"))
+    if args.image_files:  # Check if image files are provided
+        image_files = args.image_files.split(",")
+        for image_file in image_files:
+            image = Image.open(image_file)
+            image_tensor = image_processor.preprocess(image, return_tensors="pt")["pixel_values"]
+            image_tensors.append(image_tensor.to(dtype=torch.bfloat16, device="cuda"))
 
     # Set stopping conditions
     conv_mode = conv_templates[args.conv_mode]
@@ -76,7 +77,7 @@ def infer_model(args, tokenizer, model, image_processor, user_input):
     with torch.inference_mode():
         output_ids = model.generate(
             input_ids,
-            images=image_tensors,
+            images=image_tensors if image_tensors else None,  # Pass None if no images
             do_sample=True if args.temperature > 0 else False,
             temperature=args.temperature,
             top_p=args.top_p,
@@ -100,7 +101,7 @@ if __name__ == "__main__":
     parser.add_argument("--temperature", type=float, default=0.2)
     parser.add_argument("--top_p", type=float, default=0.95)
     parser.add_argument("--num_beams", type=int, default=1)
-    parser.add_argument("--max_new_tokens", type=int, default=128)
+    parser.add_argument("--max_new_tokens", type=int, default=512)
     args = parser.parse_args()
 
     tokenizer, model, image_processor = init_model(args)
