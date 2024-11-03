@@ -66,6 +66,8 @@ def update_data_args(data_args, model):
 
 def create_model(rank, model_path):
     model_name = get_model_name_from_path(model_path)
+    if 'mlcd' in model_name.lower(): # fixed loading error from "xxx/DeepGlint-AI/MLCD-Embodied-7B"
+        model_name = model_name.lower().replace("mlcd", "mlcd_qwen")
     assert "llama" in model_name.lower() or "qwen" in model_name.lower(), "model_name should contain 'llama' or 'qwen'"
     model_name = model_name.lower().replace("llama", "llava_llama").replace("qwen", "llava_qwen")
     tokenizer, model, _, _ = load_pretrained_model(model_path, None, model_name, device_map=rank, torch_dtype='bfloat16')
