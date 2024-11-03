@@ -191,6 +191,8 @@ Thank you to all the contributors for their hard work and dedication!
 We extend our deepest gratitude to the creators and contributors of the following projects:  
 1. [llava-next](https://github.com/LLaVA-VL/LLaVA-NeXT): The comprehensive codebase for training Vision-Language Models (VLMs).  
 2. [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval): The robust tool for evaluating Vision-Language Models (VLMs).
+3. [OpenEQA](https://github.com/facebookresearch/open-eqa): A wonderful benchmark for Embodied Question Answering.
+4. [RoboVQA](https://github.com/google-deepmind/robovqa): Provide high level reasoning model and dataset for robotics.
 
 Their exceptional work has been instrumental to our research and development efforts.
 
