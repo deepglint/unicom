@@ -3,9 +3,90 @@
 <a name="mlcd-embodied"></a>
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/MLCD-Embodied-7B)  
 
-## Performance in RoboVQA and OpenEQA
+## Usage
 
+### A. Installation
 
+```bash
+git clone https://github.com/deepglint/unicom
+cd unicom
+
+# Upgrade pip and install necessary dependencies
+pip install --upgrade pip
+pip install -e ".[train]"
+```
+
+### B. Inference
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python infer.py --model_dir /path/to/your/model
+
+# example:
+# >> Enter 'exit' to end the conversation, 'reset' to clear the chat history.
+# >> Enter image file paths (comma-separated): ./asserts/logo.png
+# >> User: <image>What kind of animal is it in this picture?
+# >> Assistant: The image features a stylized representation of a cat, characterized by its vibrant and abstract depiction.
+# >> User: What color is this cat?
+# >> Assistant: The cat in the image is primarily white with blue, orange and pink accents, creating a visually appealing and unique appearance.
+```
+
+### C. Evaluation for Embodied Ability
+
+#### Step 1
+
+Download raw data following [OpenEQA](https://github.com/facebookresearch/open-eqa/tree/main/data) and [RoboVQA](https://console.cloud.google.com/storage/browser/gdm-robovqa)(val part)
+
+#### Step 2
+
+Converting raw data into the format required for model evaluation.
+```bash
+# convert OpenEQA benchmark. Note: replace the paths with your own.
+python llava/benchmark/make_openeqa_bmk.py
+
+# convert RoboVQA benchmark. Note: replace the paths with your own.
+python llava/benchmark/make_robovqa_bmk.py
+```
+
+#### Step 3
+
+Make sure that your top-level directory structure should look like this:
+```
+|--/path/to/your/benchmarks
+|  |--OpenEQA
+|  |  |--openeqa_scannet.parquet
+|  |  |--openeqa_hm3d.parquet
+|  |--RoboVQA
+|     |--robovqa.parquet
+|--/path/to/your/images
+   |--openeqa_val
+   |  |--scannet-v0
+   |  |  |--002-scannet-scene0709_00
+   |  |  |--xxx-scannet-scenexxxx_xx
+   |  |--hm3d-v0
+   |     |--000-hm3d-BFRyYbPCCPE
+   |     |--xxx-hm3d-xxxxxxxxxxx
+   |--robovqa_val
+      |--robovqa_221911
+      |--robovqa_xxxxxx
+```
+
+#### Step 4
+
+Run script for evaluation 
+```bash
+# Note: replace 'YOUR_API_KEY', 'YOUR_ENDPOINT', 'bmk_root', 'image_folder' with your own.
+bash scripts/eval/eval_robo.sh /path/to/your/model
+```
+
+### D. Evaluation for General Ability
+
+Install the evaluation tool and execute the evaluation script:
+```bash
+pip install lmms-eval==0.2.0
+bash eval.sh
+```
+
+## Embodied Ability Evaluation: Performance in RoboVQA and OpenEQA
 
 |                |                   | MLCD-Embodied-7B | LLaVA OneVision-7B | GPT-4V | RoboMamba |
 |----------------|-------------------|-------------------|--------------------|--------|-----------|
@@ -20,8 +101,6 @@
 |                | ATTRIBUTE-RECOGNITION     | **67.08** | -           | 57.2   | -         |
 |                | WORLD-KNOWLEDGE           | **53.87** | -           | 50.7   | -         |
 |                | OBJECT-LOCALIZATION       | **43.06** | -           | 42.0     | -         |
-
-
 
 
 ## General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
