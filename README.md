@@ -24,7 +24,7 @@ More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLC
 
 Some test results are as follows:
 <p align="center" width="100%">
-<img src="asserts/radar_compare.png" width="50%">
+<img src="asserts/radar_compare.png" width="60%">
 <p align="center" width="100%">
 <img src="asserts/performance_embodied_001.png" width="75%">
 
