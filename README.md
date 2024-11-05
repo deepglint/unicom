@@ -38,11 +38,14 @@ Some test results are as follows:
 <a name="multi-label-cluster-discrimination-mlcd"></a>
 [![Arxiv](https://img.shields.io/badge/arXiv-2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)
 
-<p align="left" width="100%">
-<img src="https://github.com/user-attachments/assets/d037ef08-a72f-421a-bdb8-d9b187794989" width="80%">
+More details about MLCD can be found in the [MLCD.md](docs/MLCD.md) file.
+
+
 
 
 While CLIP models have shown excellence in many tasks via image-text contrastive learning, they often struggle with encoding complex semantic structures within images. To address this limitation, we introduce **Multi-Label Cluster Discrimination (MLCD)**.
+
+
 
 MLCD improves upon traditional approaches by clustering the the LAION dataset, which contains billions of images, into one million centers and assigning multiple closest clusters as labels to each image. This technique accounts for the presence of multiple objects within a single image. We also introduce a novel multi-label classification loss, which separately handles positive and negative class losses, minimizing label ambiguity. Our experiments demonstrate that MLCD achieves state-of-the-art performance in linear probe. Moreover, MLCD shows significant potential when integrated with multimodal large language models.
 
@@ -51,11 +54,13 @@ MLCD improves upon traditional approaches by clustering the the LAION dataset, w
   <img src="asserts/MLCD_Performance_Linear.png" alt="Image 2" style="width: 49%;">
 </div>
 
-More details about MLCD-Embodied can be found in the [MLCD.md](docs/MLCD.md) file.
-
 
 
 ####  MLLMs Evaluation Results
+
+<p align="left" width="100%">
+<img src="https://github.com/user-attachments/assets/d037ef08-a72f-421a-bdb8-d9b187794989" width="80%">
+
 To evaluate MLCD’s performance within multimodal large language models (MLLMs), we replaced the CLIP model in LLaVA-NeXT with the MLCD model. We paired this with the Qwen2.5-7B language model. For reproducibility, we utilized the LLaVA-Pretrain dataset for pre-training and the LLaVA-NeXT-Data for structured fine-tuning. The evaluation results confirm that the MLCD model performs exceptionally well across multiple benchmarks, underscoring its effectiveness in MLLMs.
 
 
