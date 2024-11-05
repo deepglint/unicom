@@ -23,9 +23,9 @@ This repository is dedicated to building foundational visual models using large-
 More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLCD_Embodied.md) file.  
 
 Some test results are as follows:
-<div align="center">
-    <img src="asserts/radar_openeqa.png" alt="图片1" width="500">
-    <img src="asserts/radar_robomembar.png" alt="图片2" width="500">
+<div style="text-align:center;">
+  <img src="asserts/radar_openeqa.png" alt="Image 1" style="max-width:45%; height:auto;">
+  <img src="asserts/radar_robomembar.png" alt="Image 2" style="max-width:45%; height:auto;">
 </div>
 
 
