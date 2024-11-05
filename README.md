@@ -24,8 +24,8 @@ More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLC
 
 Some test results are as follows:
 <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-  <img src="asserts/radar_openeqa.png" alt="Image 1" style="width: 45%;">
-  <img src="asserts/radar_robomembar.png" alt="Image 2" style="width: 45%;">
+  <img src="asserts/radar_openeqa.png" alt="Image 1" style="width: 48%;">
+  <img src="asserts/radar_robomembar.png" alt="Image 2" style="width: 48%;">
 </div>
 
 
