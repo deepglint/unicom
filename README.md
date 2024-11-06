@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-<img src="asserts/logo.png" alt="/80dafc65-cda6-4001-aecf-3989ea9d2f7c.webp" width=30%>
+<img src="asserts/logo.png" alt="/80dafc65-cda6-4001-aecf-3989ea9d2f7c.webp" width=40%>
 </p>
 <div>
 
