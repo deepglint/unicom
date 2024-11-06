@@ -99,6 +99,9 @@ cd unicom
 pip config set global.index-url https://pypi.org/simple
 pip install --upgrade pip
 pip install -e ".[train]"
+
+# flash attention
+pip install flash-attn --no-build-isolation
 ```
 
 #### B. Training
