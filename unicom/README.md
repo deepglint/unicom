@@ -7,7 +7,16 @@ On a CUDA GPU machine, the following will do the trick:
 ```shell
 pip install torch torchvision
 pip install tqdm timm
-pip install git+https://github.com/deepglint/unicom.git
+
+
+git clone https://github.com/deepglint/unicom
+cd unicom
+python
+>>> import unicom
+>>> unicom.available_models()
+['ViT-B/32', 'ViT-B/16', 'ViT-L/14', 'ViT-L/14@336px']
+>>> unicom.load('ViT-B/32')
+  1%|▍                                      | 4.53M/385M [00:27<50:34, 132kiB/s]
 ```
 
 
@@ -78,6 +87,36 @@ torchrun --nproc_per_node 8 knn.py --train-dataset /imagenet/train/ --val-datase
 ## Vis ZeroShot Retrieval
 
 #### 1. **Food-101**
-![image](../examples/vis_food101.jpg)
+![image](./examples/vis_food101.jpg)
 #### 2. **Describable Textures Dataset**
-![image](../examples/vis_dtd.jpg)
+![image](./examples/vis_dtd.jpg)
+
+
+
+## Citation
+
+```latex
+@inproceedings{anxiang_2024_mlcd,
+  title={Multi-label Cluster Discrimination for Visual Representation Learning},
+  author={An, Xiang and Yang, Kaicheng and Dai, Xiangzi and Feng, Ziyong and Deng, Jiankang},
+  booktitle={ECCV},
+  year={2024}
+}
+@inproceedings{anxiang_2023_unicom,
+  title={Unicom: Universal and Compact Representation Learning for Image Retrieval},
+  author={An, Xiang and Deng, Jiankang and Yang, Kaicheng and Li, Jiawei and Feng, Ziyong and Guo, Jia and Yang, Jing and Liu, Tongliang},
+  booktitle={ICLR},
+  year={2023}
+}
+@inproceedings{anxiang_2022_partialfc,
+    author={An, Xiang and Deng, Jiankang and Guo, Jia and Feng, Ziyong and Zhu, XuHan and Yang, Jing and Liu, Tongliang},
+    title={Killing Two Birds With One Stone: Efficient and Robust Training of Face Recognition CNNs by Partial FC},
+    booktitle={CVPR},
+    year={2022},
+}
+@inproceedings{deng_2019_arcface,
+  title={Arcface: Additive angular margin loss for deep face recognition},
+  author={Deng, Jiankang and Guo, Jia and Xue, Niannan and Zafeiriou, Stefanos},
+  booktitle={CVPR},
+  year={2019}
+}

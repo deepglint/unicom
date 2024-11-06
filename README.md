@@ -5,6 +5,7 @@
 
 
 # UNICOM & MLCD
+[![Arxiv](https://img.shields.io/badge/MLCD-arXiv_2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Arxiv](https://img.shields.io/badge/UNICOM-arXiv_2304.05884-red)](https://arxiv.org/abs/2304.05884) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MLCD_Model-yellow)](https://huggingface.co/collections/DeepGlint-AI/mlcd-670d18d767cea37ea7436e69)
 
 This repository is dedicated to building foundational visual models using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models have been thoroughly validated across various tasks, including multimodal visual large language models (e.g., LLaVA), image retrieval, and image classification.
 
@@ -95,6 +96,7 @@ git clone https://github.com/deepglint/unicom
 cd unicom
 
 # Upgrade pip and install necessary dependencies
+pip config set global.index-url https://pypi.org/simple
 pip install --upgrade pip
 pip install -e ".[train]"
 ```
@@ -134,7 +136,7 @@ UNICOM demonstrates superior performance in image retrieval, thanks to its abili
 
 ### Usage
 
-For detailed instructions, please refer to the UNICOM  [Documentation](docs/UNICOM.md).
+For detailed instructions, please refer to the UNICOM  [Documentation](unicom/README.md).
 
 
 ## Contributors
