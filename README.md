@@ -168,7 +168,7 @@ Thanks so much to all of our amazing contributors!
         <a href="https://github.com/daixiangzi">
             <img src="https://avatars.githubusercontent.com/u/24811131?v=4" width="100;" alt="daixiangzi"/>
             <br />
-            <sub><b>daixiangzi</b></sub>
+            <sub><b>Daixiangzi</b></sub>
         </a>
     </td>
     <td align="center">
@@ -182,7 +182,7 @@ Thanks so much to all of our amazing contributors!
         <a href="https://github.com/yiyexy">
             <img src="https://avatars.githubusercontent.com/u/35927125?v=4" width="100;" alt="yiyexy"/>
             <br />
-            <sub><b>yiyexy</b></sub>
+            <sub><b>Yiyexy</b></sub>
         </a>
     </td>
     <td align="center">
