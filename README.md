@@ -163,35 +163,38 @@ Thanks so much to all of our amazing contributors!
 
 <!-- readme: collaborators,contributors -start -->
 <table>
-<tr>
-    <td align="center">
-        <a href="https://github.com/daixiangzi">
-            <img src="https://avatars.githubusercontent.com/u/24811131?v=4" width="100;" alt="daixiangzi"/>
-            <br />
-            <sub><b>Daixiangzi</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/anxiangsir">
-            <img src="https://avatars.githubusercontent.com/u/31175974?v=4" width="100;" alt="anxiangsir"/>
-            <br />
-            <sub><b>Xiang An</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/yiyexy">
-            <img src="https://avatars.githubusercontent.com/u/35927125?v=4" width="100;" alt="yiyexy"/>
-            <br />
-            <sub><b>Yiyexy</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/tanhuajie">
-            <img src="https://avatars.githubusercontent.com/u/68807603?v=4" width="100;" alt="tanhuajie"/>
-            <br />
-            <sub><b>Tanhuajie</b></sub>
-        </a>
-    </td></tr>
+	<tbody>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/daixiangzi">
+                    <img src="https://avatars.githubusercontent.com/u/24811131?v=4" width="100;" alt="daixiangzi"/>
+                    <br />
+                    <sub><b>Daixiangzi</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/anxiangsir">
+                    <img src="https://avatars.githubusercontent.com/u/31175974?v=4" width="100;" alt="anxiangsir"/>
+                    <br />
+                    <sub><b>Xiang An</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/yiyexy">
+                    <img src="https://avatars.githubusercontent.com/u/35927125?v=4" width="100;" alt="yiyexy"/>
+                    <br />
+                    <sub><b>Yiyexy</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/tanhuajie">
+                    <img src="https://avatars.githubusercontent.com/u/68807603?v=4" width="100;" alt="tanhuajie"/>
+                    <br />
+                    <sub><b>Tanhuajie</b></sub>
+                </a>
+            </td>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: collaborators,contributors -end -->
 
