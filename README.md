@@ -50,6 +50,30 @@ Some test results are as follows:
 
 
 
+### Usage
+
+
+```bash
+git clone https://github.com/deepglint/unicom
+cd unicom
+pip install --upgrade pip
+pip install -e ".[train]"
+pip install flash-attn --no-build-isolation
+
+CUDA_VISIBLE_DEVICES=0 python infer.py --model_dir DeepGlint-AI/MLCD-Embodied-7B
+
+# example:
+# >> Enter 'exit' to end the conversation, 'reset' to clear the chat history.
+# >> Enter image file paths (comma-separated): ./asserts/logo.png
+# >> User: <image>What kind of animal is it in this picture?
+# >> Assistant: The image features a stylized representation of a cat, characterized by its vibrant and abstract depiction.
+# >> User: What color is this cat?
+# >> Assistant: The cat in the image is primarily white with blue, orange and pink accents, creating a visually appealing and unique appearance.
+
+```
+
+
+
 
 ## Multi-Label Cluster Discrimination (MLCD)
 <a name="multi-label-cluster-discrimination-mlcd"></a>
