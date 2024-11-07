@@ -161,10 +161,8 @@ For detailed instructions, please refer to the UNICOM  [Documentation](unicom/RE
 ## Contributors
 Thanks so much to all of our amazing contributors!
 
-<a href="https://github.com/deepglint/unicom/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=deepglint/unicom&r=&timestamp=<?=time()?>"/>
-</a>
-
+<!-- readme: collaborators,contributors -start -->
+<!-- readme: collaborators,contributors -end -->
 
 ## Dataset Contributors
 This project would not have been possible without the invaluable contributions of the following individuals, who have been instrumental in data scraping and collection:  
