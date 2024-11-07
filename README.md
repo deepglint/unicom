@@ -32,7 +32,7 @@ Some test results are as follows:
 
 
 
-#### General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
+### General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
 
 | Dataset     | Split   | MLCD-Embodied-7B | LLaVA OneVision-7B | GPT-4v   | GPT-4o |
 | :--         | :-:    | :-: | :-: | :-: | :-: |
