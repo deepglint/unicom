@@ -70,8 +70,8 @@ CUDA_VISIBLE_DEVICES=0 python infer.py --model_dir DeepGlint-AI/MLCD-Embodied-7B
 # >> User: What color is this cat?
 # >> Assistant: The cat in the image is primarily white with blue, orange and pink accents, creating a visually appealing and unique appearance.
 # >> User: <image>请你介绍一下这个图片
-# >> Assistant: 这是一幅充满创意的猫头艺术作品。它以一种抽象和现代的方式表现，通过使用多种颜色和形状来捕捉猫的特征。猫的头部被描绘成一个流动的、多色彩的图案，
-# 结合了流畅的线条和大胆的形状，营造一种既神秘又生动的感觉。这种艺术风格通常被称为“波普艺术”，它强调的是对流行文化的重新解释和再创造。
+# >> Assistant: 这是一幅充满创意的猫头艺术作品。它采用了多色渐变和抽象风格，将猫的头部描绘成一个充满活力和色彩的视觉冲击。猫的眼睛用金色渲染，显得非常有神采，
+# 而粉色的鼻子则增添了一丝可爱感。整体设计融合了现代艺术与传统猫头图案，创造出一种既独特又引人入胜的视觉效果。。
 ```
 
 
