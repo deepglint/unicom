@@ -73,7 +73,21 @@ CUDA_VISIBLE_DEVICES=0 python infer.py --model_dir DeepGlint-AI/MLCD-Embodied-7B
 # >> Assistant: 这是一幅充满创意的猫头艺术作品。它采用了多色渐变和抽象风格，将猫的头部描绘成一个充满活力和色彩的视觉冲击。猫的眼睛用金色渲染，显得非常有神采，
 # 而粉色的鼻子则增添了一丝可爱感。整体设计融合了现代艺术与传统猫头图案，创造出一种既独特又引人入胜的视觉效果。。
 ```
-
+### Eval
+```
+pip install lmms-eval==0.2.0
+PYTHONPATH=./ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m accelerate.commands.launch \
+    --main_process_port=12444 \
+    --num_processes=8 \
+    -m lmms_eval \
+    --model llava \
+    --model_args pretrained=DeepGlint-AI/MLCD-Embodied-7B,conv_template=qwen_1_5 \
+    --tasks mme \
+    --batch_size 1 \
+    --log_samples \
+    --log_samples_suffix mlcd \
+    --output_path ./eval_log/
+```
 
 
 

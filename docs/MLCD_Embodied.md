@@ -126,7 +126,17 @@ bash scripts/eval/eval_robo.sh /path/to/your/model
 Install the evaluation tool and execute the evaluation script:
 ```bash
 pip install lmms-eval==0.2.0
-bash eval.sh
+PYTHONPATH=./ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m accelerate.commands.launch \
+    --main_process_port=12444 \
+    --num_processes=8 \
+    -m lmms_eval \
+    --model llava \
+    --model_args pretrained=DeepGlint-AI/MLCD-Embodied-7B,conv_template=qwen_1_5 \
+    --tasks mme \
+    --batch_size 1 \
+    --log_samples \
+    --log_samples_suffix mlcd \
+    --output_path ./eval_log/
 ```
 
 

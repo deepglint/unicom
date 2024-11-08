@@ -49,6 +49,10 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
     else:
         is_multimodal = False
 
+    # FIXME this is a workaround for loading MLCD models from HF Hub
+    if "MLCD-Embodied" in model_name:
+        model_name = f"llava_qwen_{model_name}"
+
     if "llava" in model_name.lower() or is_multimodal:
         # Load LLaVA model
         if "lora" in model_name.lower() and model_base is None:
