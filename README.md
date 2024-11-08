@@ -162,12 +162,12 @@ pip install flash-attn --no-build-isolation
 
 #### B. Training
 
-**Stage 1: Pretraining**
+**Stage 1: MLCD-LLaVA-NeXT Pretraining**
 ```bash
 bash scripts/pretrain_mlcd.sh
 ```
 
-**Stage 2: Instructional Finetuning**
+**Stage 2: MLCD-LLaVA-NeXT Instructional Finetuning**
 ```bash
 bash scripts/finetune_mlcd.sh
 ```
