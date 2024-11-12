@@ -4,6 +4,7 @@ from timm.models.layers import DropPath, trunc_normal_
 from torch.utils.checkpoint import checkpoint
 from torchvision.transforms import (CenterCrop, Compose, InterpolationMode,
                                     Normalize, Resize, ToTensor)
+import torch.nn.functional as F
 
 
 class VisionTransformer(nn.Module):
@@ -87,13 +88,28 @@ class Attention(nn.Module):
             B, L, D = x.shape
             qkv = self.qkv(x).reshape(B, L, 3, self.num_heads,
                                       D // self.num_heads).permute(2, 0, 3, 1, 4)
-        with torch.cuda.amp.autocast(False):
-            q, k, v = qkv[0].float(), qkv[1].float(), qkv[2].float()
-            attn = (q @ k.transpose(-2, -1)) * self.scale
-            attn = attn.softmax(dim=-1)
-            x = (attn @ v).transpose(1, 2).reshape(B, L, D)
-        with torch.cuda.amp.autocast(True):
-            x = self.proj(x)
+            # B, L, 3, heads, head_dim ->
+            # 3, B, heads, L, head_dim
+            q, k, v = qkv[0], qkv[1], qkv[2]
+            # q B, heads, L, head_dim
+
+            # q (batch_size, num_heads, seq_length, head_dim)
+            # k (batch_size, num_heads, seq_length, head_dim)
+            # v (batch_size, num_heads, seq_length, head_dim)
+            attn_output = F.scaled_dot_product_attention(q, k, v, None, dropout_p=0.0)
+            attn_output = attn_output.permute(2, 0, 1, 3).contiguous()  # [seq_length, batch_size, num_heads, head_dim]
+            attn_output = attn_output.view(L, B, -1)  # [seq_length, batch_size, embedding_dim]
+            attn_output = attn_output.permute(1, 0, 2)  # [batch_size, seq_length, embedding_dim]
+            x = self.proj(attn_output)
+
+        # with torch.cuda.amp.autocast(False):
+        #     q, k, v = qkv[0].float(), qkv[1].float(), qkv[2].float()
+        #     attn = (q @ k.transpose(-2, -1)) * self.scale
+        #     attn = attn.softmax(dim=-1)
+        #     x = (attn @ v).transpose(1, 2).reshape(B, L, D)
+        # with torch.cuda.amp.autocast(True):
+        #     x = self.proj(x)
+
         return x
 
 
@@ -118,10 +134,11 @@ class Block(nn.Module):
         return x
 
     def forward(self, x):
-        if self.using_checkpoint:
-            return checkpoint(self.forward_impl, x)
-        else:
-            return self.forward_impl(x)
+        # if self.using_checkpoint:
+        #     return checkpoint(self.forward_impl, x)
+        # else:
+        #     return self.forward_impl(x)
+        return self.forward_impl(x)
 
 
 class PatchEmbedding(nn.Module):
@@ -146,19 +163,19 @@ def build_model(name="ViT-L/14@336px"):
     if name == "ViT-B/32":
         model = VisionTransformer(
             input_size=224, patch_size=32, in_channels=3, dim=768, embedding_size=512,
-            depth=12, num_heads=12, drop_path_rate=0.1, using_checkpoint=True)
+            depth=12, num_heads=12, drop_path_rate=0.1, using_checkpoint=False)
     elif name == "ViT-B/16":
         model = VisionTransformer(
             input_size=224, patch_size=16, in_channels=3, dim=768, embedding_size=768,
-            depth=12, num_heads=12, drop_path_rate=0.1, using_checkpoint=True)
+            depth=12, num_heads=12, drop_path_rate=0.1, using_checkpoint=False)
     elif name == "ViT-L/14":
         model = VisionTransformer(
             input_size=224, patch_size=14, in_channels=3, dim=1024, embedding_size=768,
-            depth=24, num_heads=16, drop_path_rate=0.1, using_checkpoint=True)
+            depth=24, num_heads=16, drop_path_rate=0.1, using_checkpoint=False)
     elif name == "ViT-L/14@336px":
         model = VisionTransformer(
             input_size=336, patch_size=14, in_channels=3, dim=1024, embedding_size=768,
-            depth=24, num_heads=16, drop_path_rate=0.1, using_checkpoint=True)
+            depth=24, num_heads=16, drop_path_rate=0.1, using_checkpoint=False)
     return model
 
 

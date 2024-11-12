@@ -261,6 +261,8 @@ def main():
                     max_score = score
             if rank == 0:
                 print(f"eval result is {max_score}, epoch is {epoch}")
+                model_name = args.model_name.replace("/", "_").replace("-", "_")
+                torch.save(model.state_dict(), f"{args.output}/{model_name}_{epoch}_test_{score:.3f}.pt")
             model.train()
 
 
