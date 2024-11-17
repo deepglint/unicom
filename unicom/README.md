@@ -100,7 +100,7 @@ torchrun --nproc_per_node 8 knn.py --train-dataset /imagenet/train/ --val-datase
 
 
 | Model          | Public | Private | GoogleDrive |
-| -------------- | ------ | ------- | ----------- |
+| :-------------- | ------ | ------- | ----------- |
 | ViT-L/14@512px | 33.1   | 36.4    | -           |
 
 
