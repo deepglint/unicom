@@ -18,7 +18,7 @@ retrieval.py \
             --num_feat             512 \
             --optimizer            adamw \
             --output_dim           768 \
-            --output               /tmp/tmp_for_training \
+            --output               ./tmp_for_training \
             --resume               NULL \
             --sample_rate          1.0 \
             --seed                 1024 \
