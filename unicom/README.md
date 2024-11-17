@@ -1,7 +1,9 @@
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unicom-universal-and-compact-representation/image-retrieval-on-google-landmarks-dataset)](https://paperswithcode.com/sota/image-retrieval-on-google-landmarks-dataset?p=unicom-universal-and-compact-representation)
+
 The model unicom was pre-trained on [laion400M](https://laion.ai/blog/laion-400-open-dataset/), and in the future, we will release the model trained on laion2B.
 
 ## Usage
-First, install PyTorch 1.12 (or later) and torchvision, as well as small additional dependencies, and then install this repo as a Python package.
+First, install PyTorch 2.0 (or later) and torchvision, as well as small additional dependencies, and then install this repo as a Python package.
 On a CUDA GPU machine, the following will do the trick:
 
 ```shell
