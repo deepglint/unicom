@@ -99,9 +99,10 @@ torchrun --nproc_per_node 8 knn.py --train-dataset /imagenet/train/ --val-datase
 ### GoogleLandmark Dataset Performance
 
 
-| Model          | Public | Private | GoogleDrive |
+| Model          | Public | Private | Google Drive |
 | :-------------- | ------ | ------- | ----------- |
-| ViT-L/14@512px | 33.1   | 36.4    | -           |
+| UNICOM-ViT-B/16@512px | 32.4   | 35.7    | [Click Me](https://drive.google.com/file/d/1Vddx3ITUfscXopwcVQGOVESAmcp6M_8t/view?usp=sharing)           |
+| UNICOM-ViT-L/14@512px | 33.1   | 36.4    | [Click Me](https://drive.google.com/file/d/1XCIGmEi6LxGclXuNw3wS_XZlkNSlSQW7/view?usp=sharing)           |
 
 
 ### Training Instructions
