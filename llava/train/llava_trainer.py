@@ -104,6 +104,9 @@ def get_modality_length_grouped_indices(lengths, batch_size, world_size, generat
     if all(l > 0 for l in lengths) or all(l < 0 for l in lengths):
         # all samples are in the same modality
         return get_length_grouped_indices(lengths, batch_size, world_size, generator=generator)
+    if lengths[-1] == -1:
+        data_accelerate = True
+        lengths = lengths[:-1]
     mm_indices, mm_lengths = zip(*[(i, l) for i, l in enumerate(lengths) if l > 0])
     lang_indices, lang_lengths = zip(*[(i, -l) for i, l in enumerate(lengths) if l < 0])
 
@@ -126,7 +129,7 @@ def get_modality_length_grouped_indices(lengths, batch_size, world_size, generat
     return [i for megabatch in megabatches for i in megabatch]
 
 
-def get_length_grouped_indices(lengths, batch_size, world_size, generator=None, merge=True):
+def get_length_grouped_indices(lengths, batch_size, world_size, generator=None, merge=True, data_accelerate = False):
     """
     Return a list of indices so that each slice of `batch_size` consecutive indices correspond to elements of similar
     lengths. To do this, the indices are:
@@ -140,7 +143,7 @@ def get_length_grouped_indices(lengths, batch_size, world_size, generator=None, 
     """
 
     # We need to use torch for the random part as a distributed sampler will set the random seed for torch.
-    indices = torch.randperm(len(lengths), generator=generator)
+    indices = torch.sort(torch.tensor(lengths))[1] if data_accelerate else torch.randperm(len(lengths), generator=generator)
     megabatch_size = world_size * batch_size
     megabatches = [indices[i : i + megabatch_size].tolist() for i in range(0, len(lengths), megabatch_size)]
     megabatches = [sorted(megabatch, key=lambda i: lengths[i], reverse=True) for megabatch in megabatches]

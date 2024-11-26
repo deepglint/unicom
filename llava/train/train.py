@@ -1051,11 +1051,16 @@ class LazySupervisedDataset(Dataset):
         length_list = []
         for sample in self.list_data_dict:
             cur_len = sum(len(conv["value"].split()) for conv in sample["conversations"])
-            assert cur_len > 0, f"Conversation length is 0 for {sample}"
-            if "images" in sample or "video" in sample or self.data_args.early_mix_text:
-                length_list.append(cur_len)
-            else:
-                length_list.append(-cur_len)
+            cur_len = cur_len + sample['img_token_len'] if 'img_token_len' in sample else cur_len if 'image' in sample or 'images' in sample or 'video' in sample else -cur_len
+            length_list.append(cur_len)
+        if 'img_token_len' in self.list_data_dict[0]:
+            length_list.append(-1)
+            rank0_print('Using data accelerate!')
+            # assert cur_len > 0, f"Conversation length is 0 for {sample}"
+            # if "image" in sample or  "images" in sample or "video" in sample or self.data_args.early_mix_text:
+            #     length_list.append(cur_len)
+            # else:
+            #     length_list.append(-cur_len)
         return length_list
 
     def process_image(self, image_file: Union[bytes, str], overwrite_image_aspect_ratio=None):
@@ -1141,7 +1146,11 @@ class LazySupervisedDataset(Dataset):
             sources = [sources]
         assert len(sources) == 1, "Don't know why it is wrapped to a list"  # FIXME
 
-        if "images" in sources[0] and len(sources[0]['images']) < 9:
+        if 'image' in sources[0]:
+            image_file = self.list_data_dict[i]["image"]
+            image = [self.process_image(image_file)]
+            sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
+        elif "images" in sources[0] and len(sources[0]['images']) < 9:
             image_file = self.list_data_dict[i]["images"]
             if type(image_file) is list:
                 image = [self.process_image(f) for f in image_file]
@@ -1230,7 +1239,9 @@ class LazySupervisedDataset(Dataset):
             data_dict = dict(input_ids=data_dict["input_ids"][0], labels=data_dict["labels"][0])
 
         # image exist in the data
-        if "images" in self.list_data_dict[i]:
+        if "image" in self.list_data_dict[i]:
+            data_dict["image"] = image
+        elif "images" in self.list_data_dict[i]:
             data_dict["image"] = image
         elif "video" in self.list_data_dict[i]:
             data_dict["image"] = image
@@ -1254,7 +1265,12 @@ class LazySupervisedDataset(Dataset):
 
         has_image = False
 
-        if "images" in sources[0] and len(sources[0]['images']) < 9:
+        if "image" in sources[0]:
+            has_image = True
+            image_file = sources[0]["image"]
+            image = [self.process_image(image_file)]
+            sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
+        elif "images" in sources[0] and len(sources[0]['images']) < 9:
             has_image = True
             image_file = sources[0]["images"]
             if type(image_file) is list:

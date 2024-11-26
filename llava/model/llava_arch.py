@@ -23,6 +23,7 @@ import torch.nn as nn
 from .multimodal_encoder.builder import build_vision_tower
 from .multimodal_resampler.builder import build_vision_resampler
 from .multimodal_projector.builder import build_vision_projector
+import torch.distributed as dist
 
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 
@@ -257,8 +258,15 @@ class LlavaMetaForCausalLM(ABC):
         if isinstance(modalities, str):
             modalities = [modalities]
 
-        # import pdb; pdb.set_trace()
-        if type(images) is list or images.ndim == 5:
+        if type(images) is list and images[0].ndim == -4: # 动态分辨率
+            image_features = []
+            for image in images:
+                image_features.append(self.encode_images(image))
+            mm_patch_merge_type = getattr(self.config, "mm_patch_merge_type", "flat")
+
+            if mm_patch_merge_type == "flat":
+                image_features = [x.flatten(0, 1) for x in image_features]
+        elif type(images) is list or images.ndim == 5:
             if type(images) is list:
                 images = [x.unsqueeze(0) if x.ndim == 3 else x for x in images]
 
@@ -360,12 +368,12 @@ class LlavaMetaForCausalLM(ABC):
                                 max_num_patches = int(matched_anyres_max_num_patches.group(1))
 
                         if image_aspect_ratio == "anyres" or "anyres_max" in image_aspect_ratio:
-                            if hasattr(self.get_vision_tower(), "image_size"):
-                                vision_tower_image_size = self.get_vision_tower().image_size
-                            else:
-                                raise ValueError("vision_tower_image_size is not found in the vision tower.")
+                            # if hasattr(self.get_vision_tower(), "image_size"):
+                            #     vision_tower_image_size = self.get_vision_tower().image_size
+                            # else:
+                            #     raise ValueError("vision_tower_image_size is not found in the vision tower.")
                             try:
-                                num_patch_width, num_patch_height = get_anyres_image_grid_shape(image_sizes[image_idx], self.config.image_grid_pinpoints, vision_tower_image_size)
+                                num_patch_width, num_patch_height = get_anyres_image_grid_shape(image_sizes[image_idx], self.config.image_grid_pinpoints, 512)
                             except Exception as e:
                                 rank0_print(f"Error: {e}")
                                 num_patch_width, num_patch_height = 2, 2
