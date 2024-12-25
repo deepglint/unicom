@@ -217,6 +217,13 @@ Thanks so much to all of our amazing contributors!
 	<tbody>
 		<tr>
             <td align="center">
+                <a href="https://github.com/Barry-Zhou">
+                    <img src="https://avatars.githubusercontent.com/u/24220199?v=4" width="100;" alt="Barry-Zhou"/>
+                    <br />
+                    <sub><b>Barry-Zhou</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/daixiangzi">
                     <img src="https://avatars.githubusercontent.com/u/24811131?v=4" width="100;" alt="daixiangzi"/>
                     <br />
@@ -244,6 +251,15 @@ Thanks so much to all of our amazing contributors!
                     <sub><b>Yiyexy</b></sub>
                 </a>
             </td>
+            <td align="center">
+                <a href="https://github.com/SNHIPOW">
+                    <img src="https://avatars.githubusercontent.com/u/62653813?v=4" width="100;" alt="SNHIPOW"/>
+                    <br />
+                    <sub><b>Athinklo</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/tanhuajie">
                     <img src="https://avatars.githubusercontent.com/u/68807603?v=4" width="100;" alt="tanhuajie"/>
