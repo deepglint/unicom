@@ -22,7 +22,7 @@ bash ./eval/scripts/eval_refcoco.sh
 ## Citations
 ```
 @misc{mlcdseg_wukun,
-  author = {Wu, Kun and Xie, Yin and Zhou, xinyu and An, Xiang, and Deng, Jiankang},
+  author = {Wu, Kun and Xie, Yin and Zhou, Xinyu and An, Xiang, and Deng, Jiankang},
   title = {MLCD-seg-7B},
   year = {2024},
   url = {https://github.com/deepglint/unicom/tree/main/downstream},
