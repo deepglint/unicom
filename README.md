@@ -11,7 +11,7 @@ This repository is dedicated to building foundational visual models using large-
 
 
 ## Latest News
-🎅 [2024/12] We have launched the [MLCD-Seg-7B](https://github.com/deepglint/unicom/tree/main/downstream), achieving scores of 84.6/81.4 on RefCOCO, 83.0/75.1 on RefCOCO+, and 80.9 on RefCOCOg.  
+🎅 [2024/12] We have launched the [MLCD-Seg-7B](https://github.com/deepglint/unicom/tree/main/downstream), achieving scores of 85.3/81.5 on RefCOCO[testA/B], 82.9/75.6 on RefCOCO+[testA/B], and 80.5 on RefCOCOg[test].  
 🤖 [2024/11] We have launched the [MLCD-Embodied-7B](#mlcd-embodied), which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities. For more details, please click &rarr; [MLCD-Embodied.md](docs/MLCD_Embodied.md).  
 🤗 [2024/10] We release [MLCD-NeXT-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.  
 🏰 [2024/07] [MLCD](#multi-label-cluster-discrimination-mlcd) was accepted to ECCV2024.  
