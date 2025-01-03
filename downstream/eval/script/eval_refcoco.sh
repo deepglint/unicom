@@ -1,7 +1,7 @@
 json_path=./eval
 gpu_num=8
 result_name=./eval/results
-train_image_path=/vlm/kunwu/data/llava_train_img/glamm_data
+train_image_path="your data path"
 
 model_name=DeepGlint-AI/MLCD-Seg-7B
 echo $model_name
