@@ -269,6 +269,13 @@ Thanks so much to all of our amazing contributors!
                     <sub><b>Tanhuajie</b></sub>
                 </a>
             </td>
+            <td align="center">
+                <a href="https://github.com/ZhaoYan-ai">
+                    <img src="https://avatars.githubusercontent.com/u/91243333?v=4" width="100;" alt="ZhaoYan-ai"/>
+                    <br />
+                    <sub><b>ZhaoYan-ai</b></sub>
+                </a>
+            </td>
 		</tr>
 	<tbody>
 </table>
