@@ -7,7 +7,16 @@
 # UNICOM & MLCD
 [![Arxiv](https://img.shields.io/badge/MLCD-arXiv_2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Arxiv](https://img.shields.io/badge/UNICOM-arXiv_2304.05884-red)](https://arxiv.org/abs/2304.05884) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MLCD_Model-yellow)](https://huggingface.co/collections/DeepGlint-AI/mlcd-670d18d767cea37ea7436e69)
 
-This repository is dedicated to building foundational visual models using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models have been thoroughly validated across various tasks, including multimodal visual large language models (e.g., LLaVA), image retrieval, and image classification.
+This repository focuses on building foundational visual models for large language models (LLMs) using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.
+
+We used the official LLaVA-NeXT and conducted training and validation with the official data.
+
+| Vision Tower                                                                              | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
+| :---------------------------------------------------------------------------------------- | :------ | :----- | :------ | :------- | :---- |
+| CLIP (ViT_L_14_336px)                                                                     | 66.52   | 75.21  | 38.88   | 525.00   | 44.20 |
+| [MLCD (ViT_L_14_336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
+| [MLCD (ViT_bigG_14_336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336) | 70.40   | 79.65  | 45.38   | 574.00   | 47.78 |
+
 
 
 ## Latest News
@@ -35,19 +44,19 @@ Some test results are as follows:
 
 ### General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
 
-| Dataset     | Split   | MLCD-Embodied-7B | LLaVA OneVision-7B | GPT-4v   | GPT-4o |
-| :--         | :-:    | :-: | :-: | :-: | :-: |
-| Vision Encoder| - | MLCD-ViT-L-14-336px | SigLIP  |-|-|
-| ChartQA     | test    | 83.0             | 80.0               | 78.5     | 85.7   |
-| DocVQA      | test    | 91.6             | 87.5               | 88.4     | 92.8   |
-| InfoVQA     | val     | 73.9             | 70.7               | -        | -      |
-| InfoVQA     | test    | 70.0             | 68.8               | -        | -      |
-| MMMU        | val     | 47.3             | 48.8               | 56.8     | 69.1   |
-| MMStar      | test    | 58.5             | 61.7               | 57.1     | 63.9   |
-| OCRBench    | -       | 749.0            | 697.0              | 656.0    | 805.0  |
-| RealWorldQA | test    | 68.9             | 66.3               | 61.4     | 58.6   |
-| SeedBench   | image   | 74.9             | 75.4               | 49.9     | 76.2   |
-| MME         | test    | 578/1603         | 418/1580           | 517/1409 | -      |
+| Dataset        | Split |  MLCD-Embodied-7B   | LLaVA OneVision-7B |  GPT-4v  | GPT-4o |
+| :------------- | :---: | :-----------------: | :----------------: | :------: | :----: |
+| Vision Encoder |   -   | MLCD-ViT-L-14-336px |       SigLIP       |    -     |   -    |
+| ChartQA        | test  |        83.0         |        80.0        |   78.5   |  85.7  |
+| DocVQA         | test  |        91.6         |        87.5        |   88.4   |  92.8  |
+| InfoVQA        |  val  |        73.9         |        70.7        |    -     |   -    |
+| InfoVQA        | test  |        70.0         |        68.8        |    -     |   -    |
+| MMMU           |  val  |        47.3         |        48.8        |   56.8   |  69.1  |
+| MMStar         | test  |        58.5         |        61.7        |   57.1   |  63.9  |
+| OCRBench       |   -   |        749.0        |       697.0        |  656.0   | 805.0  |
+| RealWorldQA    | test  |        68.9         |        66.3        |   61.4   |  58.6  |
+| SeedBench      | image |        74.9         |        75.4        |   49.9   |  76.2  |
+| MME            | test  |      578/1603       |      418/1580      | 517/1409 |   -    |
 
 
 
@@ -117,11 +126,11 @@ MLCD improves upon traditional approaches by clustering the the LAION dataset, w
 
 ### Model Zoo
 
-| Model Name | ImageNet Linear Probe | Hugging Face | Google Drive |
-| :--        | :-:                   | :-:          | :-:          |
-| MLCD-ViT-bigG-14-224px| 87.1 | coming soon! | coming soon! |
-| MLCD-ViT-L-14-336px | 86.3 | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336) | - |
-| MLCD-ViT-B-32-224px | 79.1 | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224) | - |
+| Model Name             | ImageNet Linear Probe |                                       Hugging Face                                       | Google Drive |
+| :--------------------- | :-------------------: | :--------------------------------------------------------------------------------------: | :----------: |
+| MLCD-ViT-bigG-14-224px |         87.1          |                                       coming soon!                                       | coming soon! |
+| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336) |      -       |
+| MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)  |      -       |
 
 
 
@@ -134,26 +143,26 @@ MLCD improves upon traditional approaches by clustering the the LAION dataset, w
 To evaluate MLCD’s performance within multimodal large language models (MLLMs), we replaced the CLIP model in LLaVA-NeXT with the MLCD model. We paired this with the Qwen2.5-7B language model. For reproducibility, we utilized the LLaVA-Pretrain dataset for pre-training and the LLaVA-NeXT-Data for structured fine-tuning. The evaluation results confirm that the MLCD model performs exceptionally well across multiple benchmarks, underscoring its effectiveness in MLLMs. 
 
 
-| Vision Tower    | MLCD (ViT_L_14_336px) | CLIP (ViT_L_14_336px) |
-|:----------------|:-------------|:-------------|
-| LLM             | Qwen2.5-7B   |   Qwen2.5-7B |
-| AI2D            | **76.98**    | 73.15        |
-| GQA             | **64.17**    | 63.31        |
-| ScienceQA-Img   | **78.09**    | 76.35        |
-| InfoVQA-Val     | **43.48**    | 38.88        |
-| MMBenchCN-Dev  | **74.83**    | 72.51        |
-| MMBenchEN-Dev  | **76.37**    | 74.57        |
-| SeedBench       | **68.20**    | 66.80        |
-| SeedBench-Img   | **73.75**    | 72.72        |
-| MMStar          | **50.98**    | 48.98        |
-| MMMU            | **44.30**    | 44.20        |
-| POPE            | 88.69        | **88.83**    |
-| ChartQA         | **67.84**    | 66.52        |
-| DocVQA-Val      | **76.46**    | 75.21        |
-| TextVQA-Val     | 61.69        | **62.47**    |
-| OCRBench        | **531**      | 525       |
-| MME (cognition)  | **432**      | 384          |
-| MME (perception) | **1598**     | 1512         |
+| Vision Tower     | MLCD (ViT_L_14_336px) | CLIP (ViT_L_14_336px) |
+| :--------------- | :-------------------- | :-------------------- |
+| LLM              | Qwen2.5-7B            | Qwen2.5-7B            |
+| AI2D             | **76.98**             | 73.15                 |
+| GQA              | **64.17**             | 63.31                 |
+| ScienceQA-Img    | **78.09**             | 76.35                 |
+| InfoVQA-Val      | **43.48**             | 38.88                 |
+| MMBenchCN-Dev    | **74.83**             | 72.51                 |
+| MMBenchEN-Dev    | **76.37**             | 74.57                 |
+| SeedBench        | **68.20**             | 66.80                 |
+| SeedBench-Img    | **73.75**             | 72.72                 |
+| MMStar           | **50.98**             | 48.98                 |
+| MMMU             | **44.30**             | 44.20                 |
+| POPE             | 88.69                 | **88.83**             |
+| ChartQA          | **67.84**             | 66.52                 |
+| DocVQA-Val       | **76.46**             | 75.21                 |
+| TextVQA-Val      | 61.69                 | **62.47**             |
+| OCRBench         | **531**               | 525                   |
+| MME (cognition)  | **432**               | 384                   |
+| MME (perception) | **1598**              | 1512                  |
 
 
 ### Usage
@@ -285,12 +294,12 @@ Thanks so much to all of our amazing contributors!
 This project would not have been possible without the invaluable contributions of the following individuals, who have been instrumental in data scraping and collection:  
 Thank you to all the contributors for their hard work and dedication!
 
-| Contributor      | Emial    |
-|------------------|----------|
-| **Bin Qin**         | skyqin@gmail.com              |
-| **Lan Wu**          | bah-wl@hotmail.com            |
-| **Haiqiang Jiang**  | haiqiangjiang@deepglint.com   |
-| **Yuling Wu**       | yulingwu@deepglint.com        |
+| Contributor        | Emial                       |
+| ------------------ | --------------------------- |
+| **Bin Qin**        | skyqin@gmail.com            |
+| **Lan Wu**         | bah-wl@hotmail.com          |
+| **Haiqiang Jiang** | haiqiangjiang@deepglint.com |
+| **Yuling Wu**      | yulingwu@deepglint.com      |
 
 ## Citation
 
