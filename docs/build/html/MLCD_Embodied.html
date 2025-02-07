@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLCD-Embodied 🤖 &mdash; unicom v1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=99a04888"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">MLCD-Embodied 🤖</a><ul>
+<li><a class="reference internal" href="#embodied-ability-evaluation-performance-in-robovqa-and-openeqa">Embodied Ability Evaluation: Performance in RoboVQA and OpenEQA</a></li>
+<li><a class="reference internal" href="#general-ability-evaluation-comparison-with-llava-onevision-7b-and-gpt-4">General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#a-installation">A. Installation</a></li>
+<li><a class="reference internal" href="#b-inference">B. Inference</a></li>
+<li><a class="reference internal" href="#c-evaluation-for-embodied-ability">C. Evaluation for Embodied Ability</a><ul>
+<li><a class="reference internal" href="#step-1">Step 1</a></li>
+<li><a class="reference internal" href="#step-2">Step 2</a></li>
+<li><a class="reference internal" href="#step-3">Step 3</a></li>
+<li><a class="reference internal" href="#step-4">Step 4</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#d-evaluation-for-general-ability">D. Evaluation for General Ability</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">unicom</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MLCD-Embodied 🤖</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/MLCD_Embodied.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="mlcd-embodied">
+<h1>MLCD-Embodied 🤖<a class="headerlink" href="#mlcd-embodied" title="Permalink to this heading"></a></h1>
+<p><a name="mlcd-embodied"></a>
+<a class="reference external" href="https://huggingface.co/DeepGlint-AI/MLCD-Embodied-7B"><img alt="Hugging Face" src="https://img.shields.io/badge/Hugging%20Face-Model-yellow" /></a></p>
+<p>MLCD-Embodied is comparable to 4v in terms of embodied capabilities and possesses excellent general capabilities. The detailed evaluation results are shown below.</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+  <img src="_static/asserts/radar_openeqa.png" alt="Image 1" style="width: 48%;">
+  <img src="_staticasserts/radar_robomembar.png" alt="Image 2" style="width: 48%;">
+</div>
+<section id="embodied-ability-evaluation-performance-in-robovqa-and-openeqa">
+<h2>Embodied Ability Evaluation: Performance in RoboVQA and OpenEQA<a class="headerlink" href="#embodied-ability-evaluation-performance-in-robovqa-and-openeqa" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>MLCD-Embodied-7B</p></th>
+<th class="head"><p>LLaVA OneVision-7B</p></th>
+<th class="head"><p>GPT-4V</p></th>
+<th class="head"><p>RoboMamba</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>RoboVQA</strong></p></td>
+<td><p>BLEU1</p></td>
+<td><p><strong>73.16</strong></p></td>
+<td><p>38.12</p></td>
+<td><p>-</p></td>
+<td><p>54.9</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>BLEU2</p></td>
+<td><p><strong>66.39</strong></p></td>
+<td><p>33.56</p></td>
+<td><p>-</p></td>
+<td><p>44.2</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>BLEU3</p></td>
+<td><p><strong>60.61</strong></p></td>
+<td><p>31.76</p></td>
+<td><p>-</p></td>
+<td><p>39.5</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>BLEU4</p></td>
+<td><p><strong>56.56</strong></p></td>
+<td><p>30.97</p></td>
+<td><p>-</p></td>
+<td><p>36.3</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>OpenEQA</strong></p></td>
+<td><p>OBJECT-STATE-RECOGNITION</p></td>
+<td><p><strong>71.83</strong></p></td>
+<td><p>-</p></td>
+<td><p>63.2</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>OBJECT-RECOGNITION</p></td>
+<td><p><strong>49.46</strong></p></td>
+<td><p>-</p></td>
+<td><p>43.4</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>FUNCTIONAL-REASONING</p></td>
+<td><p>54.38</p></td>
+<td><p>-</p></td>
+<td><p><strong>57.4</strong></p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>SPATIAL-UNDERSTANDING</p></td>
+<td><p><strong>48.64</strong></p></td>
+<td><p>-</p></td>
+<td><p>33.6</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>ATTRIBUTE-RECOGNITION</p></td>
+<td><p><strong>67.08</strong></p></td>
+<td><p>-</p></td>
+<td><p>57.2</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>WORLD-KNOWLEDGE</p></td>
+<td><p><strong>53.87</strong></p></td>
+<td><p>-</p></td>
+<td><p>50.7</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>OBJECT-LOCALIZATION</p></td>
+<td><p><strong>43.06</strong></p></td>
+<td><p>-</p></td>
+<td><p>42.0</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="general-ability-evaluation-comparison-with-llava-onevision-7b-and-gpt-4">
+<h2>General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4<a class="headerlink" href="#general-ability-evaluation-comparison-with-llava-onevision-7b-and-gpt-4" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Dataset</p></th>
+<th class="head text-center"><p>Split</p></th>
+<th class="head text-center"><p>MLCD-Embodied-7B</p></th>
+<th class="head text-center"><p>LLaVA OneVision-7B</p></th>
+<th class="head text-center"><p>GPT-4v</p></th>
+<th class="head text-center"><p>GPT-4o</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>A12D</p></td>
+<td class="text-center"><p>test</p></td>
+<td class="text-center"><p>79.9</p></td>
+<td class="text-center"><p>81.4</p></td>
+<td class="text-center"><p>78.2</p></td>
+<td class="text-center"><p>94.2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>ChartQA</p></td>
+<td class="text-center"><p>test</p></td>
+<td class="text-center"><p>83.0</p></td>
+<td class="text-center"><p>80.0</p></td>
+<td class="text-center"><p>78.5</p></td>
+<td class="text-center"><p>85.7</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>DocVQA</p></td>
+<td class="text-center"><p>test</p></td>
+<td class="text-center"><p>91.6</p></td>
+<td class="text-center"><p>87.5</p></td>
+<td class="text-center"><p>88.4</p></td>
+<td class="text-center"><p>92.8</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>InfoVQA</p></td>
+<td class="text-center"><p>val</p></td>
+<td class="text-center"><p>73.9</p></td>
+<td class="text-center"><p>70.7</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>InfoVQA</p></td>
+<td class="text-center"><p>test</p></td>
+<td class="text-center"><p>70.0</p></td>
+<td class="text-center"><p>68.8</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>MMMU</p></td>
+<td class="text-center"><p>val</p></td>
+<td class="text-center"><p>47.3</p></td>
+<td class="text-center"><p>48.8</p></td>
+<td class="text-center"><p>56.8</p></td>
+<td class="text-center"><p>69.1</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MMStar</p></td>
+<td class="text-center"><p>test</p></td>
+<td class="text-center"><p>58.5</p></td>
+<td class="text-center"><p>61.7</p></td>
+<td class="text-center"><p>57.1</p></td>
+<td class="text-center"><p>63.9</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>OCRBench</p></td>
+<td class="text-center"><p>-</p></td>
+<td class="text-center"><p>749.0</p></td>
+<td class="text-center"><p>697.0</p></td>
+<td class="text-center"><p>656.0</p></td>
+<td class="text-center"><p>805.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>RealWorldQA</p></td>
+<td class="text-center"><p>test</p></td>
+<td class="text-center"><p>68.9</p></td>
+<td class="text-center"><p>66.3</p></td>
+<td class="text-center"><p>61.4</p></td>
+<td class="text-center"><p>58.6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>SeedBench</p></td>
+<td class="text-center"><p>image</p></td>
+<td class="text-center"><p>74.9</p></td>
+<td class="text-center"><p>75.4</p></td>
+<td class="text-center"><p>49.9</p></td>
+<td class="text-center"><p>76.2</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MMbench</p></td>
+<td class="text-center"><p>en-dev</p></td>
+<td class="text-center"><p>81.1</p></td>
+<td class="text-center"><p>83.2</p></td>
+<td class="text-center"><p>81.3</p></td>
+<td class="text-center"><p>83.4</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>MMbench</p></td>
+<td class="text-center"><p>en-test</p></td>
+<td class="text-center"><p>80.1</p></td>
+<td class="text-center"><p>80.8</p></td>
+<td class="text-center"><p>75.0</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MME</p></td>
+<td class="text-center"><p>test</p></td>
+<td class="text-center"><p>578/1603</p></td>
+<td class="text-center"><p>418/1580</p></td>
+<td class="text-center"><p>517/1409</p></td>
+<td class="text-center"><p>-</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<section id="a-installation">
+<h3>A. Installation<a class="headerlink" href="#a-installation" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/deepglint/unicom
+<span class="nb">cd</span><span class="w"> </span>unicom
+
+<span class="c1"># Upgrade pip and install necessary dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[train]&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="b-inference">
+<h3>B. Inference<a class="headerlink" href="#b-inference" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>python<span class="w"> </span>infer.py<span class="w"> </span>--model_dir<span class="w"> </span>/path/to/your/model
+
+<span class="c1"># example:</span>
+<span class="c1"># &gt;&gt; Enter &#39;exit&#39; to end the conversation, &#39;reset&#39; to clear the chat history.</span>
+<span class="c1"># &gt;&gt; Enter image file paths (comma-separated): ./asserts/logo.png</span>
+<span class="c1"># &gt;&gt; User: &lt;image&gt;What kind of animal is it in this picture?</span>
+<span class="c1"># &gt;&gt; Assistant: The image features a stylized representation of a cat, characterized by its vibrant and abstract depiction.</span>
+<span class="c1"># &gt;&gt; User: What color is this cat?</span>
+<span class="c1"># &gt;&gt; Assistant: The cat in the image is primarily white with blue, orange and pink accents, creating a visually appealing and unique appearance.</span>
+</pre></div>
+</div>
+</section>
+<section id="c-evaluation-for-embodied-ability">
+<h3>C. Evaluation for Embodied Ability<a class="headerlink" href="#c-evaluation-for-embodied-ability" title="Permalink to this heading"></a></h3>
+<section id="step-1">
+<h4>Step 1<a class="headerlink" href="#step-1" title="Permalink to this heading"></a></h4>
+<p>Download raw data following <a class="reference external" href="https://github.com/facebookresearch/open-eqa/tree/main/data">OpenEQA</a> and <a class="reference external" href="https://console.cloud.google.com/storage/browser/gdm-robovqa">RoboVQA</a>(val part)</p>
+</section>
+<section id="step-2">
+<h4>Step 2<a class="headerlink" href="#step-2" title="Permalink to this heading"></a></h4>
+<p>Converting raw data into the format required for model evaluation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert OpenEQA benchmark. Note: replace the paths with your own.</span>
+python<span class="w"> </span>llava/benchmark/make_openeqa_bmk.py
+
+<span class="c1"># convert RoboVQA benchmark. Note: replace the paths with your own.</span>
+python<span class="w"> </span>llava/benchmark/make_robovqa_bmk.py
+</pre></div>
+</div>
+</section>
+<section id="step-3">
+<h4>Step 3<a class="headerlink" href="#step-3" title="Permalink to this heading"></a></h4>
+<p>Make sure that your top-level directory structure should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|--/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">benchmarks</span>
+<span class="o">|</span>  <span class="o">|--</span><span class="n">OpenEQA</span>
+<span class="o">|</span>  <span class="o">|</span>  <span class="o">|--</span><span class="n">openeqa_scannet</span><span class="o">.</span><span class="n">parquet</span>
+<span class="o">|</span>  <span class="o">|</span>  <span class="o">|--</span><span class="n">openeqa_hm3d</span><span class="o">.</span><span class="n">parquet</span>
+<span class="o">|</span>  <span class="o">|--</span><span class="n">RoboVQA</span>
+<span class="o">|</span>     <span class="o">|--</span><span class="n">robovqa</span><span class="o">.</span><span class="n">parquet</span>
+<span class="o">|--/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">images</span>
+   <span class="o">|--</span><span class="n">openeqa_val</span>
+   <span class="o">|</span>  <span class="o">|--</span><span class="n">scannet</span><span class="o">-</span><span class="n">v0</span>
+   <span class="o">|</span>  <span class="o">|</span>  <span class="o">|--</span><span class="mi">002</span><span class="o">-</span><span class="n">scannet</span><span class="o">-</span><span class="n">scene0709_00</span>
+   <span class="o">|</span>  <span class="o">|</span>  <span class="o">|--</span><span class="n">xxx</span><span class="o">-</span><span class="n">scannet</span><span class="o">-</span><span class="n">scenexxxx_xx</span>
+   <span class="o">|</span>  <span class="o">|--</span><span class="n">hm3d</span><span class="o">-</span><span class="n">v0</span>
+   <span class="o">|</span>     <span class="o">|--</span><span class="mi">000</span><span class="o">-</span><span class="n">hm3d</span><span class="o">-</span><span class="n">BFRyYbPCCPE</span>
+   <span class="o">|</span>     <span class="o">|--</span><span class="n">xxx</span><span class="o">-</span><span class="n">hm3d</span><span class="o">-</span><span class="n">xxxxxxxxxxx</span>
+   <span class="o">|--</span><span class="n">robovqa_val</span>
+      <span class="o">|--</span><span class="n">robovqa_221911</span>
+      <span class="o">|--</span><span class="n">robovqa_xxxxxx</span>
+</pre></div>
+</div>
+</section>
+<section id="step-4">
+<h4>Step 4<a class="headerlink" href="#step-4" title="Permalink to this heading"></a></h4>
+<p>Run script for evaluation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: replace &#39;YOUR_API_KEY&#39;, &#39;YOUR_ENDPOINT&#39;, &#39;bmk_root&#39;, &#39;image_folder&#39; with your own.</span>
+bash<span class="w"> </span>scripts/eval/eval_robo.sh<span class="w"> </span>/path/to/your/model
+</pre></div>
+</div>
+</section>
+</section>
+<section id="d-evaluation-for-general-ability">
+<h3>D. Evaluation for General Ability<a class="headerlink" href="#d-evaluation-for-general-ability" title="Permalink to this heading"></a></h3>
+<p>Install the evaluation tool and execute the evaluation script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>lmms-eval<span class="o">==</span><span class="m">0</span>.2.0
+<span class="nv">PYTHONPATH</span><span class="o">=</span>./<span class="w"> </span><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,5,6,7<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>accelerate.commands.launch<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--main_process_port<span class="o">=</span><span class="m">12444</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--num_processes<span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-m<span class="w"> </span>lmms_eval<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>llava<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model_args<span class="w"> </span><span class="nv">pretrained</span><span class="o">=</span>DeepGlint-AI/MLCD-Embodied-7B,conv_template<span class="o">=</span>qwen_1_5<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--tasks<span class="w"> </span>mme<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--batch_size<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--log_samples<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--log_samples_suffix<span class="w"> </span>mlcd<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_path<span class="w"> </span>./eval_log/
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, zhaoyan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
