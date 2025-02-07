@@ -125,11 +125,11 @@ MLCD improves upon traditional approaches by clustering the the LAION dataset, w
 
 ### Model Zoo
 
-| Model Name             | ImageNet Linear Probe |                                       Hugging Face                                       | Google Drive |
-| :--------------------- | :-------------------: | :--------------------------------------------------------------------------------------: | :----------: |
-| MLCD-ViT-bigG-14-224px |         87.1          |                                       coming soon!                                       | coming soon! |
-| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336) |      -       |
-| MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)  |      -       |
+| Model Name             | ImageNet Linear Probe | Hugging Face                                                                               | Google Drive |
+| :--------------------- | :-------------------: | :----------------------------------------------------------------------------------------- | :----------: |
+| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |      -       |
+| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |      -       |
+| MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)    |      -       |
 
 
 
