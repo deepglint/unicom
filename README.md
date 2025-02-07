@@ -14,8 +14,8 @@ We used the official LLaVA-NeXT and conducted training and validation with the o
 | Vision Tower                                                                                 | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
 | :------------------------------------------------------------------------------------------- | :------ | :----- | :------ | :------- | :---- |
 | CLIP (ViT_L_14_336px)                                                                        | 66.52   | 75.21  | 38.88   | 525.00   | 44.20 |
-| MLCD (ViT_L_14_336px) [HF](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
-| MLCD (ViT_bigG_14_336px) [HF](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336) | 71.92   | 79.63  | 44.38   | 577.00   | 46.78 |
+| MLCD (ViT_L_14_336px)   | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
+| MLCD (ViT_bigG_14_336px) | 71.92   | 79.63  | 44.38   | 577.00   | 46.78 |
 
 The results of the ImageNet linear probe are as follows:
 
