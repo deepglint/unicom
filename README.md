@@ -7,9 +7,10 @@
 # UNICOM & MLCD
 [![Arxiv](https://img.shields.io/badge/MLCD-arXiv_2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Arxiv](https://img.shields.io/badge/UNICOM-arXiv_2304.05884-red)](https://arxiv.org/abs/2304.05884) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MLCD_Model-yellow)](https://huggingface.co/collections/DeepGlint-AI/mlcd-670d18d767cea37ea7436e69)
 
-This repository focuses on building foundational visual models for large language models (LLMs) using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.
+This repository focuses on building foundational visual models for large language models (LLMs) using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.  
 
-We used the official [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) and conducted training and validation with the official data.
+We adopted the official [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) and the official training dataset([LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data)) for evaluating the foundational visual models .  
+
 
 | Vision Tower             | RoPE2D | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
 | :----------------------- | :----: | :------ | :----- | :------ | :------- | :---- |
