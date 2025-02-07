@@ -8,7 +8,7 @@ MLCD-Embodied is comparable to 4v in terms of embodied capabilities and possesse
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
   <img src="_static/asserts/radar_openeqa.png" alt="Image 1" style="width: 48%;">
-  <img src="_staticasserts/radar_robomembar.png" alt="Image 2" style="width: 48%;">
+  <img src="_static/asserts/radar_robomembar.png" alt="Image 2" style="width: 48%;">
 </div>
 
 ## Embodied Ability Evaluation: Performance in RoboVQA and OpenEQA
