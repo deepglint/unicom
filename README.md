@@ -11,11 +11,11 @@ This repository focuses on building foundational visual models for large languag
 
 We used the official LLaVA-NeXT and conducted training and validation with the official data.
 
-| Vision Tower                                                                                 | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
-| :------------------------------------------------------------------------------------------- | :------ | :----- | :------ | :------- | :---- |
-| CLIP (ViT_L_14_336px)                                                                        | 66.52   | 75.21  | 38.88   | 525.00   | 44.20 |
-| MLCD (ViT_L_14_336px) [HF](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
-| MLCD (ViT_bigG_14_336px) [HF](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336) | 70.40   | 78.65  | 44.38   | 564.00   | 46.78 |
+| Vision Tower                                                                                 | RoPE2D | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
+| :------------------------------------------------------------------------------------------- | :----: | :------ | :----- | :------ | :------- | :---- |
+| CLIP (ViT_L_14_336px)                                                                        |   X    | 66.52   | 75.21  | 38.88   | 525.00   | 44.20 |
+| MLCD (ViT_L_14_336px) [HF](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |   X    | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
+| MLCD (ViT_bigG_14_336px) [HF](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336) |   √    | 70.40   | 78.65  | 44.38   | 564.00   | 46.78 |
 
 
 ## Latest News
