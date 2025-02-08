@@ -18,7 +18,7 @@ We adopted the official [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) and
 | SigLIP (ViT-SO400M-384px)    |   ×    | 69.28     | 76.71     | 41.38     | 554.00     | 46.78     |
 | DFN5B (ViT-H-14-378px)       |   ×    | 64.36     | 70.87     | 38.59     | 473.00     | **48.00** |
 | **MLCD (ViT-L-14-336px)**    |   ×    | 67.84     | 76.46     | 43.48     | 531.00     | 44.30     |
-| **MLCD (ViT-bigG-14-336px)** |   √    | **71.07** | **79.63** | **44.38** | **572.00** | 46.78     |
+| **[MLCD (ViT-bigG-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336)** |   √    | **71.07** | **79.63** | **44.38** | **572.00** | 46.78     |
 
 The results of the ImageNet linear probe are as follows:
 
@@ -27,6 +27,7 @@ The results of the ImageNet linear probe are as follows:
 | MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)    | 
 | MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |
 | MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |  
+
 
 ## Latest News
 🎅 [2024/12] We have launched the [MLCD-Seg-7B](https://github.com/deepglint/unicom/tree/main/downstream), achieving scores of 85.3/81.5 on RefCOCO[testA/B], 82.9/75.6 on RefCOCO+[testA/B], and 80.5 on RefCOCOg[test].  
