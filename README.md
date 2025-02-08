@@ -12,12 +12,13 @@ This repository focuses on building foundational visual models for large multimo
 We adopted the official [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) and the official training dataset [LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data) for evaluating the foundational visual models.  
 
 
-| Vision Tower             | RoPE2D | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
-| :----------------------- | :----: | :------ | :----- | :------ | :------- | :---- |
-| CLIP (ViT-L-14-336px)    |   ×    | 66.52   | 75.21  | 38.88   | 525.00   | 44.20 |
-| MLCD (ViT-L-14-336px)    |   ×    | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
-| DFN5B  (ViT-H-14-378px)  |   ×    | 64.36   | 70.87  | 38.59   | 473.00   | 48.00 |
-| MLCD (ViT-bigG-14-336px) |   √    | 71.92   | 79.63  | 44.38   | 577.00   | 46.78 |
+| Vision Tower                 | RoPE2D | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
+| :--------------------------- | :----: | :------ | :----- | :------ | :------- | :---- |
+| CLIP (ViT-L-14-336px)        |   ×    | 66.52   | 75.21  | 38.88   | 525.00   | 44.20 |
+| SigLIP (ViT-SO400M-384px)    |   ×    | 69.28   | 76.71  | 41.38   | 554.00   | 46.78 |
+| DFN5B (ViT-H-14-378px)       |   ×    | 64.36   | 70.87  | 38.59   | 473.00   | 48.00 |
+| **MLCD (ViT-L-14-336px)**    |   ×    | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
+| **MLCD (ViT-bigG-14-336px)** |   √    | 71.92   | 79.63  | 44.38   | 577.00   | 46.78 |
 
 The results of the ImageNet linear probe are as follows:
 
