@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-<img src="_static/asserts/logo.png" alt="/80dafc65-cda6-4001-aecf-3989ea9d2f7c.webp" width=40%>
+<img src="asserts/logo.png" alt="/80dafc65-cda6-4001-aecf-3989ea9d2f7c.webp" width=40%>
 </p>
 <div>
 
@@ -7,44 +7,45 @@
 # UNICOM & MLCD
 [![Arxiv](https://img.shields.io/badge/MLCD-arXiv_2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Arxiv](https://img.shields.io/badge/UNICOM-arXiv_2304.05884-red)](https://arxiv.org/abs/2304.05884) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MLCD_Model-yellow)](https://huggingface.co/collections/DeepGlint-AI/mlcd-670d18d767cea37ea7436e69)
 
-This repository focuses on building foundational visual models for large language models (LLMs) using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.  
+This repository focuses on building foundational visual models for large multimodal language models using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.
 
 We adopted the official [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) and the official training dataset [LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data) for evaluating the foundational visual models.  
 
 
-| Vision Tower             | RoPE2D | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
-| :----------------------- | :----: | :------ | :----- | :------ | :------- | :---- |
-| CLIP (ViT-L-14-336px)    |   ×    | 66.52   | 75.21  | 38.88   | 525.00   | 44.20 |
-| MLCD (ViT-L-14-336px)    |   ×    | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
-| MLCD (ViT-bigG-14-336px) |   √    | 71.92   | 79.63  | 44.38   | 577.00   | 46.78 |
+| Vision Tower                 | RoPE2D | ChartQA   | DocVQA    | InfoVQA   | OCRBench   | MMMU      |
+| :--------------------------- | :----: | :-------- | :-------- | :-------- | :--------- | :-------- |
+| CLIP (ViT-L-14-336px)        |   ×    | 66.52     | 75.21     | 38.88     | 525.00     | 44.20     |
+| SigLIP (ViT-SO400M-384px)    |   ×    | 69.28     | 76.71     | 41.38     | 554.00     | 46.78     |
+| DFN5B (ViT-H-14-378px)       |   ×    | 64.36     | 70.87     | 38.59     | 473.00     | **48.00** |
+| **MLCD (ViT-L-14-336px)**    |   ×    | 67.84     | 76.46     | 43.48     | 531.00     | 44.30     |
+| **MLCD (ViT-bigG-14-336px)** |   √    | **71.92** | **79.63** | **44.38** | **577.00** | 46.78     |
 
 The results of the ImageNet linear probe are as follows:
 
 | Model Name             | ImageNet Linear Probe | Hugging Face                                                                               |
 | :--------------------- | :-------------------: | :----------------------------------------------------------------------------------------- |
-| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |
-| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |
 | MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)    | 
-
+| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |
+| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |  
 
 ## Latest News
-🎅 [2024/12] We have launched the [MLCD-Seg-7B](https://github.com/deepglint/unicom/tree/main/downstream), achieving scores of 85.3/81.5 on RefCOCO[testA/B], 82.9/75.6 on RefCOCO+[testA/B], and 80.5 on RefCOCOg[test].  <br>
-🤖 [2024/11] We have launched the [MLCD-Embodied-7B](#mlcd-embodied), which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities. For more details, please click &rarr; [MLCD-Embodied.md](MLCD_Embodied.md).  <br>
-🤗 [2024/10] We release [MLCD-NeXT-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.  <br>
-🏰 [2024/07] [MLCD](#multi-label-cluster-discrimination-mlcd) was accepted to ECCV2024.  <br>
-🌍 [2023/03] [UNICOM](#unicom) was accepted to ICLR2023.  <br>
+🎅 [2024/12] We have launched the [MLCD-Seg-7B](https://github.com/deepglint/unicom/tree/main/downstream), achieving scores of 85.3/81.5 on RefCOCO[testA/B], 82.9/75.6 on RefCOCO+[testA/B], and 80.5 on RefCOCOg[test].  
+🤖 [2024/11] We have launched the [MLCD-Embodied-7B](#mlcd-embodied), which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities. For more details, please click &rarr; [MLCD-Embodied.md](docs/MLCD_Embodied.md).  
+🤗 [2024/10] We release [MLCD-NeXT-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.  
+🏰 [2024/07] [MLCD](#multi-label-cluster-discrimination-mlcd) was accepted to ECCV2024.  
+🌍 [2023/03] [UNICOM](#unicom) was accepted to ICLR2023.  
 
 ---
 
 ## MLCD-Embodied
 <a name="mlcd-embodied"></a>
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/MLCD-Embodied-7B)  
-More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](MLCD_Embodied.md) file.  
+More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](docs/MLCD_Embodied.md) file.  
 
 Some test results are as follows:
 <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-  <img src="_static/asserts/radar_openeqa.png" alt="Image 1" style="width: 48%;">
-  <img src="_static/asserts/radar_robomembar.png" alt="Image 2" style="width: 48%;">
+  <img src="asserts/radar_openeqa.png" alt="Image 1" style="width: 48%;">
+  <img src="asserts/radar_robomembar.png" alt="Image 2" style="width: 48%;">
 </div>
 
 
@@ -115,7 +116,7 @@ PYTHONPATH=./ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m accelerate.commands
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-label-cluster-discrimination-for-visual/self-supervised-image-classification-on)](https://paperswithcode.com/sota/self-supervised-image-classification-on?p=multi-label-cluster-discrimination-for-visual)
 
 
-More details about MLCD can be found in the [MLCD.md](MLCD.md) file.
+More details about MLCD can be found in the [MLCD.md](docs/MLCD.md) file.
 
 
 
@@ -127,8 +128,8 @@ While CLIP models have shown excellence in many tasks via image-text contrastive
 MLCD improves upon traditional approaches by clustering the the LAION dataset, which contains billions of images, into one million centers and assigning multiple closest clusters as labels to each image. This technique accounts for the presence of multiple objects within a single image. We also introduce a novel multi-label classification loss, which separately handles positive and negative class losses, minimizing label ambiguity. Our experiments demonstrate that MLCD achieves state-of-the-art performance in linear probe. Moreover, MLCD shows significant potential when integrated with multimodal large language models. The following two figures compare the evaluation performance of our model on MLLM and Linear Probe. The model we used is ViT-L-14@336px.
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
-  <img src="_static/asserts/MLCD_Performance_MLLM.png" alt="Image 1" style="width: 49%;">
-  <img src="_static/asserts/MLCD_Performance_Linear.png" alt="Image 2" style="width: 49%;">
+  <img src="asserts/MLCD_Performance_MLLM.png" alt="Image 1" style="width: 49%;">
+  <img src="asserts/MLCD_Performance_Linear.png" alt="Image 2" style="width: 49%;">
 </div>
 
 
