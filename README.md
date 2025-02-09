@@ -222,7 +222,7 @@ For detailed instructions, please refer to the UNICOM  [Documentation](unicom/RE
 ## Contributors
 Thanks so much to all of our amazing contributors!
 
-<!-- readme: collaborators,contributors -start -->
+<!-- readme: contributors -start -->
 <table>
 	<tbody>
 		<tr>
