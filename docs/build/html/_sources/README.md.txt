@@ -7,24 +7,26 @@
 # UNICOM & MLCD
 [![Arxiv](https://img.shields.io/badge/MLCD-arXiv_2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Arxiv](https://img.shields.io/badge/UNICOM-arXiv_2304.05884-red)](https://arxiv.org/abs/2304.05884) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MLCD_Model-yellow)](https://huggingface.co/collections/DeepGlint-AI/mlcd-670d18d767cea37ea7436e69)
 
-This repository focuses on building foundational visual models for large language models (LLMs) using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.  
+This repository focuses on building foundational visual models for large multimodal language models using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.
 
 We adopted the official [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) and the official training dataset [LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data) for evaluating the foundational visual models.  
 
 
-| Vision Tower             | RoPE2D | ChartQA | DocVQA | InfoVQA | OCRBench | MMMU  |
-| :----------------------- | :----: | :------ | :----- | :------ | :------- | :---- |
-| CLIP (ViT-L-14-336px)    |   ×    | 66.52   | 75.21  | 38.88   | 525.00   | 44.20 |
-| MLCD (ViT-L-14-336px)    |   ×    | 67.84   | 76.46  | 43.48   | 531.00   | 44.30 |
-| MLCD (ViT-bigG-14-336px) |   √    | 71.92   | 79.63  | 44.38   | 577.00   | 46.78 |
+| Vision Tower                 | RoPE2D | ChartQA   | DocVQA    | InfoVQA   | OCRBench   | MMMU      |
+| :--------------------------- | :----: | :-------- | :-------- | :-------- | :--------- | :-------- |
+| CLIP (ViT-L-14-336px)        |   ×    | 66.52     | 75.21     | 38.88     | 525.00     | 44.20     |
+| SigLIP (ViT-SO400M-384px)    |   ×    | 69.28     | 76.71     | 41.38     | 554.00     | 46.78     |
+| DFN5B (ViT-H-14-378px)       |   ×    | 64.36     | 70.87     | 38.59     | 473.00     | **48.00** |
+| **[MLCD (ViT-L-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)**    |   ×    | 67.84     | 76.46     | 43.48     | 531.00     | 44.30     |
+| **[MLCD (ViT-bigG-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336)** |   √    | **71.07** | **79.63** | **44.38** | **572.00** | 46.78     |
 
 The results of the ImageNet linear probe are as follows:
 
 | Model Name             | ImageNet Linear Probe | Hugging Face                                                                               |
 | :--------------------- | :-------------------: | :----------------------------------------------------------------------------------------- |
-| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |
-| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |
 | MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)    | 
+| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |
+| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |  
 
 
 ## Latest News
@@ -220,7 +222,7 @@ For detailed instructions, please refer to the UNICOM  [Documentation](unicom/RE
 ## Contributors
 Thanks so much to all of our amazing contributors!
 
-<!-- readme: collaborators,contributors -start -->
+<!-- readme: contributors -start -->
 <table>
 	<tbody>
 		<tr>

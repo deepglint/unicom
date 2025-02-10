@@ -109,7 +109,7 @@
 <section class="tex2jax_ignore mathjax_ignore" id="unicom-mlcd">
 <h1>UNICOM &amp; MLCD<a class="headerlink" href="#unicom-mlcd" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="https://arxiv.org/abs/2407.17331"><img alt="Arxiv" src="https://img.shields.io/badge/MLCD-arXiv_2407.17331-red" /></a> <a class="reference external" href="https://arxiv.org/abs/2304.05884"><img alt="Arxiv" src="https://img.shields.io/badge/UNICOM-arXiv_2304.05884-red" /></a> <a class="reference external" href="https://huggingface.co/collections/DeepGlint-AI/mlcd-670d18d767cea37ea7436e69"><img alt="Hugging Face" src="https://img.shields.io/badge/Hugging%20Face-MLCD_Model-yellow" /></a></p>
-<p>This repository focuses on building foundational visual models for large language models (LLMs) using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.</p>
+<p>This repository focuses on building foundational visual models for large multimodal language models using large-scale datasets such as LAION400M and COYO700M. We employ sample-to-cluster contrastive learning to optimize performance. Our models are primarily used for multimodal visual large language models, such as LLaVA.</p>
 <p>We adopted the official <a class="reference external" href="https://github.com/LLaVA-VL/LLaVA-NeXT">LLaVA-NeXT</a> and the official training dataset <a class="reference external" href="https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data">LLaVA-NeXT-Data</a> for evaluating the foundational visual models.</p>
 <table class="docutils align-default">
 <thead>
@@ -131,7 +131,23 @@
 <td class="text-left"><p>525.00</p></td>
 <td class="text-left"><p>44.20</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>MLCD (ViT-L-14-336px)</p></td>
+<tr class="row-odd"><td class="text-left"><p>SigLIP (ViT-SO400M-384px)</p></td>
+<td class="text-center"><p>×</p></td>
+<td class="text-left"><p>69.28</p></td>
+<td class="text-left"><p>76.71</p></td>
+<td class="text-left"><p>41.38</p></td>
+<td class="text-left"><p>554.00</p></td>
+<td class="text-left"><p>46.78</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>DFN5B (ViT-H-14-378px)</p></td>
+<td class="text-center"><p>×</p></td>
+<td class="text-left"><p>64.36</p></td>
+<td class="text-left"><p>70.87</p></td>
+<td class="text-left"><p>38.59</p></td>
+<td class="text-left"><p>473.00</p></td>
+<td class="text-left"><p><strong>48.00</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><a class="reference external" href="https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336">MLCD (ViT-L-14-336px)</a></strong></p></td>
 <td class="text-center"><p>×</p></td>
 <td class="text-left"><p>67.84</p></td>
 <td class="text-left"><p>76.46</p></td>
@@ -139,12 +155,12 @@
 <td class="text-left"><p>531.00</p></td>
 <td class="text-left"><p>44.30</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>MLCD (ViT-bigG-14-336px)</p></td>
+<tr class="row-even"><td class="text-left"><p><strong><a class="reference external" href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336">MLCD (ViT-bigG-14-336px)</a></strong></p></td>
 <td class="text-center"><p>√</p></td>
-<td class="text-left"><p>71.92</p></td>
-<td class="text-left"><p>79.63</p></td>
-<td class="text-left"><p>44.38</p></td>
-<td class="text-left"><p>577.00</p></td>
+<td class="text-left"><p><strong>71.07</strong></p></td>
+<td class="text-left"><p><strong>79.63</strong></p></td>
+<td class="text-left"><p><strong>44.38</strong></p></td>
+<td class="text-left"><p><strong>572.00</strong></p></td>
 <td class="text-left"><p>46.78</p></td>
 </tr>
 </tbody>
@@ -158,17 +174,17 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p>MLCD-ViT-bigG-14-224px</p></td>
-<td class="text-center"><p>87.1</p></td>
-<td class="text-left"><p><a class="reference external" href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224">HF:MLCD-ViT-bigG-14-224px</a></p></td>
+<tr class="row-even"><td class="text-left"><p>MLCD-ViT-B-32-224px</p></td>
+<td class="text-center"><p>79.1</p></td>
+<td class="text-left"><p><a class="reference external" href="https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224">HF:MLCD-ViT-B-32-224px</a></p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p>MLCD-ViT-L-14-336px</p></td>
 <td class="text-center"><p>86.3</p></td>
 <td class="text-left"><p><a class="reference external" href="https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336">HF:MLCD-ViT-L-14-336px</a></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>MLCD-ViT-B-32-224px</p></td>
-<td class="text-center"><p>79.1</p></td>
-<td class="text-left"><p><a class="reference external" href="https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224">HF:MLCD-ViT-B-32-224px</a></p></td>
+<tr class="row-even"><td class="text-left"><p>MLCD-ViT-bigG-14-224px</p></td>
+<td class="text-center"><p>87.1</p></td>
+<td class="text-left"><p><a class="reference external" href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224">HF:MLCD-ViT-bigG-14-224px</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -486,7 +502,7 @@ bash<span class="w"> </span>eval.sh
 <section id="contributors">
 <h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this heading"></a></h2>
 <p>Thanks so much to all of our amazing contributors!</p>
-<!-- readme: collaborators,contributors -start -->
+<!-- readme: contributors -start -->
 <table>
 	<tbody>
 		<tr>
