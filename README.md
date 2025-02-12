@@ -12,21 +12,24 @@ This repository focuses on building foundational visual models for large multimo
 We adopted the official [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) and the official training dataset [LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data) for evaluating the foundational visual models.  
 
 
-| Vision Tower                 | RoPE2D | ChartQA   | DocVQA    | InfoVQA   | OCRBench   | MMMU      |
-| :--------------------------- | :----: | :-------- | :-------- | :-------- | :--------- | :-------- |
-| CLIP (ViT-L-14-336px)        |   ×    | 66.52     | 75.21     | 38.88     | 525.00     | 44.20     |
-| SigLIP (ViT-SO400M-384px)    |   ×    | 69.28     | 76.71     | 41.38     | 554.00     | 46.78     |
-| DFN5B (ViT-H-14-378px)       |   ×    | 64.36     | 70.87     | 38.59     | 473.00     | **48.00** |
-| **[MLCD (ViT-L-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)**    |   ×    | 67.84     | 76.46     | 43.48     | 531.00     | 44.30     |
+| Vision Tower                                                                                  | RoPE2D | ChartQA   | DocVQA    | InfoVQA   | OCRBench   | MMMU      |
+| :-------------------------------------------------------------------------------------------- | :----: | :-------- | :-------- | :-------- | :--------- | :-------- |
+| CLIP (ViT-L-14-336px)                                                                         |   ×    | 66.52     | 75.21     | 38.88     | 525.00     | 44.20     |
+| SigLIP (ViT-SO400M-384px)                                                                     |   ×    | 69.28     | 76.71     | 41.38     | 554.00     | 46.78     |
+| DFN5B (ViT-H-14-378px)                                                                        |   ×    | 64.36     | 70.87     | 38.59     | 473.00     | **48.00** |
+| **[MLCD (ViT-L-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)**   |   ×    | 67.84     | 76.46     | 43.48     | 531.00     | 44.30     |
 | **[MLCD (ViT-bigG-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336)** |   √    | **71.07** | **79.63** | **44.38** | **572.00** | 46.78     |
+| **[MLCD (ViT-bigG-14-448px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448)** |   √    | **73.80** | **83.34** | **46.59** | **582.00** | 46.00     |
+
 
 The results of the ImageNet linear probe are as follows:
 
 | Model Name             | ImageNet Linear Probe | Hugging Face                                                                               |
 | :--------------------- | :-------------------: | :----------------------------------------------------------------------------------------- |
-| MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)    | 
+| MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)    |
 | MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |
-| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |  
+| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |
+
 
 
 ## Latest News
