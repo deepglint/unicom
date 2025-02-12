@@ -16,13 +16,14 @@ def build_vision_tower(vision_tower_cfg, **kwargs):
     is_absolute_path_exists = os.path.exists(vision_tower)
     use_s2 = getattr(vision_tower_cfg, "s2", False)
 
-    if "mlcd-vit-bigG-patch14-336" in vision_tower:
+
+    if "mlcd-vit-bigG-patch14" in vision_tower:
         if use_s2:
             return MLCDVisionTowerS2(vision_tower, args=vision_tower_cfg, **kwargs)
         else:
             return MLCDVisionTower(vision_tower, args=vision_tower_cfg, **kwargs)
 
-    elif "clip" in vision_tower or "mlcd" in vision_tower or "unicom" in vision_tower or vision_tower.startswith("openai") \
+    elif 'dfn' in vision_tower.lower() or "clip" in vision_tower or "mlcd" in vision_tower or "unicom" in vision_tower or vision_tower.startswith("openai") \
         or vision_tower.startswith("laion") or "ShareGPT4V" in vision_tower or vision_tower.startswith("DeepGlint"):
         if use_s2:
             return CLIPVisionTowerS2(vision_tower, args=vision_tower_cfg, **kwargs)

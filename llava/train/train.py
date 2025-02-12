@@ -1215,10 +1215,22 @@ class LazySupervisedDataset(Dataset):
                 print(f"Error: {e}")
                 print(f"Failed to read video file: {video_file}")
                 return self._get_item(i + 1)
+        elif "image" in sources[0]:
+            image_file = self.list_data_dict[i]["image"]
+            if type(image_file) is list:
+                image = [self.process_image(f) for f in image_file]
+                # Handling multi images
+                # overwrite to process with simple pad 
+                if len(image_file) > 1:
+                    image = [self.process_image(f, "pad") for f in image_file]
+                    image = [[im[0], im[1], "image"] for im in image]
+            else:
+                image = [self.process_image(image_file)]
+            sources = preprocess_multimodal(copy.deepcopy([e["conversations"] for e in sources]), self.data_args)
         else:
             sources = copy.deepcopy([e["conversations"] for e in sources])
 
-        has_image = ("images" in self.list_data_dict[i]) or ("video" in self.list_data_dict[i])
+        has_image = ("images" in self.list_data_dict[i]) or ("video" in self.list_data_dict[i]) or ('image' in self.list_data_dict[i])
         data_dict = preprocess(sources, self.tokenizer, has_image=has_image)
 
         if "prompt" in data_dict:
@@ -1230,7 +1242,7 @@ class LazySupervisedDataset(Dataset):
             data_dict = dict(input_ids=data_dict["input_ids"][0], labels=data_dict["labels"][0])
 
         # image exist in the data
-        if "images" in self.list_data_dict[i]:
+        if "images" in self.list_data_dict[i] or 'image' in self.list_data_dict[i]:
             data_dict["image"] = image
         elif "video" in self.list_data_dict[i]:
             data_dict["image"] = image
