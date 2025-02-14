@@ -12,7 +12,7 @@ export PYTHONPATH=$(pwd)
 
 LLM_VERSION="Qwen/Qwen2.5-7B-Instruct"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
-VISION_MODEL_VERSION="DeepGlint-AI/mlcd-vit-large-patch14-336"
+VISION_MODEL_VERSION="DeepGlint-AI/mlcd-vit-bigG-patch14-448"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
 DATA_ROOT="llava 558k data root"
 

@@ -12,7 +12,7 @@ export PYTHONPATH=$(pwd)
 
 LLM_VERSION="Qwen/Qwen2.5-7B-Instruct"
 LLM_VERSION_CLEAN="${LLM_VERSION//\//_}"
-VISION_MODEL_VERSION="DeepGlint-AI/mlcd-vit-large-patch14-336"
+VISION_MODEL_VERSION="DeepGlint-AI/mlcd-vit-bigG-patch14-448"
 VISION_MODEL_VERSION_CLEAN="${VISION_MODEL_VERSION//\//_}"
 DATA_ROOT="/vlm/data/train_images"
 PROJECTOR_NAME="pretrained_projector name"
@@ -40,7 +40,7 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --nnodes="${NN
     --mm_use_im_patch_token False \
     --group_by_modality_length True \
     --image_aspect_ratio anyres \
-    --image_grid_pinpoints "[(336, 672), (672, 336), (672, 672), (1008, 336), (336, 1008)]" \
+    --image_grid_pinpoints "[(448, 896), (896, 448), (896, 896), (1344, 448), (448, 1344)]" \
     --mm_patch_merge_type spatial_unpad \
     --bf16 True \
     --run_name $BASE_RUN_NAME \
