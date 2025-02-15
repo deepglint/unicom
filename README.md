@@ -35,7 +35,7 @@ The results of the ImageNet linear probe are as follows:
 
 
 ## Latest News
-💖 [2025/02] We have released the [MLCD-bigG-14-448px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448) model, which has demonstrated excellent performance within the LLaVA-NeXT framework. You can reproduce these results from here ([1](https://github.com/deepglint/unicom/blob/main/scripts/pretrain_mlcd.sh), [2](https://github.com/deepglint/unicom/blob/main/scripts/finetune_mlcd.sh)).  
+💖 [2025/02] We have released the [MLCD-bigG-14-448px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448) model, which has demonstrated excellent performance within the LLaVA-NeXT framework. You can reproduce these results from here [[1](https://github.com/deepglint/unicom/blob/main/scripts/pretrain_mlcd.sh), [2](https://github.com/deepglint/unicom/blob/main/scripts/finetune_mlcd.sh)].  
 🎅 [2024/12] We have launched the [MLCD-Seg-7B](https://github.com/deepglint/unicom/tree/main/downstream), achieving scores of 85.3/81.5 on RefCOCO[testA/B], 82.9/75.6 on RefCOCO+[testA/B], and 80.5 on RefCOCOg[test].  
 🤖 [2024/11] We have launched the [MLCD-Embodied-7B](#mlcd-embodied), which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities. For more details, please click &rarr; [MLCD-Embodied.md](docs/MLCD_Embodied.md).  
 🤗 [2024/10] We release [MLCD-NeXT-7B](https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b) to Hugging Face.  
