@@ -89,9 +89,9 @@ torchrun --nproc_per_node 8 knn.py --train-dataset /imagenet/train/ --val-datase
 ## Vis ZeroShot Retrieval
 
 #### 1. **Food-101**
-![image](./examples/vis_food101.jpg)
+![image](../_static/images/vis_food101.jpg)
 #### 2. **Describable Textures Dataset**
-![image](./examples/vis_dtd.jpg)
+![image](../_static/images/vis_dtd.jpg)
 
 
 ## GoogleLandmark
