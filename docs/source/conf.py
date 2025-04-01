@@ -18,6 +18,9 @@ extensions = [
     'myst_parser',
     "sphinxcontrib.mermaid",
     "sphinx_copybutton",
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
 ]
 
 source_suffix = {
