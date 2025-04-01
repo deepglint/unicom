@@ -13,226 +13,41 @@ MLCD-Embodied is comparable to 4v in terms of embodied capabilities and possesse
 
 ## Embodied Ability Evaluation: Performance in RoboVQA and OpenEQA
 
-<div style="overflow-x: auto;">
-  <table style="white-space: nowrap;">
-    <tr>
-      <th></th>
-      <th></th>
-      <th>MLCD-Embodied-7B</th>
-      <th>LLaVA OneVision-7B</th>
-      <th>GPT-4V</th>
-      <th>RoboMamba</th>
-    </tr>
-    <tr>
-      <td><strong>RoboVQA</strong></td>
-      <td>BLEU1</td>
-      <td><strong>73.16</strong></td>
-      <td>38.12</td>
-      <td>-</td>
-      <td>54.9</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>BLEU2</td>
-      <td><strong>66.39</strong></td>
-      <td>33.56</td>
-      <td>-</td>
-      <td>44.2</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>BLEU3</td>
-      <td><strong>60.61</strong></td>
-      <td>31.76</td>
-      <td>-</td>
-      <td>39.5</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>BLEU4</td>
-      <td><strong>56.56</strong></td>
-      <td>30.97</td>
-      <td>-</td>
-      <td>36.3</td>
-    </tr>
-    <tr>
-      <td><strong>OpenEQA</strong></td>
-      <td>OBJECT-STATE-RECOGNITION</td>
-      <td><strong>71.83</strong></td>
-      <td>-</td>
-      <td>63.2</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>OBJECT-RECOGNITION</td>
-      <td><strong>49.46</strong></td>
-      <td>-</td>
-      <td>43.4</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>FUNCTIONAL-REASONING</td>
-      <td>54.38</td>
-      <td>-</td>
-      <td><strong>57.4</strong></td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>SPATIAL-UNDERSTANDING</td>
-      <td><strong>48.64</strong></td>
-      <td>-</td>
-      <td>33.6</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>ATTRIBUTE-RECOGNITION</td>
-      <td><strong>67.08</strong></td>
-      <td>-</td>
-      <td>57.2</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>WORLD-KNOWLEDGE</td>
-      <td><strong>53.87</strong></td>
-      <td>-</td>
-      <td>50.7</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>OBJECT-LOCALIZATION</td>
-      <td><strong>43.06</strong></td>
-      <td>-</td>
-      <td>42.0</td>
-      <td>-</td>
-    </tr>
-  </table>
-</div>
+
+|                |                   | MLCD-Embodied-7B | LLaVA OneVision-7B | GPT-4V | RoboMamba |
+|----------------|-------------------|-------------------|--------------------|--------|-----------|
+| **RoboVQA**   | BLEU1             | **73.16**        | 38.12             | -      | 54.9      |
+|                | BLEU2             | **66.39**        | 33.56             | -      | 44.2      |
+|                | BLEU3             | **60.61**        | 31.76             | -      | 39.5      |
+|                | BLEU4             | **56.56**        | 30.97             | -      | 36.3      |
+| **OpenEQA**    | OBJECT-STATE-RECOGNITION | **71.83** | -           | 63.2   | -         |
+|                | OBJECT-RECOGNITION        | **49.46** | -           | 43.4   | -         |
+|                | FUNCTIONAL-REASONING      | 54.38 | -           | **57.4** | -       |
+|                | SPATIAL-UNDERSTANDING     | **48.64** | -           | 33.6   | -         |
+|                | ATTRIBUTE-RECOGNITION     | **67.08** | -           | 57.2   | -         |
+|                | WORLD-KNOWLEDGE           | **53.87** | -           | 50.7   | -         |
+|                | OBJECT-LOCALIZATION       | **43.06** | -           | 42.0     | -         |
 
 
 ## General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
 
-<div style="overflow-x: auto;">
-  <table style="white-space: nowrap;">
-    <tr>
-      <th>Dataset</th>
-      <th>Split</th>
-      <th>MLCD-Embodied-7B</th>
-      <th>LLaVA OneVision-7B</th>
-      <th>GPT-4v</th>
-      <th>GPT-4o</th>
-    </tr>
-    <tr>
-      <td>A12D</td>
-      <td>test</td>
-      <td>79.9</td>
-      <td>81.4</td>
-      <td>78.2</td>
-      <td>94.2</td>
-    </tr>
-    <tr>
-      <td>ChartQA</td>
-      <td>test</td>
-      <td>83.0</td>
-      <td>80.0</td>
-      <td>78.5</td>
-      <td>85.7</td>
-    </tr>
-    <tr>
-      <td>DocVQA</td>
-      <td>test</td>
-      <td>91.6</td>
-      <td>87.5</td>
-      <td>88.4</td>
-      <td>92.8</td>
-    </tr>
-    <tr>
-      <td>InfoVQA</td>
-      <td>val</td>
-      <td>73.9</td>
-      <td>70.7</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>InfoVQA</td>
-      <td>test</td>
-      <td>70.0</td>
-      <td>68.8</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>MMMU</td>
-      <td>val</td>
-      <td>47.3</td>
-      <td>48.8</td>
-      <td>56.8</td>
-      <td>69.1</td>
-    </tr>
-    <tr>
-      <td>MMStar</td>
-      <td>test</td>
-      <td>58.5</td>
-      <td>61.7</td>
-      <td>57.1</td>
-      <td>63.9</td>
-    </tr>
-    <tr>
-      <td>OCRBench</td>
-      <td>-</td>
-      <td>749.0</td>
-      <td>697.0</td>
-      <td>656.0</td>
-      <td>805.0</td>
-    </tr>
-    <tr>
-      <td>RealWorldQA</td>
-      <td>test</td>
-      <td>68.9</td>
-      <td>66.3</td>
-      <td>61.4</td>
-      <td>58.6</td>
-    </tr>
-    <tr>
-      <td>SeedBench</td>
-      <td>image</td>
-      <td>74.9</td>
-      <td>75.4</td>
-      <td>49.9</td>
-      <td>76.2</td>
-    </tr>
-    <tr>
-      <td>MMbench</td>
-      <td>en-dev</td>
-      <td>81.1</td>
-      <td>83.2</td>
-      <td>81.3</td>
-      <td>83.4</td>
-    </tr>
-    <tr>
-      <td>MMbench</td>
-      <td>en-test</td>
-      <td>80.1</td>
-      <td>80.8</td>
-      <td>75.0</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>MME</td>
-      <td>test</td>
-      <td>578/1603</td>
-      <td>418/1580</td>
-      <td>517/1409</td>
-      <td>-</td>
-    </tr>
-  </table>
-</div>
+
+| Dataset     | Split   | MLCD-Embodied-7B | LLaVA OneVision-7B | GPT-4v   | GPT-4o |
+| :-- | :-: | :-: | :-: | :-: | :-: |
+| A12D        | test    | 79.9             | 81.4               | 78.2     | 94.2   |
+| ChartQA     | test    | 83.0             | 80.0               | 78.5     | 85.7   |
+| DocVQA      | test    | 91.6             | 87.5               | 88.4     | 92.8   |
+| InfoVQA     | val     | 73.9             | 70.7               | -        | -      |
+| InfoVQA     | test    | 70.0             | 68.8               | -        | -      |
+| MMMU        | val     | 47.3             | 48.8               | 56.8     | 69.1   |
+| MMStar      | test    | 58.5             | 61.7               | 57.1     | 63.9   |
+| OCRBench    | -       | 749.0            | 697.0              | 656.0    | 805.0  |
+| RealWorldQA | test    | 68.9             | 66.3               | 61.4     | 58.6   |
+| SeedBench   | image   | 74.9             | 75.4               | 49.9     | 76.2   |
+| MMbench     | en-dev  | 81.1             | 83.2               | 81.3     | 83.4   |
+| MMbench     | en-test | 80.1             | 80.8               | 75.0     | -      |
+| MME         | test    | 578/1603         | 418/1580           | 517/1409 | -      |
+
 
 ## Usage
 
