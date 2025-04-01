@@ -12,101 +12,27 @@ This repository focuses on building foundational visual models for large multimo
 We adopted the official [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT) and the official training dataset [LLaVA-NeXT-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-NeXT-Data) for evaluating the foundational visual models.   
 The language model is Qwen2.5-7B. 
 
-<div style="overflow-x: auto;">
-  <table style="white-space: nowrap;">
-    <tr>
-      <th>Vision Tower</th>
-      <th>RoPE2D</th>
-      <th>ChartQA</th>
-      <th>DocVQA</th>
-      <th>InfoVQA</th>
-      <th>OCRBench</th>
-      <th>MMMU</th>
-    </tr>
-    <tr>
-      <td>CLIP (ViT-L-14-336px)</td>
-      <td>×</td>
-      <td>66.52</td>
-      <td>75.21</td>
-      <td>38.88</td>
-      <td>525.00</td>
-      <td>44.20</td>
-    </tr>
-    <tr>
-      <td>SigLIP (ViT-SO400M-384px)</td>
-      <td>×</td>
-      <td>69.28</td>
-      <td>76.71</td>
-      <td>41.38</td>
-      <td>554.00</td>
-      <td>46.78</td>
-    </tr>
-    <tr>
-      <td>DFN5B (ViT-H-14-378px)</td>
-      <td>×</td>
-      <td>64.36</td>
-      <td>70.87</td>
-      <td>38.59</td>
-      <td>473.00</td>
-      <td><strong>48.00</strong></td>
-    </tr>
-    <tr>
-      <td><strong><a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336">HF:MLCD (ViT-L-14-336px)</a></strong></td>
-      <td>×</td>
-      <td>67.84</td>
-      <td>76.46</td>
-      <td>43.48</td>
-      <td>531.00</td>
-      <td>44.30</td>
-    </tr>
-    <tr>
-      <td><strong><a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336">HF:MLCD (ViT-bigG-14-336px)</a></strong></td>
-      <td>√</td>
-      <td>71.07</td>
-      <td>79.63</td>
-      <td>44.38</td>
-      <td>572.00</td>
-      <td>46.78</td>
-    </tr>
-    <tr>
-      <td><strong><a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448">HF:MLCD (ViT-bigG-14-448px)</a></strong></td>
-      <td>√</td>
-      <td><strong>73.80</strong></td>
-      <td><strong>83.34</strong></td>
-      <td><strong>46.59</strong></td>
-      <td><strong>582.00</strong></td>
-      <td>46.00</td>
-    </tr>
-  </table>
-</div>
+
+| Vision Tower                                                                                  | RoPE2D | ChartQA   | DocVQA    | InfoVQA   | OCRBench   | MMMU      |
+| :-------------------------------------------------------------------------------------------- | :----: | :-------- | :-------- | :-------- | :--------- | :-------- |
+| CLIP (ViT-L-14-336px)                                                                         |   ×    | 66.52     | 75.21     | 38.88     | 525.00     | 44.20     |
+| SigLIP (ViT-SO400M-384px)                                                                     |   ×    | 69.28     | 76.71     | 41.38     | 554.00     | 46.78     |
+| DFN5B (ViT-H-14-378px)                                                                        |   ×    | 64.36     | 70.87     | 38.59     | 473.00     | **48.00** |
+| **[HF:MLCD (ViT-L-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)**   |   ×    | 67.84     | 76.46     | 43.48     | 531.00     | 44.30     |
+| **[HF:MLCD (ViT-bigG-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336)** |   √    | 71.07     | 79.63     | 44.38     | 572.00     | 46.78     |
+| **[HF:MLCD (ViT-bigG-14-448px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448)** |   √    | **73.80** | **83.34** | **46.59** | **582.00** | 46.00     |
+
 
 
 The results of the ImageNet linear probe are as follows:
 
-<div style="overflow-x: auto;">
-  <table style="white-space: nowrap;">
-    <tr>
-      <th>Model Name</th>
-      <th>ImageNet Linear Probe</th>
-      <th>Hugging Face</th>
-    </tr>
-    <tr>
-      <td>MLCD-ViT-B-32-224px</td>
-      <td>79.1</td>
-      <td><a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224">HF:MLCD-ViT-B-32-224px</a></td>
-    </tr>
-    <tr>
-      <td>MLCD-ViT-L-14-336px</td>
-      <td>86.3</td>
-      <td><a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336">HF:MLCD-ViT-L-14-336px</a></td>
-    </tr>
-    <tr>
-      <td>MLCD-ViT-bigG-14-224px</td>
-      <td>87.1</td>
-      <td><a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224">HF:MLCD-ViT-bigG-14-224px</a></td>
-    </tr>
-  </table>
-</div>
+| Model Name             | ImageNet Linear Probe | Hugging Face                                                                               |
+| :--------------------- | :-------------------: | :----------------------------------------------------------------------------------------- |
+| MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)    |
+| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |
+| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |
+
+
 
 ## Latest News
 <div>💖 [2025/02] We have released the <a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448">MLCD-bigG-14-448px</a> model, which has demonstrated excellent performance within the LLaVA-NeXT framework. You can reproduce these results from here <a href="https://github.com/deepglint/unicom/blob/main/scripts/pretrain_mlcd.sh">[1]</a>, <a href="https://github.com/deepglint/unicom/blob/main/scripts/finetune_mlcd.sh">[2]</a>.</div>
@@ -127,106 +53,19 @@ More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](mlcd/MLC
 
 ### 1. General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
 
-<div style="overflow-x: auto;">
-  <table style="white-space: nowrap;">
-    <tr>
-      <th>Dataset</th>
-      <th>Split</th>
-      <th>MLCD-Embodied-7B</th>
-      <th>LLaVA OneVision-7B</th>
-      <th>GPT-4v</th>
-      <th>GPT-4o</th>
-    </tr>
-    <tr>
-      <td>Vision Encoder</td>
-      <td>-</td>
-      <td>MLCD-ViT-L-14-336px</td>
-      <td>SigLIP</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>ChartQA</td>
-      <td>test</td>
-      <td>83.0</td>
-      <td>80.0</td>
-      <td>78.5</td>
-      <td>85.7</td>
-    </tr>
-    <tr>
-      <td>DocVQA</td>
-      <td>test</td>
-      <td>91.6</td>
-      <td>87.5</td>
-      <td>88.4</td>
-      <td>92.8</td>
-    </tr>
-    <tr>
-      <td>InfoVQA</td>
-      <td>val</td>
-      <td>73.9</td>
-      <td>70.7</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>InfoVQA</td>
-      <td>test</td>
-      <td>70.0</td>
-      <td>68.8</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>MMMU</td>
-      <td>val</td>
-      <td>47.3</td>
-      <td>48.8</td>
-      <td>56.8</td>
-      <td>69.1</td>
-    </tr>
-    <tr>
-      <td>MMStar</td>
-      <td>test</td>
-      <td>58.5</td>
-      <td>61.7</td>
-      <td>57.1</td>
-      <td>63.9</td>
-    </tr>
-    <tr>
-      <td>OCRBench</td>
-      <td>-</td>
-      <td>749.0</td>
-      <td>697.0</td>
-      <td>656.0</td>
-      <td>805.0</td>
-    </tr>
-    <tr>
-      <td>RealWorldQA</td>
-      <td>test</td>
-      <td>68.9</td>
-      <td>66.3</td>
-      <td>61.4</td>
-      <td>58.6</td>
-    </tr>
-    <tr>
-      <td>SeedBench</td>
-      <td>image</td>
-      <td>74.9</td>
-      <td>75.4</td>
-      <td>49.9</td>
-      <td>76.2</td>
-    </tr>
-    <tr>
-      <td>MME</td>
-      <td>test</td>
-      <td>578/1603</td>
-      <td>418/1580</td>
-      <td>517/1409</td>
-      <td>-</td>
-    </tr>
-  </table>
-</div>
+| Dataset        | Split |  MLCD-Embodied-7B   | LLaVA OneVision-7B |  GPT-4v  | GPT-4o |
+| :------------- | :---: | :-----------------: | :----------------: | :------: | :----: |
+| Vision Encoder |   -   | MLCD-ViT-L-14-336px |       SigLIP       |    -     |   -    |
+| ChartQA        | test  |        83.0         |        80.0        |   78.5   |  85.7  |
+| DocVQA         | test  |        91.6         |        87.5        |   88.4   |  92.8  |
+| InfoVQA        |  val  |        73.9         |        70.7        |    -     |   -    |
+| InfoVQA        | test  |        70.0         |        68.8        |    -     |   -    |
+| MMMU           |  val  |        47.3         |        48.8        |   56.8   |  69.1  |
+| MMStar         | test  |        58.5         |        61.7        |   57.1   |  63.9  |
+| OCRBench       |   -   |        749.0        |       697.0        |  656.0   | 805.0  |
+| RealWorldQA    | test  |        68.9         |        66.3        |   61.4   |  58.6  |
+| SeedBench      | image |        74.9         |        75.4        |   49.9   |  76.2  |
+| MME            | test  |      578/1603       |      418/1580      | 517/1409 |   -    |
 
 
 
