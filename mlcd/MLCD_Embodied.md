@@ -13,6 +13,7 @@ MLCD-Embodied is comparable to 4v in terms of embodied capabilities and possesse
 
 ## Embodied Ability Evaluation: Performance in RoboVQA and OpenEQA
 
+
 |                |                   | MLCD-Embodied-7B | LLaVA OneVision-7B | GPT-4V | RoboMamba |
 |----------------|-------------------|-------------------|--------------------|--------|-----------|
 | **RoboVQA**   | BLEU1             | **73.16**        | 38.12             | -      | 54.9      |
@@ -30,6 +31,7 @@ MLCD-Embodied is comparable to 4v in terms of embodied capabilities and possesse
 
 ## General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
 
+
 | Dataset     | Split   | MLCD-Embodied-7B | LLaVA OneVision-7B | GPT-4v   | GPT-4o |
 | :-- | :-: | :-: | :-: | :-: | :-: |
 | A12D        | test    | 79.9             | 81.4               | 78.2     | 94.2   |
@@ -45,6 +47,7 @@ MLCD-Embodied is comparable to 4v in terms of embodied capabilities and possesse
 | MMbench     | en-dev  | 81.1             | 83.2               | 81.3     | 83.4   |
 | MMbench     | en-test | 80.1             | 80.8               | 75.0     | -      |
 | MME         | test    | 578/1603         | 418/1580           | 517/1409 | -      |
+
 
 ## Usage
 
