@@ -1,4 +1,54 @@
-# MLCD-Embodied 🤖
+
+## MLCD-LLaVA-NeXT
+
+### 1. Installation
+
+Clone this repository and navigate to the LLaVA folder: 
+
+```bash
+git clone https://github.com/deepglint/unicom
+cd unicom/mlcd_vl/
+
+docker build -t train_mlcd_llava .
+
+
+# Start container
+docker run --gpus all \
+-v /vlm:/vlm \
+-v /mnt:/mnt \
+--rm \
+-v $(pwd):/workspace \
+-w /workspace \
+--shm-size=64g -it train_mlcd_llava bash
+
+# 
+docker exec -it mlcd_llava_container bash
+
+```
+
+### 2. Training
+
+**Stage 1: MLCD-LLaVA-NeXT Pretraining**
+```bash
+PYTHONPATH=./ bash scripts/pretrain_mlcd.sh
+```
+
+**Stage 2: MLCD-LLaVA-NeXT Instructional Finetuning**
+```bash
+PYTHONPATH=./ bash scripts/finetune_mlcd.sh
+```
+
+
+### 3. Evaluation  
+Install the evaluation tool and execute the evaluation script:
+```bash
+pip install lmms-eval==0.2.0
+bash eval.sh
+```
+---
+
+
+## MLCD-Embodied-7B 🤖
 
 <a name="mlcd-embodied"></a>
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/MLCD-Embodied-7B)  
@@ -65,7 +115,7 @@ pip install -e ".[train]"
 ### B. Inference
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python infer.py --model_dir /path/to/your/model
+CUDA_VISIBLE_DEVICES=0 python infer_mlcd_emboided.py --model_dir /path/to/your/model
 
 # example:
 # >> Enter 'exit' to end the conversation, 'reset' to clear the chat history.
