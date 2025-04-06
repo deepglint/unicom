@@ -9,6 +9,8 @@
 To evaluate MLCD’s performance within multimodal large language models (MLLMs), we replaced the CLIP model in LLaVA-NeXT with the MLCD model. We paired this with the Qwen2.5-7B language model. For reproducibility, we utilized the LLaVA-Pretrain dataset for pre-training and the LLaVA-NeXT-Data for structured fine-tuning. The evaluation results confirm that the MLCD model performs exceptionally well across multiple benchmarks, underscoring its effectiveness in MLLMs.
 
 
+
+
 | Vision Tower                                                                                  | RoPE2D | ChartQA   | DocVQA    | InfoVQA   | OCRBench   | MMMU      |
 | :-------------------------------------------------------------------------------------------- | :----: | :-------- | :-------- | :-------- | :--------- | :-------- |
 | CLIP (ViT-L-14-336px)                                                                         |   ×    | 66.52     | 75.21     | 38.88     | 525.00     | 44.20     |
@@ -17,6 +19,30 @@ To evaluate MLCD’s performance within multimodal large language models (MLLMs)
 | **[HF:MLCD (ViT-L-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)**   |   ×    | 67.84     | 76.46     | 43.48     | 531.00     | 44.30     |
 | **[HF:MLCD (ViT-bigG-14-336px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-336)** |   √    | 71.07     | 79.63     | 44.38     | 572.00     | 46.78     |
 | **[HF:MLCD (ViT-bigG-14-448px)](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448)** |   √    | **73.80** | **83.34** | **46.59** | **582.00** | 46.00     |
+
+
+
+
+| Vision Tower    | MLCD (ViT_L_14_336px) | CLIP (ViT_L_14_336px) |
+| :-------------- | :-------------------------------------------------------------------------------------- | :-------------------- |
+| LLM             | Qwen2.5-7B                                                                              | Qwen2.5-7B            |
+| AI2D            | **76.98**                                                                               | 73.15                 |
+| GQA             | **64.17**                                                                               | 63.31                 |
+| ScienceQA-Img   | **78.09**                                                                               | 76.35                 |
+| InfoVQA-Val     | **43.48**                                                                               | 38.88                 |
+| MMBenchCN-Dev   | **74.83**                                                                               | 72.51                 |
+| MMBenchEN-Dev   | **76.37**                                                                               | 74.57                 |
+| SeedBench       | **68.20**                                                                               | 66.80                 |
+| SeedBench-Img   | **73.75**                                                                               | 72.72                 |
+| MMStar          | **50.98**                                                                               | 48.98                 |
+| MMMU            | **44.30**                                                                               | 44.20                 |
+| POPE            | 88.69                                                                                   | **88.83**             |
+| ChartQA         | **67.84**                                                                               | 66.52                 |
+| DocVQA-Val      | **76.46**                                                                               | 75.21                 |
+| TextVQA-Val     | 61.69                                                                                   | **62.47**             |
+| OCRBench        | **531**                                                                                 | 525                   |
+| MME(cognition)  | **432**                                                                                 | 384                   |
+| MME(perception) | **1598**                                                                                | 1512                  |
 
 
 
