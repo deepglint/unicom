@@ -1,4 +1,14 @@
-# convert pytorch2huggingface
+### Performance
+
+The results of the ImageNet linear probe are as follows:
+
+| Model Name             | ImageNet Linear Probe | Hugging Face                                                                               |
+| :--------------------- | :-------------------: | :----------------------------------------------------------------------------------------- |
+| MLCD-ViT-B-32-224px    |         79.1          | [HF:MLCD-ViT-B-32-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-base-patch32-224)    |
+| MLCD-ViT-L-14-336px    |         86.3          | [HF:MLCD-ViT-L-14-336px](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)   |
+| MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |
+
+### convert pytorch2huggingface
 
 ```python3
 
