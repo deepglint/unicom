@@ -48,7 +48,7 @@ The results of the ImageNet linear probe are as follows:
 <a name="mlcd-embodied"></a>
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/MLCD-Embodied-7B)  
 
-More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](mlcd_vl/README.md) file.  
+More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](https://github.com/deepglint/unicom/blob/main/mlcd_vl) file.  
 
 
 ### Comparison with LLaVA OneVision-7B and GPT-4
