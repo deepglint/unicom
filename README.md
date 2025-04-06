@@ -51,7 +51,7 @@ The results of the ImageNet linear probe are as follows:
 More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](mlcd_vl/README.md) file.  
 
 
-### 1. General Ability Evaluation: Comparison with LLaVA OneVision-7B and GPT-4
+### Comparison with LLaVA OneVision-7B and GPT-4
 
 | Dataset        | Split |  MLCD-Embodied-7B   | LLaVA OneVision-7B |  GPT-4v  | GPT-4o |
 | :------------- | :---: | :-----------------: | :----------------: | :------: | :----: |
@@ -66,48 +66,6 @@ More details about MLCD-Embodied can be found in the [MLCD-Embodied.md](mlcd_vl/
 | RealWorldQA    | test  |        68.9         |        66.3        |   61.4   |  58.6  |
 | SeedBench      | image |        74.9         |        75.4        |   49.9   |  76.2  |
 | MME            | test  |      578/1603       |      418/1580      | 517/1409 |   -    |
-
-
-
-### 2. Usage
-
-
-```bash
-git clone https://github.com/deepglint/unicom
-cd unicom
-pip install --upgrade pip
-pip install -e ".[train]"
-pip install flash-attn --no-build-isolation
-
-CUDA_VISIBLE_DEVICES=0 python infer.py --model_dir DeepGlint-AI/MLCD-Embodied-7B
-
-# example:
-# >> Enter 'exit' to end the conversation, 'reset' to clear the chat history.
-# >> Enter image file paths (comma-separated): ./_static/images/logo.png
-# >> User: <image>What kind of animal is it in this picture?
-# >> Assistant: The image features a stylized representation of a cat, characterized by its vibrant and abstract depiction.
-# >> User: What color is this cat?
-# >> Assistant: The cat in the image is primarily white with blue, orange and pink accents, creating a visually appealing and unique appearance.
-# >> User: <image>请你介绍一下这个图片
-# >> Assistant: 这是一幅充满创意的猫头艺术作品。它采用了多色渐变和抽象风格，将猫的头部描绘成一个充满活力和色彩的视觉冲击。猫的眼睛用金色渲染，显得非常有神采，
-# 而粉色的鼻子则增添了一丝可爱感。整体设计融合了现代艺术与传统猫头图案，创造出一种既独特又引人入胜的视觉效果。。
-```
-### 3. Eval
-```
-pip install lmms-eval==0.2.0
-PYTHONPATH=./ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m accelerate.commands.launch \
-    --main_process_port=12444 \
-    --num_processes=8 \
-    -m lmms_eval \
-    --model llava \
-    --model_args pretrained=DeepGlint-AI/MLCD-Embodied-7B,conv_template=qwen_1_5 \
-    --tasks mme \
-    --batch_size 1 \
-    --log_samples \
-    --log_samples_suffix mlcd \
-    --output_path ./eval_log/
-```
-
 
 
 ## Multi-Label Cluster Discrimination (MLCD)
