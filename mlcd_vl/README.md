@@ -55,6 +55,7 @@ docker run --gpus all \
 --shm-size=64g -it train_mlcd_llava bash
 ```
 
+
 ### Training
 
 **Stage 1: MLCD-LLaVA-NeXT Pretraining**
