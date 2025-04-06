@@ -35,7 +35,7 @@ The results of the ImageNet linear probe are as follows:
 
 
 ## Latest News
-<div>💖 [2025/02] We have released the <a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448">MLCD-bigG-14-448px</a> model, which has demonstrated excellent performance within the LLaVA-NeXT framework. You can reproduce these results from here <a href="https://github.com/deepglint/unicom/blob/main/scripts/pretrain_mlcd.sh">[1]</a>, <a href="https://github.com/deepglint/unicom/blob/main/scripts/finetune_mlcd.sh">[2]</a>.</div>
+<div>💖 [2025/02] We have released the <a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448">MLCD-bigG-14-448px</a> model, which has demonstrated excellent performance within the LLaVA-NeXT framework. You can reproduce these results from here <a href="https://github.com/deepglint/unicom/blob/main/mlcd_vl/scripts/pretrain_mlcd.sh">[1]</a>, <a href="https://github.com/deepglint/unicom/blob/main/mlcd_vl/scripts/finetune_mlcd.sh">[2]</a>.</div>
 <div>🎅 [2024/12] We have launched the <a href="https://github.com/deepglint/unicom/tree/main/downstream">MLCD-Seg-7B</a>, achieving scores of 85.3/81.5 on RefCOCO[testA/B], 82.9/75.6 on RefCOCO+[testA/B], and 80.5 on RefCOCOg[test].</div>
 <div>🤖 [2024/11] We have launched the <a href="#mlcd-embodied">MLCD-Embodied-7B</a>, which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities.</div>
 <div>🤗 [2024/10] We release <a href="https://huggingface.co/DeepGlint-AI/llava-mlcd-qwen2.5-7b">MLCD-NeXT-7B</a> to Hugging Face.</div>
@@ -113,7 +113,6 @@ PYTHONPATH=./ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m accelerate.commands
 ## Multi-Label Cluster Discrimination (MLCD)
 <a name="multi-label-cluster-discrimination-mlcd"></a>
 [![Arxiv](https://img.shields.io/badge/arXiv-2407.17331-red)](https://arxiv.org/abs/2407.17331) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Model-yellow)](https://huggingface.co/DeepGlint-AI/mlcd-vit-large-patch14-336)  
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-label-cluster-discrimination-for-visual/self-supervised-image-classification-on)](https://paperswithcode.com/sota/self-supervised-image-classification-on?p=multi-label-cluster-discrimination-for-visual)
 
 
 More details about MLCD can be found in the [MLCD.md](mlcd/README.md) file.
@@ -129,43 +128,7 @@ MLCD improves upon traditional approaches by clustering the the LAION dataset, w
 </div>
 
 
-### 1. Installation
 
-Clone this repository and navigate to the LLaVA folder: 
-
-```bash
-git clone https://github.com/deepglint/unicom
-cd unicom
-
-# Upgrade pip and install necessary dependencies
-pip config set global.index-url https://pypi.org/simple
-pip install --upgrade pip
-pip install -e ".[train]"
-
-# flash attention
-pip install flash-attn --no-build-isolation
-```
-
-### 2. Training
-
-**Stage 1: MLCD-LLaVA-NeXT Pretraining**
-```bash
-bash scripts/pretrain_mlcd.sh
-```
-
-**Stage 2: MLCD-LLaVA-NeXT Instructional Finetuning**
-```bash
-bash scripts/finetune_mlcd.sh
-```
-
-
-### 3. Evaluation  
-Install the evaluation tool and execute the evaluation script:
-```bash
-pip install lmms-eval==0.2.0
-bash eval.sh
-```
----
 
 ## UNICOM
 <a name="unicom"></a>

@@ -23,6 +23,12 @@ def build_vision_tower(vision_tower_cfg, **kwargs):
         else:
             return MLCDVisionTower(vision_tower, args=vision_tower_cfg, **kwargs)
 
+    elif "rice-vit-large-patch14-378" in vision_tower:
+        if use_s2:
+            return CLIPVisionTowerS2(vision_tower, args=vision_tower_cfg, **kwargs)
+        else:
+            return CLIPVisionTower(vision_tower, args=vision_tower_cfg, **kwargs)
+
     elif 'dfn' in vision_tower.lower() or "clip" in vision_tower or "mlcd" in vision_tower or "unicom" in vision_tower or vision_tower.startswith("openai") \
         or vision_tower.startswith("laion") or "ShareGPT4V" in vision_tower or vision_tower.startswith("DeepGlint"):
         if use_s2:
