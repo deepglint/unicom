@@ -1,5 +1,5 @@
 
-## MLCD-LLaVA-NeXT
+## Train MLCD-LLaVA-NeXT
 
 ### 1. Installation
 
@@ -14,28 +14,22 @@ docker build -t train_mlcd_llava .
 
 # Start container
 docker run --gpus all \
--v /vlm:/vlm \
--v /mnt:/mnt \
---rm \
 -v $(pwd):/workspace \
+--rm \
 -w /workspace \
 --shm-size=64g -it train_mlcd_llava bash
-
-# 
-docker exec -it mlcd_llava_container bash
-
 ```
 
 ### 2. Training
 
 **Stage 1: MLCD-LLaVA-NeXT Pretraining**
 ```bash
-PYTHONPATH=./ bash scripts/pretrain_mlcd.sh
+bash scripts/pretrain_mlcd.sh
 ```
 
 **Stage 2: MLCD-LLaVA-NeXT Instructional Finetuning**
 ```bash
-PYTHONPATH=./ bash scripts/finetune_mlcd.sh
+bash scripts/finetune_mlcd.sh
 ```
 
 
@@ -104,18 +98,22 @@ MLCD-Embodied is comparable to 4v in terms of embodied capabilities and possesse
 ### A. Installation
 
 ```bash
-git clone https://github.com/deepglint/unicom
-cd unicom
+docker build -t train_mlcd_llava .
 
-# Upgrade pip and install necessary dependencies
-pip install --upgrade pip
-pip install -e ".[train]"
+docker run --gpus all \
+-v /vlm:/vlm \
+-v /mnt:/mnt \
+-v /mnt/data/huggingface/:/root/.cache/huggingface \
+-v $(pwd):/workspace \
+--rm \
+-w /workspace \
+--shm-size=64g -it train_mlcd_llava bash
 ```
 
 ### B. Inference
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python infer_mlcd_emboided.py --model_dir /path/to/your/model
+CUDA_VISIBLE_DEVICES=0 python infer_mlcd_emboided.py --model_dir DeepGlint-AI/MLCD-Embodied-7B
 
 # example:
 # >> Enter 'exit' to end the conversation, 'reset' to clear the chat history.

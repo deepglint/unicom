@@ -1,4 +1,4 @@
-FROM pytorch/pytorch:2.4.1-cuda11.8-cudnn9-devel
+FROM pytorch/pytorch:2.1.2-cuda11.8-cudnn8-devel
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -26,12 +26,11 @@ COPY requirements.txt .
 # RUN pip install flash-attn --no-build-isolation
 
 # Install the packages using Tencent Cloud mirror
-# RUN pip install --no-cache-dir -i https://mirrors.cloud.tencent.com/pypi/simple/ --trusted-host mirrors.cloud.tencent.com --upgrade pip && \
-#     pip install --no-cache-dir -i https://mirrors.cloud.tencent.com/pypi/simple/ --trusted-host mirrors.cloud.tencent.com -r requirements.txt && \
+RUN pip install --no-cache-dir -i https://mirrors.cloud.tencent.com/pypi/simple/ --trusted-host mirrors.cloud.tencent.com --upgrade pip && \
+    pip install --no-cache-dir -i https://mirrors.cloud.tencent.com/pypi/simple/ --trusted-host mirrors.cloud.tencent.com -r requirements.txt
 #     pip install -i flash-attn --no-build-isolation
 
 # Install the packages using Alibaba Cloud mirror
-RUN pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com --upgrade pip && \
-    pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com -r requirements.txt
+# RUN pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com --upgrade pip && \
+#     pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com -r requirements.txt
 
-RUN pip install flash-attn==2.7.4 --no-build-isolation

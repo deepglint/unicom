@@ -3,7 +3,7 @@ av==14.2.0
 bitsandbytes==0.43.0
 datasets==2.16.1
 decord
-deepspeed==0.16.5
+deepspeed==0.14.0
 einops==0.6.1
 einops-exts==0.0.4
 fastapi
@@ -15,6 +15,7 @@ open_clip_torch
 opencv-python
 peft==0.9.0
 pydantic==2.7.1
+pynvml
 timm
 tokenizers==0.19.1
 transformers==4.44.0
