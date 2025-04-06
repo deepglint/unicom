@@ -1,3 +1,6 @@
+export OMP_NUM_THREADS=8
+export NCCL_IB_DISABLE=0
+export NCCL_IB_GID_INDEX=3
 export NCCL_SOCKET_IFNAME=eth0
 export NCCL_DEBUG=INFO
 export NUM_GPUS=8
@@ -62,5 +65,4 @@ ACCELERATE_CPU_AFFINITY=1 torchrun --nproc_per_node="${NUM_GPUS}" --nnodes="${NN
     --report_to wandb \
     --torch_compile True \
     --torch_compile_backend "inductor" \
-    --dataloader_drop_last True \
-    --attn_implementation sdpa
+    --dataloader_drop_last True 

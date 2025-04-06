@@ -1,0 +1,99 @@
+[tool.black]
+line-length = 240
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unicom"
+version = "2.0.0"
+description = "Multi-label Cluster Discrimination for Visual Representation Learning"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+[project.optional-dependencies]
+standalone = [
+    "shortuuid",
+    "httpx==0.24.0",
+    "einops",
+    "ftfy",
+]
+
+
+train = [
+    "numpy==1.26.0",
+    "open_clip_torch",
+    "fastapi",
+    "markdown2[all]",
+    "requests",
+    "sentencepiece",
+    "torch==2.1.2",
+    "torchvision==0.16.2",
+    "uvicorn",
+    "wandb",
+    "deepspeed==0.12.6",
+    "peft==0.9.0",
+    "accelerate==0.31.0",
+    "tokenizers==0.19.1",
+    "transformers==4.44.0",
+    "bitsandbytes==0.43.0",
+    "scikit-learn==1.5.1",
+    "sentencepiece~=0.2.0",
+    "einops==0.6.1",
+    "einops-exts==0.0.4",
+    "gradio_client==0.2.9",
+    "urllib3==2.2.2",
+    "datasets==2.16.1",
+    "pydantic==2.7.1",
+    "timm",
+    "hf_transfer",
+    "opencv-python",
+    "av",
+    "decord",
+    "tyro",
+    "scipy",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/deepglint/unicom"
+"Bug Tracker" = "https://github.com/deepglint/unicom/issues"
+
+[tool.setuptools.packages.find]
+include = ["llava*", ]
+exclude = [
+    "assets*",
+    "benchmark*",
+    "docs",
+    "dist*",
+    "playground*",
+    "scripts*",
+    "tests*",
+    "checkpoints*",
+    "project_checkpoints*",
+    "debug_checkpoints*",
+    "mlx_configs*",
+    "wandb*",
+    "notebooks*",
+]
+
+[tool.wheel]
+exclude = [
+    "assets*",
+    "benchmark*",
+    "docs",
+    "dist*",
+    "playground*",
+    "scripts*",
+    "tests*",
+    "checkpoints*",
+    "project_checkpoints*",
+    "debug_checkpoints*",
+    "mlx_configs*",
+    "wandb*",
+    "notebooks*",
+]
