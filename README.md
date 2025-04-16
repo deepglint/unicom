@@ -33,8 +33,40 @@ The results of the ImageNet linear probe are as follows:
 | MLCD-ViT-bigG-14-224px |         87.1          | [HF:MLCD-ViT-bigG-14-224px](https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-224) |
 
 
+## Quickstart Example
+
+Here is an example of how to use the `MLCDVisionModel` from the Transformers library for feature extraction. Please note that this requires the `transformers` library from the `master` branch. We will update this with a specific version number in the future.
+
+```python
+import requests
+from PIL import Image
+from transformers import AutoProcessor, MLCDVisionModel
+
+import torch
+
+# Load model and processor
+model = MLCDVisionModel.from_pretrained("DeepGlint-AI/mlcd-vit-bigG-patch14-448")
+processor = AutoProcessor.from_pretrained("DeepGlint-AI/mlcd-vit-bigG-patch14-448")
+
+# Process single image
+url = "http://images.cocodataset.org/val2017/000000039769.jpg"
+image = Image.open(requests.get(url, stream=True).raw)
+inputs = processor(images=image, return_tensors="pt")
+
+# Generate outputs
+with torch.no_grad():
+    outputs = model(**inputs)
+
+# Get visual features
+features = outputs.last_hidden_state
+
+print(f"Extracted features shape: {features.shape}")
+```
+
 
 ## Latest News
+
+<div>🤗 [2025/04] MLCD bigG has been merged into the Transformers library and can be accessed <a href="https://huggingface.co/docs/transformers/main/en/model_doc/mlcd">here</a>.</div>
 <div>💖 [2025/02] We have released the <a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448">MLCD-bigG-14-448px</a> model, which has demonstrated excellent performance within the LLaVA-NeXT framework. You can reproduce these results from here <a href="https://github.com/deepglint/unicom/blob/main/mlcd_vl/scripts/pretrain_mlcd.sh">[1]</a>, <a href="https://github.com/deepglint/unicom/blob/main/mlcd_vl/scripts/finetune_mlcd.sh">[2]</a>.</div>
 <div>🎅 [2024/12] We have launched the <a href="https://github.com/deepglint/unicom/tree/main/mlcd_vl/downstream">MLCD-Seg-7B</a>, achieving scores of 85.3/81.5 on RefCOCO[testA/B], 82.9/75.6 on RefCOCO+[testA/B], and 80.5 on RefCOCOg[test].</div>
 <div>🤖 [2024/11] We have launched the <a href="#mlcd-embodied">MLCD-Embodied-7B</a>, which can reach the level of GPT-4V in embodied capabilities and possesses excellent general understanding abilities.</div>
