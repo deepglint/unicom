@@ -143,24 +143,10 @@ Thanks so much to all of our amazing contributors!
 	<tbody>
 		<tr>
             <td align="center">
-                <a href="https://github.com/Barry-Zhou">
-                    <img src="https://avatars.githubusercontent.com/u/24220199?v=4" width="100;" alt="Barry-Zhou"/>
-                    <br />
-                    <sub><b>Barry-Zhou</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/daixiangzi">
                     <img src="https://avatars.githubusercontent.com/u/24811131?v=4" width="100;" alt="daixiangzi"/>
                     <br />
                     <sub><b>Daixiangzi</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/hongyan-star">
-                    <img src="https://avatars.githubusercontent.com/u/30431964?v=4" width="100;" alt="hongyan-star"/>
-                    <br />
-                    <sub><b>hongyan</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -178,14 +164,19 @@ Thanks so much to all of our amazing contributors!
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/xiaranqing">
+                    <img src="https://avatars.githubusercontent.com/u/53040086?v=4" width="100;" alt="xiaranqing"/>
+                    <br />
+                    <sub><b>xiaranqing</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/SNHIPOW">
                     <img src="https://avatars.githubusercontent.com/u/62653813?v=4" width="100;" alt="SNHIPOW"/>
                     <br />
                     <sub><b>Athinklo</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/tanhuajie">
                     <img src="https://avatars.githubusercontent.com/u/68807603?v=4" width="100;" alt="tanhuajie"/>
@@ -193,6 +184,8 @@ Thanks so much to all of our amazing contributors!
                     <sub><b>Tanhuajie</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/ZhaoYan-ai">
                     <img src="https://avatars.githubusercontent.com/u/91243333?v=4" width="100;" alt="ZhaoYan-ai"/>
