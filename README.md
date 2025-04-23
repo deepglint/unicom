@@ -138,7 +138,7 @@ For detailed instructions, please refer to the UNICOM  [Documentation](unicom/RE
 ## Contributors
 Thanks so much to all of our amazing contributors!
 
-<!-- readme: contributors -start -->
+<!-- readme: collaborators,contributors -start -->
 <table>
 	<tbody>
 		<tr>
