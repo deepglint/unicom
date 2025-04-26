@@ -1,4 +1,17 @@
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-label-cluster-discrimination-for-visual/referring-expression-segmentation-on-refcocog)](https://paperswithcode.com/sota/referring-expression-segmentation-on-refcocog?p=multi-label-cluster-discrimination-for-visual)  
+<a href="https://arxiv.org/pdf/2407.17331"><img src="https://img.shields.io/badge/arXiv-2407.17331-b31b1b" alt="arXiv"></a>
+<a href='https://huggingface.co/DeepGlint-AI/MLCD-Seg'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-green'></a>
+</div>
+
+
+
+## Example:
+
+![output](https://github.com/user-attachments/assets/85c023a1-3e0c-4ea5-a764-1eb9ee0fbddf)
+
+
+## RefCOCO Segmentation Evaluation Results:
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-label-cluster-discrimination-for-visual/referring-expression-segmentation-on-refcocog)](https://paperswithcode.com/sota/referring-expression-segmentation-on-refcocog?p=multi-label-cluster-discrimination-for-visual)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-label-cluster-discrimination-for-visual/referring-expression-segmentation-on-refcoco-5)](https://paperswithcode.com/sota/referring-expression-segmentation-on-refcoco-5?p=multi-label-cluster-discrimination-for-visual)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-label-cluster-discrimination-for-visual/referring-expression-segmentation-on-refcoco-3)](https://paperswithcode.com/sota/referring-expression-segmentation-on-refcoco-3?p=multi-label-cluster-discrimination-for-visual)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-label-cluster-discrimination-for-visual/referring-expression-segmentation-on-refcocog-1)](https://paperswithcode.com/sota/referring-expression-segmentation-on-refcocog-1?p=multi-label-cluster-discrimination-for-visual)
@@ -9,13 +22,6 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/multi-label-cluster-discrimination-for-visual/referring-expression-segmentation-on-refcoco)](https://paperswithcode.com/sota/referring-expression-segmentation-on-refcoco?p=multi-label-cluster-discrimination-for-visual) 
 
 
-# MLCD-Seg
-[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-MLCD_SEG_Model-yellow)](https://huggingface.co/DeepGlint-AI/MLCD-Seg-7B)
-
-This repository is dedicated to researching the application of multimodal large models in downstream tasks through an end-to-end approach. At present, the segmentation part has achieved excellent results in the reference segmentation project
-
-
-## RefCOCO Segmentation Evaluation: 
 
 | Dataset     | Split   | MLCD-seg-7B | EVF-SAM | GLaMM | VisionLLM v2| LISA |
 | :--         | :-:     | :-:  | :-:  | :-:  | :-:  | :-:  |
@@ -28,20 +34,74 @@ This repository is dedicated to researching the application of multimodal large 
 | RefCOCOg    | val     | **79.7** | 78.2 | 74.2 | 73.3 | 67.9 |
 | RefCOCOg    | test    | **80.5** | 78.3 | 74.9 | 74.8 | 70.6 |
 
----
-## Evaluation  
-Install the evaluation tool and execute the evaluation script:
-```bash
-bash ./eval/scripts/eval_refcoco.sh
+## How to use:
+
+If you just want to use this code, please refer to this sample below
+```python
+model_path = "DeepGlint-AI/MLCD-Seg" # or use your local path
+mlcd_seg = AutoModel.from_pretrained(
+    model_path,
+    torch_dtype=torch.float16,
+    trust_remote_code=True
+).cuda()
+tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
+# Assuming you have an image named test.jpg
+seg_img = Image.open("asserts/example.jpg").convert('RGB')
+seg_prompt = "Could you provide a segmentation mask for the right giraffe in this image?"
+pred_mask = model.seg(seg_img, seg_prompt, tokenizer, force_seg=False)
 ```
----
+
+If you want to use this code measurement dataset (e.g. refcoco), then you need to use the following method
+```python
+model_path = "DeepGlint-AI/MLCD-Seg" # or use your local path
+mlcd_seg = AutoModel.from_pretrained(
+    model_path,
+    torch_dtype=torch.float16,
+    trust_remote_code=True
+).cuda()
+tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
+# Assuming you have an image named test.jpg
+seg_img = Image.open("asserts/example.jpg").convert('RGB')
+seg_prompt = "Could you provide a segmentation mask for the right giraffe in this image?"
+pred_mask = model.seg(seg_img, seg_prompt, tokenizer, force_seg=True)
+```
+
+## Intstallation
+
+```bash
+# Create environment from file
+conda create -n mlcd_seg python=3.10
+conda activate mlcd_seg
+
+pip install -r requirements.txt
+```
+
+
+## Docker
+```bash
+# PyTorch Docker
+
+```bash
+# Build the Docker image
+docker build -t mlcd_seg .
+
+# Run the Docker container with GPU support
+docker run -it --rm --gpus all mlcd_seg bash
+```
+
 
 ## Citations
 ```
 @misc{mlcdseg_wukun,
-  author = {Wu, Kun and Xie, Yin and Zhou, Xinyu and An, Xiang, and Deng, Jiankang},
-  title = {MLCD-seg-7B},
-  year = {2024},
-  url = {https://github.com/deepglint/unicom/tree/main/downstream},
+  author = {Wu, Kun and Xie, Yin and Jie, Yu and Zhou, Xinyu and An, Xiang, Feng, Ziyong and Deng, Jiankang},
+  title = {MLCD-Seg},
+  year = {2025},
+  url = {https://github.com/deepglint/MLCD_SEG},
+}
+@inproceedings{anxiang_2024_mlcd,
+  title={Multi-label Cluster Discrimination for Visual Representation Learning},
+  author={An, Xiang and Yang, Kaicheng and Dai, Xiangzi and Feng, Ziyong and Deng, Jiankang},
+  booktitle={ECCV},
+  year={2024}
 }
 ```
