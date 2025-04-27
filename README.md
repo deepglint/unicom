@@ -38,6 +38,8 @@ The results of the ImageNet linear probe are as follows:
 Here is an example of how to use the `MLCDVisionModel` from the Transformers library for feature extraction. Please note that this requires the `transformers` library from the `master` branch. We will update this with a specific version number in the future.
 
 ```python
+# pip install git+https://github.com/huggingface/transformers@v4.51.3-MLCD-preview
+
 import requests
 from PIL import Image
 from transformers import AutoProcessor, MLCDVisionModel
