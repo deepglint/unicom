@@ -38,6 +38,10 @@
 
 If you just want to use this code, please refer to this sample below
 ```python
+from transformers import AutoModel, AutoTokenizer
+from PIL import Image
+
+
 model_path = "DeepGlint-AI/MLCD-Seg" # or use your local path
 mlcd_seg = AutoModel.from_pretrained(
     model_path,
@@ -46,13 +50,18 @@ mlcd_seg = AutoModel.from_pretrained(
 ).cuda()
 tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
 # Assuming you have an image named test.jpg
-seg_img = Image.open("asserts/example.jpg").convert('RGB')
+seg_img = Image.open("test.jpg").convert('RGB')
 seg_prompt = "Could you provide a segmentation mask for the right giraffe in this image?"
 pred_mask = model.seg(seg_img, seg_prompt, tokenizer, force_seg=False)
+
 ```
 
 If you want to use this code measurement dataset (e.g. refcoco), then you need to use the following method
 ```python
+from transformers import AutoModel, AutoTokenizer
+from PIL import Image
+
+
 model_path = "DeepGlint-AI/MLCD-Seg" # or use your local path
 mlcd_seg = AutoModel.from_pretrained(
     model_path,
@@ -61,9 +70,10 @@ mlcd_seg = AutoModel.from_pretrained(
 ).cuda()
 tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
 # Assuming you have an image named test.jpg
-seg_img = Image.open("asserts/example.jpg").convert('RGB')
+seg_img = Image.open("test.jpg").convert('RGB')
 seg_prompt = "Could you provide a segmentation mask for the right giraffe in this image?"
 pred_mask = model.seg(seg_img, seg_prompt, tokenizer, force_seg=True)
+
 ```
 
 ## Intstallation
