@@ -159,11 +159,12 @@ docker build -t train_mlcd_llava .
 docker run --gpus all \
 -v /vlm:/vlm \
 -v /mnt:/mnt \
--v /mnt/data/huggingface/:/root/.cache/huggingface \
 -v $(pwd):/workspace \
 --rm \
 -w /workspace \
 --shm-size=64g -it train_mlcd_llava bash
+
+pip install flash-attn==2.3.3 --no-build-isolation
 ```
 
 ### B. Inference
