@@ -7,7 +7,7 @@
 ## Example:
 
 ![output](https://github.com/user-attachments/assets/85c023a1-3e0c-4ea5-a764-1eb9ee0fbddf)
-![output](https://github.com/user-attachments/assets/380dee0d-47c4-4e01-8ff0-e69e62cccd7c)
+<video src="https://github.com/user-attachments/assets/380dee0d-47c4-4e01-8ff0-e69e62cccd7c" alt="output" width="1024"></video>
 
 
 ## RefCOCO Segmentation Evaluation Results:
