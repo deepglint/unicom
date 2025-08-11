@@ -67,7 +67,7 @@ print(f"Extracted features shape: {features.shape}")
 
 
 ## Latest News
-
+<div>🤗 [2025/08] <a href="https://arxiv.org/abs/2507.20025">RICE</a> accepted as a highlight paper at ICCV 2025.</div>
 <div>🤗 [2025/04] MLCD bigG has been merged into the Transformers library and can be accessed <a href="https://huggingface.co/docs/transformers/main/en/model_doc/mlcd">here</a>.</div>
 <div>💖 [2025/02] We have released the <a href="https://huggingface.co/DeepGlint-AI/mlcd-vit-bigG-patch14-448">MLCD-bigG-14-448px</a> model, which has demonstrated excellent performance within the LLaVA-NeXT framework. You can reproduce these results from here <a href="https://github.com/deepglint/unicom/blob/main/mlcd_vl/scripts/pretrain_mlcd.sh">[1]</a>, <a href="https://github.com/deepglint/unicom/blob/main/mlcd_vl/scripts/finetune_mlcd.sh">[2]</a>.</div>
 <div>🎅 [2024/12] We have launched the <a href="https://github.com/deepglint/unicom/tree/main/mlcd_vl/downstream">MLCD-Seg-7B</a>, achieving scores of 85.3/81.5 on RefCOCO[testA/B], 82.9/75.6 on RefCOCO+[testA/B], and 80.5 on RefCOCOg[test].</div>
