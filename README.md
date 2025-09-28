@@ -221,6 +221,12 @@ Thank you to all the contributors for their hard work and dedication!
 ## Citation
 
 ```latex
+@inproceedings{yinxie_2025_rice,
+  title={Region-based Cluster Discrimination for Visual Representation Learning},
+  author={Xie, Yin and Yang, Kaicheng and An, Xiang and Wu, Kun and Zhao, Yongle and Deng, Weimo and Ran, Zimin and Wang, Yumeng and Feng, Ziyong And Roy, Miles And Ismail, Elezi And Deng, Jiankang},
+  booktitle={ICCV},
+  year={2025}
+}
 @inproceedings{anxiang_2024_mlcd,
   title={Multi-label Cluster Discrimination for Visual Representation Learning},
   author={An, Xiang and Yang, Kaicheng and Dai, Xiangzi and Feng, Ziyong and Deng, Jiankang},
